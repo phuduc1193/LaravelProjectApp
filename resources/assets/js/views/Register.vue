@@ -1,27 +1,38 @@
 <template>
-  <div class="login-container">
-    <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
+  <div class="register-container">
+    <el-form class="register-form" autoComplete="on" :model="registerForm" :rules="registerRules" ref="registerForm" label-position="left">
       <div class="title-container">
-        <h3 class="title">{{$t('form.loginTitle')}}</h3>
+        <h3 class="title">{{$t('form.registerTitle')}}</h3>
         <lang-select class="set-language"></lang-select>
       </div>
+      <el-form-item prop="name">
+        <i class="svg-container fa fa-id-card"></i>
+        <el-input name="name" type="text" v-model="registerForm.name" autoComplete="on" :placeholder="$t('form.name')" />
+      </el-form-item>
       <el-form-item prop="username">
         <i class="svg-container fa fa-user"></i>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" :placeholder="$t('form.username')" />
+        <el-input name="username" type="text" v-model="registerForm.username" autoComplete="on" :placeholder="$t('form.username')" />
       </el-form-item>
       <el-form-item prop="password">
         <i class="svg-container fa fa-unlock-alt"></i>
-        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" :placeholder="$t('form.password')" />
+        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="handleRegister" v-model="registerForm.password" autoComplete="on" :placeholder="$t('form.password')" />
         <span class="show-pwd" @click="showPwd = !showPwd">
            <i class="fa" :class="[showPwd ? 'fa-eye-slash' : 'fa-eye']"></i>
         </span>
       </el-form-item>
+      <el-form-item prop="passwordConfirmation">
+        <i class="svg-container fa fa-unlock-alt"></i>
+        <el-input name="password" :type="showPwdConfirm ? 'text' : 'password'" @keyup.enter.native="handleRegister" v-model="registerForm.passwordConfirmation" autoComplete="on" :placeholder="$t('form.passwordConfirmation')" />
+        <span class="show-pwd" @click="showPwdConfirm = !showPwdConfirm">
+           <i class="fa" :class="[showPwdConfirm ? 'fa-eye-slash' : 'fa-eye']"></i>
+        </span>
+      </el-form-item>
       <el-row class="pt-3">
         <el-col :span="12" class="pr-2">
-          <el-button type="primary" :loading="loading" @click.native.prevent="handleLogin">{{$t('form.login')}}</el-button>
+          <el-button type="primary" :loading="loading" @click.native.prevent="handleRegister">{{$t('form.register')}}</el-button>
         </el-col>
         <el-col :span="12" class="pl-2">
-          <el-button type="primary" @click.native.prevent="register">{{$t('form.register')}}</el-button>
+          <el-button type="primary" @click.native.prevent="login">{{$t('form.login')}}</el-button>
         </el-col>
       </el-row>
     </el-form>
@@ -34,7 +45,7 @@ import LangSelect from '@/components/LangSelect.vue'
 
 export default {
   components: { LangSelect },
-  name: 'login',
+  name: 'register',
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!Validate.username(value)) {
@@ -44,32 +55,44 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (!Validate.password(value)) {
-        callback(new Error(this.$t('form.error.invalidPassword')))
+      if (!Validate.registerPassword(value)) {
+        callback(new Error(this.$t('form.rule.password')))
+      } else {
+        callback()
+      }
+      this.$refs.registerForm.validateField('passwordConfirmation')
+    }
+    const validatePasswordConfirmation = (rule, value, callback) => {
+      if (this.registerForm.password != value) {
+        callback(new Error(this.$t('form.error.invalidPasswordConfirmation')))
       } else {
         callback()
       }
     }
 
     return {
-      loginForm: {
+      registerForm: {
+        name: '',
         username: '',
-        password: ''
+        password: '',
+        passwordConfirmation: ''
       },
-      loginRules: {
+      registerRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        passwordConfirmation: [{ required: true, trigger: 'blur', validator: validatePasswordConfirmation }]
       },
       showPwd: false,
+      showPwdConfirm: false,
       loading: false
     }
   },
   methods: {
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+    handleRegister() {
+      this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+          this.$store.dispatch('registerByUsername', this.registerForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/' })
           }).catch(() => {
@@ -81,8 +104,8 @@ export default {
         }
       })
     },
-    register() {
-      this.$router.push({ path: '/register' })
+    login() {
+      this.$router.push({ path: '/login' })
     }
   }
 }
@@ -93,7 +116,7 @@ $bg:#2d3a4b;
 $light_gray:#eee;
 
 /* reset element-ui css */
-.login-container {
+.register-container {
   .el-input {
     display: inline-block;
     height: 47px;
@@ -126,18 +149,18 @@ $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
-.login-container {
+.register-container {
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: $bg;
-  .login-form {
+  .register-form {
     position: absolute;
     left: 0;
     right: 0;
     width: 520px;
     padding: 35px 35px 15px 35px;
-    margin: 120px auto;
+    margin: 90px auto;
   }
   .svg-container {
     padding: 6px 5px 6px 15px;
@@ -145,7 +168,7 @@ $light_gray:#eee;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
-    &_login {
+    &_register {
       font-size: 20px;
     }
   }
