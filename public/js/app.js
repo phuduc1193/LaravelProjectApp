@@ -93727,16 +93727,16 @@ function hasPermission(roles, permissionRoles) {
   });
 }
 
-var whiteList = ['/login', '/register', '/404'];
+var whiteList = ['/login', '/register'];
 
 __WEBPACK_IMPORTED_MODULE_0__router__["a" /* default */].beforeEach(function (to, from, next) {
   __WEBPACK_IMPORTED_MODULE_1_nprogress___default.a.start();
   if (__WEBPACK_IMPORTED_MODULE_3__auth_service__["a" /* default */].isAuthenticated()) {
     if (whiteList.indexOf(to.path) !== -1) {
-      next({
-        path: '/'
-      });
+      next('/');
       __WEBPACK_IMPORTED_MODULE_1_nprogress___default.a.done();
+    } else {
+      next();
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
