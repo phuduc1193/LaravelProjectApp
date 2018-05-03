@@ -41,7 +41,7 @@
 
 <script>
 import Validate from '@/utils/validator'
-import LangSelect from '@/components/LangSelect.vue'
+import LangSelect from '@/components/LangSelect'
 
 export default {
   components: { LangSelect },
