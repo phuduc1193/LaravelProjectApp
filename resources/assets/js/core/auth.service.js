@@ -21,10 +21,33 @@ class AuthService {
       axios.post('/auth/login', {
         username: username,
         password: password
-      }).then(function(response) {
+      }).then(function (response) {
         const data = response.data
-        const twoHours = 1/12
-        Cookies.set(Env.TokenKey, data.access_token, { expires: twoHours })
+        const twoHours = 1 / 12
+        Cookies.set(Env.TokenKey, data.access_token, {
+          expires: twoHours
+        })
+        resolve(data.access_token)
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  }
+
+  static register(name, username, email, password, confirmation) {
+    return new Promise((resolve, reject) => {
+      axios.post('/auth/register', {
+        name: name,
+        username: username,
+        email: email,
+        password: password,
+        password_confirmation: confirmation
+      }).then(function (response) {
+        const data = response.data
+        const twoHours = 1 / 12
+        Cookies.set(Env.TokenKey, data.access_token, {
+          expires: twoHours
+        })
         resolve(data.access_token)
       }).catch((error) => {
         reject(error)

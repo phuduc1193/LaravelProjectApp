@@ -6,14 +6,18 @@ export default {
     register: 'Register',
     name: 'Name',
     username: 'Username',
+    email: 'Email',
     password: 'Password',
     passwordConfirmation: 'Password confirmation',
     remember: 'Remember me',
     returnHome: 'Return home',
     reportProblem: 'Report problem',
     reportDescription: 'Please briefly describe what problem you\'ve encountered.',
+    ok: 'OK',
+    cancel: 'Cancel',
     error: {
       invalidUsername: 'Invalid username',
+      invalidEmail: 'Invalid email',
       invalidPassword: 'Invalid password',
       invalidPasswordConfirmation: 'Password confirmation is not matched',
     },
@@ -24,6 +28,7 @@ export default {
   notification: {
     switchLanguageSuccess: 'Switch language success!',
     reportSuccess: 'Thank you for your cooperation!',
+    error: 'Cannot process your request. Please try again.',
   },
   errorMessage: {
     pageNotExists: 'Oops, the page you\'re looking for does not exist.',

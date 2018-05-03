@@ -12,12 +12,29 @@ import DashboardComponent from '@/components/Dashboard'
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  scrollBehavior: () => ({ y: 0 }),
-  routes: [
-    { path: '/login', component: LoginPage, hidden: true },
-    { path: '/register', component: RegisterPage, hidden: true },
-    { path: '/404', component: NotFoundPage, hidden: true },
-    { path: '/401', component: UnauthorizedPage, hidden: true },
+  scrollBehavior: () => ({
+    y: 0
+  }),
+  routes: [{
+      path: '/login',
+      component: LoginPage,
+      hidden: true
+    },
+    {
+      path: '/register',
+      component: RegisterPage,
+      hidden: true
+    },
+    {
+      path: '/404',
+      component: NotFoundPage,
+      hidden: true
+    },
+    {
+      path: '/401',
+      component: UnauthorizedPage,
+      hidden: true
+    },
     {
       path: '',
       component: Layout,
@@ -26,9 +43,17 @@ export default new VueRouter({
         path: 'dashboard',
         component: DashboardComponent,
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'fa fa-tachometer', noCache: true }
+        meta: {
+          title: 'Dashboard',
+          icon: 'fa fa-tachometer',
+          noCache: true
+        }
       }]
     },
-    { path: '*', redirect: '/404', hidden: true }
+    {
+      path: '*',
+      redirect: '/404',
+      hidden: true
+    }
   ]
 })

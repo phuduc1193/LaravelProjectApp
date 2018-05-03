@@ -6,14 +6,18 @@ export default {
     register: 'Đăng ký',
     name: 'Tên',
     username: 'Tên đăng nhập',
+    email: 'Email',
     password: 'Mật khẩu',
     passwordConfirmation: 'Xác nhận mật khẩu',
     remember: 'Lưu tài khoản đăng nhập',
     returnHome: 'Quay về trang chủ',
     reportProblem: 'Báo cáo sự cố',
     reportDescription: 'Xin vui lòng tóm tắt lại sự cố bạn đã gặp.',
+    ok: 'Đồng ý',
+    cancel: 'Hủy bỏ',
     error: {
       invalidUsername: 'Tên truy cập không hợp lệ',
+      invalidEmail: 'Email không hợp lệ',
       invalidPassword: 'Mật khẩu không hợp lệ',
       invalidPasswordConfirmation: 'Xác nhận mật khẩu không trùng khớp',
     },
@@ -24,6 +28,7 @@ export default {
   notification: {
     switchLanguageSuccess: 'Đổi ngôn ngữ thành công!',
     reportSuccess: 'Cảm ơn về sự hợp tác của bạn!',
+    error: 'Hệ thống không thể xử lý yêu cầu của bạn. Xin vui lòng thử lại sau.',
   },
   errorMessage: {
     pageNotExists: 'Chúng tôi không thấy chuyên mục bạn đang tìm.',

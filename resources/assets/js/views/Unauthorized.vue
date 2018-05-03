@@ -13,8 +13,8 @@
 
 <script>
 export default {
-  name: 'unauthorized'
-}
+  name: "unauthorized"
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

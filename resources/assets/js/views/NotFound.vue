@@ -13,19 +13,20 @@
 </template>
 
 <script>
-import ReportProblemComponent from '@/components/ReportProblem'
+import ReportProblemComponent from "@/components/ReportProblem";
 
 export default {
-  name: 'pagenotfound',
+  name: "pagenotfound",
   components: { ReportProblemComponent },
   methods: {
-    toHomepage() {
+    toHomepage(response) {
+      console.log(response);
       setTimeout(() => {
-        this.$router.push('/')
-      }, 2000)
+        this.$router.push("/");
+      }, 2000);
     }
   }
-}
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

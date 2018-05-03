@@ -6,6 +6,11 @@ class Validation {
     return regex.test(value)
   }
 
+  static email(value) {
+    const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/
+    return regex.test(value)
+  }
+
   static password(value) {
     const regex = /^(?=.*[A-Za-z])[A-Za-z\d!_\-?@$*^]{6,}/
     return regex.test(value)

@@ -13,6 +13,10 @@
         <i class="svg-container fa fa-user"></i>
         <el-input name="username" type="text" v-model="registerForm.username" autoComplete="on" :placeholder="$t('form.username')" />
       </el-form-item>
+      <el-form-item prop="email">
+        <i class="svg-container fa fa-at"></i>
+        <el-input name="email" type="text" v-model="registerForm.email" autoComplete="on" :placeholder="$t('form.email')" />
+      </el-form-item>
       <el-form-item prop="password">
         <i class="svg-container fa fa-unlock-alt"></i>
         <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="handleRegister" v-model="registerForm.password" autoComplete="on" :placeholder="$t('form.password')" />
@@ -40,80 +44,102 @@
 </template>
 
 <script>
-import Validate from '@/utils/validator'
-import LangSelect from '@/components/LangSelect'
+import Validate from "@/utils/validator";
+import LangSelect from "@/components/LangSelect";
 
 export default {
   components: { LangSelect },
-  name: 'register',
+  name: "register",
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!Validate.username(value)) {
-        callback(new Error(this.$t('form.error.invalidUsername')))
+        callback(new Error(this.$t("form.error.invalidUsername")));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
+    const validateEmail = (rule, value, callback) => {
+      if (!Validate.email(value)) {
+        callback(new Error(this.$t("form.error.invalidEmail")));
+      } else {
+        callback();
+      }
+    };
     const validatePassword = (rule, value, callback) => {
       if (!Validate.registerPassword(value)) {
-        callback(new Error(this.$t('form.rule.password')))
+        callback(new Error(this.$t("form.rule.password")));
       } else {
-        callback()
+        callback();
       }
-      this.$refs.registerForm.validateField('passwordConfirmation')
-    }
+      this.$refs.registerForm.validateField("passwordConfirmation");
+    };
     const validatePasswordConfirmation = (rule, value, callback) => {
       if (this.registerForm.password != value) {
-        callback(new Error(this.$t('form.error.invalidPasswordConfirmation')))
+        callback(new Error(this.$t("form.error.invalidPasswordConfirmation")));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
 
     return {
       registerForm: {
-        name: '',
-        username: '',
-        password: '',
-        passwordConfirmation: ''
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+        passwordConfirmation: ""
       },
       registerRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
-        passwordConfirmation: [{ required: true, trigger: 'blur', validator: validatePasswordConfirmation }]
+        username: [
+          { required: true, trigger: "blur", validator: validateUsername }
+        ],
+        email: [{ required: true, trigger: "blur", validator: validateEmail }],
+        password: [
+          { required: true, trigger: "blur", validator: validatePassword }
+        ],
+        passwordConfirmation: [
+          {
+            required: true,
+            trigger: "blur",
+            validator: validatePasswordConfirmation
+          }
+        ]
       },
       showPwd: false,
       showPwdConfirm: false,
       loading: false
-    }
+    };
   },
   methods: {
     handleRegister() {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('registerByUsername', this.registerForm).then(() => {
-            this.loading = false
-            this.$router.push({ path: '/' })
-          }).catch(() => {
-            this.loading = false
-          })
+          this.loading = true;
+          this.$store
+            .dispatch("RegisterUser", this.registerForm)
+            .then(() => {
+              this.loading = false;
+              this.$router.push({ path: "/" });
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         } else {
-          console.log('error submit!!')
-          return false
+          console.log("error submit!!");
+          return false;
         }
-      })
+      });
     },
     login() {
-      this.$router.push({ path: '/login' })
+      this.$router.push({ path: "/login" });
     }
   }
-}
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$light_gray: #eee;
 
 /* reset element-ui css */
 .register-container {
@@ -145,9 +171,9 @@ $light_gray:#eee;
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .register-container {
   position: fixed;

@@ -3,7 +3,9 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import AuthService from './auth.service'
 
-NProgress.configure({ showSpinner: false })
+NProgress.configure({
+  showSpinner: false
+})
 
 function hasPermission(roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0)
@@ -19,7 +21,9 @@ router.beforeEach((to, from, next) => {
   NProgress.start()
   if (AuthService.isAuthenticated()) {
     if (whiteList.indexOf(to.path) !== -1) {
-      next({ path: '/' })
+      next({
+        path: '/'
+      })
       NProgress.done()
     }
   } else {

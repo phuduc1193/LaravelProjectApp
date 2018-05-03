@@ -12,7 +12,9 @@ const user = {
   },
 
   actions: {
-    LoginByUsername({ commit }, userInfo) {
+    LoginByUsername({
+      commit
+    }, userInfo) {
       return new Promise((resolve, reject) => {
         AuthService.loginByUsername(userInfo.username.trim(), userInfo.password).then((token) => {
           commit('SET_TOKEN', token)
@@ -23,7 +25,10 @@ const user = {
       })
     },
 
-    LogOut({ commit, state }) {
+    LogOut({
+      commit,
+      state
+    }) {
       return new Promise((resolve, reject) => {
         AuthService.logout().then(() => {
           commit('SET_TOKEN', '')
@@ -33,6 +38,19 @@ const user = {
         })
       })
     },
+
+    RegisterUser({
+      commit
+    }, userInfo) {
+      return new Promise((resolve, reject) => {
+        AuthService.register(userInfo.name, userInfo.username.trim(), userInfo.email, userInfo.password, userInfo.passwordConfirmation).then((token) => {
+          commit('SET_TOKEN', token)
+          resolve()
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    }
   }
 }
 
