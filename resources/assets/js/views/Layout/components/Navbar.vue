@@ -1,6 +1,6 @@
 <template>
   <el-menu class="navbar-container" mode="horizontal">
-    <i class="hamburger-container fa fa-bars" @click="toggleSideBar"></i>
+    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
 
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 
@@ -28,19 +28,19 @@
 <script>
 import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
+import Hamburger from "@/components/Hamburger";
 import LangSelect from "@/components/LangSelect";
 import Avatar from "vue-avatar";
 
 export default {
   components: {
     Breadcrumb,
+    Hamburger,
     LangSelect,
     Avatar
   },
   computed: {
-    username() {
-      return this.$store.getters.username;
-    }
+    ...mapGetters(["sidebar", "username"])
   },
   methods: {
     toggleSideBar() {
@@ -68,6 +68,7 @@ export default {
     height: 50px;
     float: left;
     padding: 0 10px;
+    cursor: pointer;
   }
   .breadcrumb-container {
     float: left;
