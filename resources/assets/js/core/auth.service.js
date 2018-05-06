@@ -1,4 +1,4 @@
-import Env from './environment'
+import env from './environment'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
@@ -8,12 +8,12 @@ class AuthService {
     let token = this.getToken()
     if (typeof token == 'string' && jwtDecode(token).exp > Date.now() / 1000)
       return true
-    Cookies.remove(Env.TokenKey)
+    Cookies.remove(env.TokenKey)
     return false
   }
 
   static getToken() {
-    return Cookies.get(Env.TokenKey)
+    return Cookies.get(env.TokenKey)
   }
 
   static loginByUsername(username, password) {
@@ -21,14 +21,14 @@ class AuthService {
       axios.post('/auth/login', {
         username: username,
         password: password
-      }).then(function (response) {
+      }).then(response => {
         const data = response.data
         const twoHours = 1 / 12
-        Cookies.set(Env.TokenKey, data.access_token, {
+        Cookies.set(env.TokenKey, data.access_token, {
           expires: twoHours
         })
         resolve(data.access_token)
-      }).catch((error) => {
+      }).catch(error => {
         reject(error)
       })
     })
@@ -42,14 +42,14 @@ class AuthService {
         email: email,
         password: password,
         password_confirmation: confirmation
-      }).then(function (response) {
+      }).then(response => {
         const data = response.data
         const twoHours = 1 / 12
-        Cookies.set(Env.TokenKey, data.access_token, {
+        Cookies.set(env.TokenKey, data.access_token, {
           expires: twoHours
         })
         resolve(data.access_token)
-      }).catch((error) => {
+      }).catch(error => {
         reject(error)
       })
     })
@@ -57,8 +57,12 @@ class AuthService {
 
   static logout() {
     return new Promise((resolve, reject) => {
-      Cookies.remove(Env.TokenKey)
-      resolve()
+      axios.post('/auth/logout').then(response => {
+        Cookies.remove(env.TokenKey)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
     })
   }
 }

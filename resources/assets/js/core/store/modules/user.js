@@ -16,7 +16,7 @@ const user = {
       commit
     }, userInfo) {
       return new Promise((resolve, reject) => {
-        AuthService.loginByUsername(userInfo.username.trim(), userInfo.password).then((token) => {
+        AuthService.loginByUsername(userInfo.username.trim(), userInfo.password).then(token => {
           commit('SET_TOKEN', token)
           resolve()
         }).catch((error) => {
@@ -33,7 +33,7 @@ const user = {
         AuthService.logout().then(() => {
           commit('SET_TOKEN', '')
           resolve()
-        }).catch((error) => {
+        }).catch(error => {
           reject(error)
         })
       })
@@ -43,10 +43,10 @@ const user = {
       commit
     }, userInfo) {
       return new Promise((resolve, reject) => {
-        AuthService.register(userInfo.name, userInfo.username.trim(), userInfo.email, userInfo.password, userInfo.passwordConfirmation).then((token) => {
+        AuthService.register(userInfo.name, userInfo.username.trim(), userInfo.email, userInfo.password, userInfo.passwordConfirmation).then(token => {
           commit('SET_TOKEN', token)
           resolve()
-        }).catch((error) => {
+        }).catch(error => {
           reject(error)
         })
       })

@@ -10967,3 +10967,7 @@ a.text-dark:focus {
   }
 }
 
+.router-link-active:hover {
+  text-decoration: none;
+}
+

@@ -1,17 +1,5 @@
 import _ from 'lodash'
 import $ from 'jquery'
-import axios from 'axios'
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-let baseURL = document.head.querySelector('meta[name="api-url"]');
-axios.defaults.baseURL = baseURL.content;
-
-let token = document.head.querySelector('meta[name="csrf-token"]');
-if (token) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

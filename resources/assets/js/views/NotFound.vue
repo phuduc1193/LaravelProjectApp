@@ -7,7 +7,7 @@
       <router-link to="/">
         <el-button round class="mr-2">{{$t('form.returnHome')}}</el-button>
       </router-link>
-      <report-problem-component :propClass="'ml-2'" @file-report="toHomepage"></report-problem-component>
+      <report-problem-component class="ml-2" @file-report="toHomepage"></report-problem-component>
     </el-col>
   </el-row>
 </template>

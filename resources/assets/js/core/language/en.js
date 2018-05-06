@@ -15,6 +15,7 @@ export default {
     reportDescription: 'Please briefly describe what problem you\'ve encountered.',
     ok: 'OK',
     cancel: 'Cancel',
+    logout: 'Logout',
     error: {
       invalidUsername: 'Invalid username',
       invalidEmail: 'Invalid email',
@@ -35,5 +36,8 @@ export default {
     returnHomeOrReport: 'You may want to head back to the homepage. If you think something is broken, report a problem.',
     unauthorized: 'Sorry, you don\'t have the permission to access this page.',
     returnHome: 'You may want to head back to the homepage.',
+  },
+  route: {
+    dashboard: "Dashboard"
   }
 };

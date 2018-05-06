@@ -1,5 +1,5 @@
 <template>
-  <el-button round :class="componentClass" @click="openMessage">{{$t('form.reportProblem')}}</el-button>
+  <el-button round @click="openMessage">{{$t('form.reportProblem')}}</el-button>
 </template>
 
 <script>
@@ -7,7 +7,6 @@ import axios from "axios";
 
 export default {
   name: "report-problem",
-  props: ["propClass"],
   data: function() {
     return {
       componentClass: this.propClass
@@ -26,7 +25,7 @@ export default {
         .then(input => {
           const data = {
             route: this.$router.currentRoute.fullPath,
-            previousRoute: this.$store.getters.previousRoute,
+            // previousRoute: this.$store.getters.previousRoute,
             description: input.value
           };
           axios

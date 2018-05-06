@@ -5,7 +5,7 @@ import LoginPage from '@/views/Login'
 import RegisterPage from '@/views/Register'
 import NotFoundPage from '@/views/NotFound'
 import UnauthorizedPage from '@/views/Unauthorized'
-import Layout from '@/views/Layout'
+import Layout from '@/views/Layout/Layout.vue'
 
 import DashboardComponent from '@/components/Dashboard'
 
@@ -42,9 +42,9 @@ export default new VueRouter({
       children: [{
         path: 'dashboard',
         component: DashboardComponent,
-        name: 'Dashboard',
+        name: 'dashboard',
         meta: {
-          title: 'Dashboard',
+          title: 'dashboard',
           icon: 'fa fa-tachometer',
           noCache: true
         }

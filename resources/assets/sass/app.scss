@@ -1,2 +1,5 @@
 @import './styles/index.scss';
 @import "~bootstrap/scss/bootstrap";
+.router-link-active:hover {
+  text-decoration: none;
+}

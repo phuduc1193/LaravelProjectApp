@@ -12,6 +12,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import './core/auth.guard'
 import i18n from './core/language'
 import store from './core/store'
+import './core/http.service'
 import validator from './utils/validator'
 
 Vue.use(Element)
@@ -22,5 +23,7 @@ const app = new Vue({
     router,
     validator,
     template: '<App/>',
-    components: { App }
+    components: {
+        App
+    }
 });

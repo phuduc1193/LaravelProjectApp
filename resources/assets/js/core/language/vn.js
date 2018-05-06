@@ -15,6 +15,7 @@ export default {
     reportDescription: 'Xin vui lòng tóm tắt lại sự cố bạn đã gặp.',
     ok: 'Đồng ý',
     cancel: 'Hủy bỏ',
+    logout: 'Đăng xuất',
     error: {
       invalidUsername: 'Tên truy cập không hợp lệ',
       invalidEmail: 'Email không hợp lệ',
@@ -36,4 +37,7 @@ export default {
     unauthorized: 'Bạn không có quyền truy cập trang này.',
     returnHome: 'Xin vui lòng quay lại trang chủ.',
   },
+  route: {
+    dashboard: "Trang chủ"
+  }
 };
