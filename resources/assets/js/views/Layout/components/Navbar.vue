@@ -1,6 +1,6 @@
 <template>
   <el-menu class="navbar-container" mode="horizontal">
-    <i class="hamburger-container fa fa-bars" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></i>
+    <i class="hamburger-container fa fa-bars" @click="toggleSideBar"></i>
 
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 
@@ -9,17 +9,15 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar" src="">
+          <avatar class="user-avatar" :username="username" :size="35"></avatar>
           <i class="el-icon-caret-bottom"></i>
         </div>
-        <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              {{$t('route.dashboard')}}
-            </el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
-            <span @click="logout">{{$t('form.logout')}}</span>
+        <el-dropdown-menu slot="dropdown" @click.native="dashboard">
+          <el-dropdown-item>
+            {{$t('route.dashboard')}}
+          </el-dropdown-item>
+          <el-dropdown-item divided @click.native="logout">
+            <span>{{$t('form.logout')}}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -31,14 +29,18 @@
 import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
 import LangSelect from "@/components/LangSelect";
+import Avatar from "vue-avatar";
 
 export default {
   components: {
     Breadcrumb,
-    LangSelect
+    LangSelect,
+    Avatar
   },
   computed: {
-    ...mapGetters(["sidebar"])
+    username() {
+      return this.$store.getters.username;
+    }
   },
   methods: {
     toggleSideBar() {
@@ -48,6 +50,9 @@ export default {
       this.$store.dispatch("LogOut").then(() => {
         location.reload(); // In order to re-instantiate the vue-router object to avoid bugs
       });
+    },
+    dashboard() {
+      this.$router.push({ path: "/dashboard" });
     }
   }
 };
@@ -90,15 +95,11 @@ export default {
     .avatar-container {
       height: 50px;
       margin-right: 30px;
+      vertical-align: top;
       .avatar-wrapper {
         cursor: pointer;
         margin-top: 5px;
         position: relative;
-        .user-avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
         .el-icon-caret-bottom {
           position: absolute;
           right: -20px;

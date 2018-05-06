@@ -25,6 +25,7 @@
         "path": "^0.12.7",
         "vee-validate": "^2.0.8",
         "vue": "^2.5.16",
+        "vue-avatar": "^2.1.4",
         "vue-i18n": "^7.6.0",
         "vue-loader": "^13.0.5",
         "vue-router": "^3.0.1",

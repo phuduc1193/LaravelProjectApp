@@ -3,12 +3,16 @@ import AuthService from '@/core/auth.service'
 const user = {
   state: {
     token: AuthService.getToken(),
+    username: AuthService.getUsername(),
   },
 
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
+    SET_USERNAME: (state, username) => {
+      state.username = username
+    }
   },
 
   actions: {
@@ -16,8 +20,9 @@ const user = {
       commit
     }, userInfo) {
       return new Promise((resolve, reject) => {
-        AuthService.loginByUsername(userInfo.username.trim(), userInfo.password).then(token => {
-          commit('SET_TOKEN', token)
+        AuthService.loginByUsername(userInfo.username.trim(), userInfo.password).then(response => {
+          commit('SET_TOKEN', response.token)
+          commit('SET_USERNAME', response.username)
           resolve()
         }).catch((error) => {
           reject(error)
@@ -43,8 +48,9 @@ const user = {
       commit
     }, userInfo) {
       return new Promise((resolve, reject) => {
-        AuthService.register(userInfo.name, userInfo.username.trim(), userInfo.email, userInfo.password, userInfo.passwordConfirmation).then(token => {
-          commit('SET_TOKEN', token)
+        AuthService.register(userInfo.name, userInfo.username.trim(), userInfo.email, userInfo.password, userInfo.passwordConfirmation).then(response => {
+          commit('SET_TOKEN', response.token)
+          commit('SET_USERNAME', response.username)
           resolve()
         }).catch(error => {
           reject(error)
