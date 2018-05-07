@@ -19,6 +19,10 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password', 'username',
     ];
 
+    protected $appends = [
+        'scopes',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -46,5 +50,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getScopesAttribute()
+    {
+        return ['admin'];
     }
 }

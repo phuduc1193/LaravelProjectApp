@@ -16,15 +16,6 @@ class AuthService {
     return Cookies.get(env.TokenKey)
   }
 
-  static getUsername() {
-    const cookie = Cookies.get('user')
-    if (cookie) {
-      const user = JSON.parse(cookie)
-      return user.username
-    }
-    return ''
-  }
-
   static loginByUsername(username, password) {
     return new Promise((resolve, reject) => {
       axios.post('/auth/login', {
@@ -33,12 +24,7 @@ class AuthService {
       }).then(response => {
         const data = response.data
         AuthService.setAuthCookies(data);
-        resolve({
-          'token': data.access_token,
-          'username': data.user.username,
-          'name': data.user.name,
-          'email': data.user.email,
-        })
+        resolve(data.access_token)
       }).catch(error => {
         reject(error)
       })
@@ -56,12 +42,7 @@ class AuthService {
       }).then(response => {
         const data = response.data
         AuthService.setAuthCookies(data);
-        resolve({
-          'token': data.access_token,
-          'username': data.user.username,
-          'name': data.user.name,
-          'email': data.user.email,
-        })
+        resolve(data.access_token)
       }).catch(error => {
         reject(error)
       })
@@ -83,6 +64,16 @@ class AuthService {
       axios.post('/auth/logout').then(response => {
         Cookies.remove(env.TokenKey)
         resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
+
+  static getUserInfo() {
+    return new Promise((resolve, reject) => {
+      axios.post('/auth/me').then(response => {
+        resolve(response.data)
       }).catch(error => {
         reject(error)
       })

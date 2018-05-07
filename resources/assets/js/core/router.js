@@ -53,6 +53,25 @@ export const constantRouterMap = [{
   }
 ]
 
+export const asyncRouterMap = [{
+  path: '/permission',
+  component: Layout,
+  redirect: '/permission/index',
+  meta: {
+    scopes: ['admin']
+  },
+  children: [{
+    path: 'index',
+    component: DashboardComponent,
+    name: 'permission',
+    meta: {
+      title: 'permission',
+      icon: 'lock',
+      scopes: ['admin']
+    }
+  }]
+}]
+
 export default new VueRouter({
   scrollBehavior: () => ({
     y: 0

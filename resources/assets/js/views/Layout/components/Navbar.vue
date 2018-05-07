@@ -48,7 +48,7 @@ export default {
     },
     logout() {
       this.$store.dispatch("LogOut").then(() => {
-        location.reload(); // In order to re-instantiate the vue-router object to avoid bugs
+        this.$router.push({ path: "/login" });
       });
     },
     dashboard() {
@@ -64,7 +64,7 @@ export default {
   line-height: 50px;
   border-radius: 0px !important;
   .hamburger-container {
-    line-height: 50px;
+    line-height: 58px;
     height: 50px;
     float: left;
     padding: 0 10px;

@@ -1,8 +1,7 @@
- //覆盖一些element-ui样式
-
- .el-breadcrumb__inner, .el-breadcrumb__inner a{
-  font-weight: 400!important;
-}
+ .el-breadcrumb__inner,
+ .el-breadcrumb__inner a {
+   font-weight: 400 !important;
+ }
 
  .el-upload {
    input[type="file"] {
@@ -27,11 +26,11 @@
    }
  }
 
- .fixed-width{
-  .el-button--mini{
-    padding: 7px 10px;
-    width: 60px;
-  }
+ .fixed-width {
+   .el-button--mini {
+     padding: 7px 10px;
+     width: 60px;
+   }
  }
 
  .status-col {
@@ -44,7 +43,6 @@
    }
  }
 
- //暂时性解决dialog 问题 https://github.com/ElemeFE/element/issues/2461
  .el-dialog {
    transform: none;
    left: 0;
@@ -52,7 +50,6 @@
    margin: 0 auto;
  }
 
- //文章页textarea修改样式
  .article-textarea {
    textarea {
      padding-right: 40px;
@@ -63,7 +60,6 @@
    }
  }
 
- //element ui upload
  .upload-container {
    .el-upload {
      width: 100%;
@@ -74,9 +70,8 @@
    }
  }
 
-//dropdown
- .el-dropdown-menu{
-  a{
-    display: block
-  }
-}
+ .el-dropdown-menu {
+   a {
+     display: block
+   }
+ }
