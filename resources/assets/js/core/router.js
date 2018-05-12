@@ -1,80 +1,87 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-import LoginPage from '@/views/Login'
-import RegisterPage from '@/views/Register'
-import NotFoundPage from '@/views/NotFound'
-import UnauthorizedPage from '@/views/Unauthorized'
-import Layout from '@/views/Layout/Layout.vue'
+import LoginPage from "@/views/Login";
+import RegisterPage from "@/views/Register";
+import NotFoundPage from "@/views/NotFound";
+import UnauthorizedPage from "@/views/Unauthorized";
+import Layout from "@/views/Layout/Layout.vue";
 
-import DashboardComponent from '@/components/Dashboard'
+import DashboardComponent from "@/components/Dashboard";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-export const constantRouterMap = [{
-    path: '/login',
+export const constantRouterMap = [
+  {
+    path: "/login",
     component: LoginPage,
     hidden: true
   },
   {
-    path: '/register',
+    path: "/register",
     component: RegisterPage,
     hidden: true
   },
   {
-    path: '/404',
+    path: "/404",
     component: NotFoundPage,
     hidden: true
   },
   {
-    path: '/401',
+    path: "/401",
     component: UnauthorizedPage,
     hidden: true
   },
   {
-    path: '',
+    path: "",
     component: Layout,
-    redirect: 'dashboard',
-    children: [{
-      path: 'dashboard',
-      component: DashboardComponent,
-      name: 'dashboard',
-      meta: {
-        title: 'dashboard',
-        icon: 'fa fa-tachometer',
-        noCache: true
+    redirect: "dashboard",
+    children: [
+      {
+        path: "dashboard",
+        component: DashboardComponent,
+        name: "dashboard",
+        meta: {
+          title: "dashboard",
+          icon: "fa fa-tachometer",
+          noCache: true
+        }
       }
-    }]
+    ]
   },
   {
-    path: '*',
-    redirect: '/404',
+    path: "*",
+    redirect: "/404",
     hidden: true
   }
-]
+];
 
-export const asyncRouterMap = [{
-  path: '/permission',
-  component: Layout,
-  redirect: '/permission/index',
-  meta: {
-    scopes: ['admin']
-  },
-  children: [{
-    path: 'index',
-    component: DashboardComponent,
-    name: 'permission',
+export const asyncRouterMap = [
+  {
+    path: "/permission",
+    component: Layout,
+    redirect: "/permission/index",
     meta: {
-      title: 'permission',
-      icon: 'lock',
-      scopes: ['admin']
-    }
-  }]
-}]
+      scopes: ["admin"]
+    },
+    children: [
+      {
+        path: "index",
+        component: DashboardComponent,
+        name: "permission",
+        meta: {
+          title: "permission",
+          icon: "lock",
+          scopes: ["admin"]
+        }
+      }
+    ]
+  }
+];
 
 export default new VueRouter({
   scrollBehavior: () => ({
     y: 0
   }),
   routes: constantRouterMap
-})
+});

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -21,7 +21,7 @@ class Controller extends BaseController
                 "message" => $validator->getMessageBag()->first(),
                 "info" => [$validator->getMessageBag()->keys()[0]],
             ],
-            "status_code" => $status
+            "status_code" => $status,
         ];
     }
 }

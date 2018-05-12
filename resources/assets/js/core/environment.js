@@ -1,3 +1,3 @@
 export default {
-  TokenKey: 'Jwt-token'
-}
+  TokenKey: "Jwt-token"
+};

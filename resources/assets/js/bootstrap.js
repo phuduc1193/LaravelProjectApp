@@ -1,5 +1,5 @@
-import _ from 'lodash'
-import $ from 'jquery'
+import _ from "lodash";
+import $ from "jquery";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
