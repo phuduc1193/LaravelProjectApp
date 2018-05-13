@@ -82,7 +82,7 @@ class AuthService {
   static getUserInfo() {
     return new Promise((resolve, reject) => {
       axios
-        .post("/auth/me")
+        .get("/auth/me")
         .then(response => {
           resolve(response.data);
         })

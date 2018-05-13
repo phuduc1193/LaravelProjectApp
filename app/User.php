@@ -56,4 +56,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return ['admin'];
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project');
+    }
 }

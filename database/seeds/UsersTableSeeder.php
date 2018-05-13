@@ -13,12 +13,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::firstOrNew([
+        $user = User::firstOrCreate([
             'name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('secret'),
         ]);
-        $user->save();
     }
 }
