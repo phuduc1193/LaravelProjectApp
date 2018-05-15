@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Status;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,5 +22,10 @@ class Project extends Model
     public function users()
     {
         return $this->belongsToMany('App\User');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 }

@@ -1,15 +1,16 @@
 #app {
   .main-container {
     min-height: 100%;
-    transition: margin-left .28s;
-    margin-left: 180px;
+    transition: margin-left 0.28s;
+    margin-left: $sidebarWidth;
   }
   .sidebar-container {
     .horizontal-collapse-transition {
-      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out,
+        0s padding-right ease-in-out;
     }
-    transition: width .28s;
-    width: 180px !important;
+    transition: width 0.28s;
+    width: $sidebarWidth !important;
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -24,6 +25,12 @@
     }
     .svg-icon {
       margin-right: 16px;
+      color: rgb(191, 203, 217);
+    }
+    .el-menu-item.is-active {
+      .svg-icon {
+        color: rgb(64, 158, 255);
+      }
     }
     .el-menu {
       border: none;
@@ -45,9 +52,9 @@
       }
     }
     .el-submenu {
-      &>.el-submenu__title {
+      & > .el-submenu__title {
         padding-left: 10px !important;
-        &>span {
+        & > span {
           height: 0;
           width: 0;
           overflow: hidden;
@@ -60,7 +67,7 @@
       }
     }
   }
-  .sidebar-container .nest-menu .el-submenu>.el-submenu__title,
+  .sidebar-container .nest-menu .el-submenu > .el-submenu__title,
   .sidebar-container .el-submenu .el-menu-item {
     min-width: 180px !important;
     background-color: $subMenuBg !important;
@@ -77,7 +84,7 @@
     }
     .sidebar-container {
       top: 50px;
-      transition: transform .28s;
+      transition: transform 0.28s;
       width: 180px !important;
     }
     &.hideSidebar {

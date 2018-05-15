@@ -10511,14 +10511,14 @@ a.text-dark:focus {
 
 #app .main-container {
   min-height: 100%;
-  -webkit-transition: margin-left .28s;
-  transition: margin-left .28s;
+  -webkit-transition: margin-left 0.28s;
+  transition: margin-left 0.28s;
   margin-left: 180px;
 }
 
 #app .sidebar-container {
-  -webkit-transition: width .28s;
-  transition: width .28s;
+  -webkit-transition: width 0.28s;
+  transition: width 0.28s;
   width: 180px !important;
   height: 100%;
   position: fixed;
@@ -10542,6 +10542,11 @@ a.text-dark:focus {
 
 #app .sidebar-container .svg-icon {
   margin-right: 16px;
+  color: #bfcbd9;
+}
+
+#app .sidebar-container .el-menu-item.is-active .svg-icon {
+  color: #409eff;
 }
 
 #app .sidebar-container .el-menu {
@@ -10603,10 +10608,10 @@ a.text-dark:focus {
 
 #app .mobile .sidebar-container {
   top: 50px;
-  -webkit-transition: -webkit-transform .28s;
-  transition: -webkit-transform .28s;
-  transition: transform .28s;
-  transition: transform .28s, -webkit-transform .28s;
+  -webkit-transition: -webkit-transform 0.28s;
+  transition: -webkit-transform 0.28s;
+  transition: transform 0.28s;
+  transition: transform 0.28s, -webkit-transform 0.28s;
   width: 180px !important;
 }
 
@@ -10637,81 +10642,81 @@ a.text-dark:focus {
 }
 
 .light-blue-btn {
-  background: #3A71A8;
+  background: #3a71a8;
 }
 
 .light-blue-btn:hover {
-  color: #3A71A8;
+  color: #3a71a8;
 }
 
 .light-blue-btn:hover:before,
 .light-blue-btn:hover:after {
-  background: #3A71A8;
+  background: #3a71a8;
 }
 
 .red-btn {
-  background: #C03639;
+  background: #c03639;
 }
 
 .red-btn:hover {
-  color: #C03639;
+  color: #c03639;
 }
 
 .red-btn:hover:before,
 .red-btn:hover:after {
-  background: #C03639;
+  background: #c03639;
 }
 
 .pink-btn {
-  background: #E65D6E;
+  background: #e65d6e;
 }
 
 .pink-btn:hover {
-  color: #E65D6E;
+  color: #e65d6e;
 }
 
 .pink-btn:hover:before,
 .pink-btn:hover:after {
-  background: #E65D6E;
+  background: #e65d6e;
 }
 
 .green-btn {
-  background: #30B08F;
+  background: #30b08f;
 }
 
 .green-btn:hover {
-  color: #30B08F;
+  color: #30b08f;
 }
 
 .green-btn:hover:before,
 .green-btn:hover:after {
-  background: #30B08F;
+  background: #30b08f;
 }
 
 .tiffany-btn {
-  background: #4AB7BD;
+  background: #4ab7bd;
 }
 
 .tiffany-btn:hover {
-  color: #4AB7BD;
+  color: #4ab7bd;
 }
 
 .tiffany-btn:hover:before,
 .tiffany-btn:hover:after {
-  background: #4AB7BD;
+  background: #4ab7bd;
 }
 
 .yellow-btn {
-  background: #FEC171;
+  background: #fec171;
 }
 
 .yellow-btn:hover {
-  color: #FEC171;
+  color: #fec171;
 }
 
 .yellow-btn:hover:before,
 .yellow-btn:hover:after {
-  background: #FEC171;
+  background: #fec171;
 }
 
 .pan-btn {

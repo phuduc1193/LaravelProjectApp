@@ -20,7 +20,6 @@ export default {
   components: { ReportProblemComponent },
   methods: {
     toHomepage(response) {
-      console.log(response);
       setTimeout(() => {
         this.$router.push("/");
       }, 2000);

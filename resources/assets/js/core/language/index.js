@@ -4,14 +4,19 @@ import Cookies from "js-cookie";
 import enLocale from "./en";
 import vnLocale from "./vn";
 
+import enELeLocale from "element-ui/lib/locale/lang/en";
+import vnELeLocale from "element-ui/lib/locale/lang/vi";
+
 Vue.use(VueI18n);
 
 const messages = {
   en: {
-    ...enLocale
+    ...enLocale,
+    ...enELeLocale
   },
   vn: {
-    ...vnLocale
+    ...vnLocale,
+    ...vnELeLocale
   }
 };
 

@@ -35,6 +35,8 @@ class ProjectController extends Controller
     {
         if ($request->validated()) {
             $project = Project::firstOrCreate($request);
+            $status = Status::where('name', 'New')->where('resource', 'Project')->first();
+            $project->status()->save($status);
             return $this->response(201, 'Resource created successfully', $project);
         }
     }

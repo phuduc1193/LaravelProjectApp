@@ -14,7 +14,7 @@
         </div>
         <el-dropdown-menu slot="dropdown" @click.native="dashboard">
           <el-dropdown-item>
-            {{$t('route.dashboard')}}
+            {{$t('page.dashboard')}}
           </el-dropdown-item>
           <el-dropdown-item divided @click.native="logout">
             <span>{{$t('form.logout')}}</span>

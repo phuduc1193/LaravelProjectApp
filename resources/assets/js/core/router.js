@@ -5,7 +5,9 @@ import LoginPage from "@/views/Login";
 import RegisterPage from "@/views/Register";
 import NotFoundPage from "@/views/NotFound";
 import UnauthorizedPage from "@/views/Unauthorized";
-import Layout from "@/views/Layout/Layout.vue";
+import Layout from "@/views/Layout/Layout";
+import ProjectListPage from "@/views/Project/list";
+import ProjectCreatePage from "@/views/Project/create";
 
 import DashboardComponent from "@/components/Dashboard";
 
@@ -58,20 +60,33 @@ export const constantRouterMap = [
 
 export const asyncRouterMap = [
   {
-    path: "/permission",
+    path: "/projects",
     component: Layout,
-    redirect: "/permission/index",
+    redirect: "noredirect",
+    name: "projects",
     meta: {
+      title: "projects",
+      icon: "fa fa-briefcase",
       scopes: ["admin"]
     },
     children: [
       {
-        path: "index",
-        component: DashboardComponent,
-        name: "permission",
+        path: "list",
+        component: ProjectListPage,
+        name: "list",
         meta: {
-          title: "permission",
-          icon: "lock",
+          title: "list",
+          icon: "fa fa-list-ul",
+          scopes: ["admin"]
+        }
+      },
+      {
+        path: "create",
+        component: ProjectCreatePage,
+        name: "create",
+        meta: {
+          title: "create",
+          icon: "fa fa-pencil",
           scopes: ["admin"]
         }
       }

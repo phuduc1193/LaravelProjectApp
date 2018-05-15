@@ -16,6 +16,13 @@ export default {
     ok: "Đồng ý",
     cancel: "Hủy bỏ",
     logout: "Đăng xuất",
+    projectName: "Tên dự án",
+    estimatedDuration: "Kế hoạch làm trong",
+    startDate: "Ngày bắt đầu",
+    endDate: "Ngày kết thúc",
+    description: "Nội dung",
+    chooseDate: "Chọn ngày",
+    chooseTime: "Chọn thời gian",
     error: {
       invalidUsername: "Tên truy cập không hợp lệ",
       invalidEmail: "Email không hợp lệ",
@@ -39,7 +46,22 @@ export default {
     unauthorized: "Bạn không có quyền truy cập trang này.",
     returnHome: "Xin vui lòng quay lại trang chủ."
   },
-  route: {
-    dashboard: "Trang chủ"
+  page: {
+    dashboard: "Trang chủ",
+    projects: "Dự án",
+    list: "Xem tất cả",
+    create: "Thêm mới"
+  },
+  tableHeader: {
+    project: "Dự án",
+    meta: "Meta",
+    assignedTo: "Người đảm nhiệm",
+    status: "Tình trạng",
+    deadline: "Hạn chót"
+  },
+  noRecord: "Không có dữ liệu",
+  backToList: "Quay lại",
+  unit: {
+    hours: "giờ"
   }
 };

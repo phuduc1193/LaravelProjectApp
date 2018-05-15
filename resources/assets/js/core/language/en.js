@@ -17,6 +17,13 @@ export default {
     ok: "OK",
     cancel: "Cancel",
     logout: "Logout",
+    projectName: "Project name",
+    estimatedDuration: "Estimated duration",
+    startDate: "Start date",
+    endDate: "End date",
+    description: "Description",
+    chooseDate: "Pick a date",
+    chooseTime: "Pick a time",
     error: {
       invalidUsername: "Invalid username",
       invalidEmail: "Invalid email",
@@ -40,7 +47,22 @@ export default {
     unauthorized: "Sorry, you don't have the permission to access this page.",
     returnHome: "You may want to head back to the homepage."
   },
-  route: {
-    dashboard: "Dashboard"
+  page: {
+    dashboard: "Dashboard",
+    projects: "Projects",
+    list: "View all",
+    create: "Add new"
+  },
+  tableHeader: {
+    project: "Project",
+    meta: "Meta",
+    assignedTo: "Assigned To",
+    status: "Status",
+    deadline: "Deadline"
+  },
+  noRecord: "No record found",
+  backToList: "Back to list",
+  unit: {
+    hours: "hours"
   }
 };

@@ -6,6 +6,7 @@ import router from "./core/router";
 
 import "normalize.css/normalize.css";
 import Element from "element-ui";
+
 import "element-ui/lib/theme-chalk/index.css";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -15,7 +16,10 @@ import store from "./core/store";
 import "./core/http.service";
 import validator from "./utils/validator";
 
-Vue.use(Element);
+Vue.use(Element, {
+  i18n: (key, value) => i18n.t(key, value)
+});
+
 const app = new Vue({
   el: "#app",
   i18n,
