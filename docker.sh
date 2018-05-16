@@ -6,10 +6,15 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
   exit
 fi
 
+if [ "$1" = "--down" ] || [ "$1" = "-d" ]; then
+  cd laradock && docker-compose down
+  exit
+fi
+
 cd laradock && docker-compose up -d workspace nginx mysql redis
 
 if [ "$1" = "" ]; then
-  exit  
+  exit
 fi
 
 COMMAND="docker-compose exec workspace php artisan migrate"

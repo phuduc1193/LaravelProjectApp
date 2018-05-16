@@ -17,14 +17,14 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->text('description');
-            $table->dateTime('duration')->nullable();
+            $table->double('duration')->nullable();
             $table->dateTime('started_at')->nullable();
             $table->dateTime('ended_at')->nullable();
-            $table->double('percentage', 5, 2)->nullable();
+            $table->double('percentage', 5, 2)->default(0);
             $table->softDeletes();
             $table->timestamps();
 
-            $table->unsignedInteger('status_id');
+            $table->unsignedInteger('status_id')->nullable();
 
             $table->foreign('status_id')->references('id')->on('status');
         });

@@ -6,8 +6,8 @@ import RegisterPage from "@/views/Register";
 import NotFoundPage from "@/views/NotFound";
 import UnauthorizedPage from "@/views/Unauthorized";
 import Layout from "@/views/Layout/Layout";
-import ProjectListPage from "@/views/Project/list";
-import ProjectCreatePage from "@/views/Project/create";
+import ProjectListPage from "@/views/Project/List";
+import ProjectCreatePage from "@/views/Project/Create";
 
 import DashboardComponent from "@/components/Dashboard";
 

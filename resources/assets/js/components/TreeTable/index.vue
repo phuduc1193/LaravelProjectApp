@@ -17,7 +17,12 @@
           <i v-if="!scope.row._expanded" class="el-icon-arrow-right"></i>
           <i v-else class="el-icon-arrow-down"></i>
         </span>
-        {{scope.row[column.value]}}
+        <span v-if="column.value.includes('.')">
+          {{scope.row[column.value.split(".")[0]][column.value.split(".")[1]]}}
+        </span>
+        <span v-else>
+          {{scope.row[column.value]}}
+        </span>
       </template>
     </el-table-column>
     <slot></slot>

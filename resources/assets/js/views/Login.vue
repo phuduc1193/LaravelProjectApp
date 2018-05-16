@@ -11,14 +11,14 @@
       </el-form-item>
       <el-form-item prop="password">
         <i class="svg-container fa fa-unlock-alt"></i>
-        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" :placeholder="$t('form.password')" />
+        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="onSubmit" v-model="loginForm.password" autoComplete="on" :placeholder="$t('form.password')" />
         <span class="show-pwd" @click="showPwd = !showPwd">
            <i class="fa" :class="[showPwd ? 'fa-eye-slash' : 'fa-eye']"></i>
         </span>
       </el-form-item>
       <el-row class="pt-3">
         <el-col :span="12" class="pr-2">
-          <el-button type="primary" :loading="loading" @click.native.prevent="handleLogin">{{$t('form.login')}}</el-button>
+          <el-button type="primary" :loading="loading" @click.native.prevent="onSubmit">{{$t('form.login')}}</el-button>
         </el-col>
         <el-col :span="12" class="pl-2">
           <el-button type="primary" @click.native.prevent="register">{{$t('form.register')}}</el-button>
@@ -69,19 +69,15 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
+    onSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true;
           this.$store
             .dispatch("LoginByUsername", this.loginForm)
             .then(() => {
-              this.loading = false;
               this.$router.push({ path: "/" });
             })
-            .catch(() => {
-              this.loading = false;
-            });
+            .catch(() => {});
         } else {
           console.log("error submit!!");
           return false;

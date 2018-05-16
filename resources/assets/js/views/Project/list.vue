@@ -12,6 +12,7 @@
 
 <script>
 import TreeTable from "@/components/TreeTable";
+import ProjectService from "./project.service";
 
 export default {
   components: { TreeTable },
@@ -25,7 +26,7 @@ export default {
         {
           text: "meta",
           value: "tag",
-          width: 70
+          width: 120
         },
         {
           text: "assignedTo",
@@ -33,13 +34,13 @@ export default {
         },
         {
           text: "status",
-          value: "status",
-          width: 100
+          value: "status.name",
+          width: 150
         },
         {
           text: "deadline",
           value: "ended_at",
-          width: 150
+          width: 200
         }
       ],
       data: []
@@ -49,6 +50,13 @@ export default {
     toCreate() {
       this.$router.push("/projects/create");
     }
+  },
+  created() {
+    ProjectService.all()
+      .then(data => {
+        this.data = data;
+      })
+      .catch(() => {});
   }
 };
 </script>

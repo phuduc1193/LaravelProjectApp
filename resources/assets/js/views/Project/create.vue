@@ -3,7 +3,7 @@
     <el-row>
       <el-button round @click="toList">{{ $t('backToList') }}</el-button>
     </el-row>
-    <el-form ref="form" :model="form" label-width="200px" class="pt-5">
+    <el-form ref="form" :model="form" :rules="rules" label-width="200px" class="pt-5">
       <el-form-item :label="$t('form.projectName')">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import ProjectService from "./project.service";
+
 export default {
   data() {
     return {
@@ -39,10 +41,13 @@ export default {
       form: {
         name: "",
         duration: 1,
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
+        started_at: "",
+        ended_at: "",
+        description: ""
+      },
+      rules: {
+        name: [{ required: true, trigger: "blur" }],
+        description: [{ required: true, trigger: "blur" }]
       }
     };
   },
@@ -52,10 +57,22 @@ export default {
     },
     onSubmit() {
       if (this.durationDate.length === 2) {
-        this.form.started_at = this.durationDate[0];
-        this.form.ended_at = this.durationDate[1];
+        this.form.started_at = this.durationDate[0].toISOString();
+        this.form.ended_at = this.durationDate[1].toISOString();
       }
-      console.log(this.form);
+
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          ProjectService.create(this.form)
+            .then(project => {
+              this.$router.push({ path: "/projects/show/" + project.id });
+            })
+            .catch(() => {});
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };

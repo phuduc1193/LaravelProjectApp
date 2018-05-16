@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Project as ProjectResource;
 use App\Project;
+use App\ProjectStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +22,7 @@ class ProjectController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return ProjectResource::collection($user->projects());
+        return $user->projects()->with(['status', 'tags'])->get();
     }
 
     /**
@@ -33,10 +33,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->validated()) {
-            $project = Project::firstOrCreate($request);
-            $status = Status::where('name', 'New')->where('resource', 'Project')->first();
-            $project->status()->save($status);
+        $data = $request->validate($this->rules());
+        if ($data) {
+            $project = Project::firstOrNew($data);
+
+            $status = ProjectStatus::where('name', 'New')->first();
+            $project->status()->associate($status);
+            $project->save();
+
+            $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
+
             return $this->response(201, 'Resource created successfully', $project);
         }
     }
@@ -84,10 +90,10 @@ class ProjectController extends Controller
         return [
             'name' => 'required|string|max:100|unique:projects',
             'description' => 'required|string|max:255',
-            'duration' => 'date',
+            'duration' => 'numeric|min:0',
             'started_at' => 'date',
             'ended_at' => 'date',
-            'percentage' => 'digits_between:0,100',
+            'percentage' => 'numeric|min:0|max:100',
         ];
     }
 

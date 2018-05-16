@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8185b5f2f41e5bd3b52d838fa0391a56",
+    "content-hash": "4daaf3199b6a7125a75d9109901ba1f2",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -502,16 +502,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.21",
+            "version": "v5.6.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/637fd797a6dde8d24a9f07da77e375ec251c5d24",
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24",
                 "shasum": ""
             },
             "require": {
@@ -637,7 +637,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-08T13:30:15+00:00"
+            "time": "2018-05-15T13:34:20+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -984,6 +984,63 @@
                 "token"
             ],
             "time": "2016-12-05T07:27:31+00:00"
+        },
+        {
+            "name": "nanigans/single-table-inheritance",
+            "version": "0.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nanigans/single-table-inheritance.git",
+                "reference": "b8d80de109bfd903e05c505f2ea9d1ae5a40afa6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nanigans/single-table-inheritance/zipball/b8d80de109bfd903e05c505f2ea9d1ae5a40afa6",
+                "reference": "b8d80de109bfd903e05c505f2ea9d1ae5a40afa6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "php": ">= 5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*|~1.0",
+                "orchestra/database": "3.2.*|3.5.*|3.6.*",
+                "orchestra/testbench": "3.2.*|3.5.*|3.6.*",
+                "phpunit/phpunit": "~4.8|~5.2|~6.0|~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nanigans\\SingleTableInheritance\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Palmer",
+                    "email": "jpalmer@nanigans.com"
+                }
+            ],
+            "description": "Single Table Inheritance Trait",
+            "keywords": [
+                "eloquent",
+                "inheritance",
+                "laravel",
+                "model",
+                "single",
+                "table"
+            ],
+            "time": "2018-02-08T23:12:59+00:00"
         },
         {
             "name": "nesbot/carbon",

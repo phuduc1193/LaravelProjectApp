@@ -1,6 +1,6 @@
 <?php
 
-use App\Status;
+use App\ProjectStatus;
 use Illuminate\Database\Seeder;
 
 class StatusTableSeeder extends Seeder
@@ -12,24 +12,20 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        Status::firstOrCreate([
+        ProjectStatus::firstOrCreate([
             'name' => 'New',
-            'resource' => 'Project',
         ]);
 
-        Status::firstOrCreate([
+        ProjectStatus::firstOrCreate([
             'name' => 'Scheduled',
-            'resource' => 'Project',
         ]);
 
-        Status::firstOrCreate([
+        ProjectStatus::firstOrCreate([
             'name' => 'In Progress',
-            'resource' => 'Project',
         ]);
 
-        Status::firstOrCreate([
+        ProjectStatus::firstOrCreate([
             'name' => 'Done',
-            'resource' => 'Project',
         ]);
     }
 }

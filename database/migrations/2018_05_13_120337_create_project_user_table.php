@@ -17,11 +17,10 @@ class CreateProjectUserTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('project_id');
-            $table->unsignedInteger('relation_id')->nullable();
             $table->unsignedInteger('user_id');
+            $table->string('relation', 50)->nullable();
 
             $table->foreign('project_id')->references('id')->on('projects');
-            $table->foreign('relation_id')->references('id')->on('relations');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
