@@ -1,14 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import LoginPage from "@/views/Login";
-import RegisterPage from "@/views/Register";
-import NotFoundPage from "@/views/NotFound";
-import UnauthorizedPage from "@/views/Unauthorized";
-import Layout from "@/views/Layout/Layout";
-import ProjectListPage from "@/views/Project/List";
-import ProjectCreatePage from "@/views/Project/Create";
-
 import DashboardComponent from "@/components/Dashboard";
 
 Vue.use(VueRouter);
@@ -16,27 +8,27 @@ Vue.use(VueRouter);
 export const constantRouterMap = [
   {
     path: "/login",
-    component: LoginPage,
+    component: view("Login"),
     hidden: true
   },
   {
     path: "/register",
-    component: RegisterPage,
+    component: view("Register"),
     hidden: true
   },
   {
     path: "/404",
-    component: NotFoundPage,
+    component: view("NotFound"),
     hidden: true
   },
   {
     path: "/401",
-    component: UnauthorizedPage,
+    component: view("Unauthorized"),
     hidden: true
   },
   {
     path: "",
-    component: Layout,
+    component: view("Layout.Layout"),
     redirect: "dashboard",
     children: [
       {
@@ -61,7 +53,7 @@ export const constantRouterMap = [
 export const asyncRouterMap = [
   {
     path: "/projects",
-    component: Layout,
+    component: view("Layout.Layout"),
     redirect: "noredirect",
     name: "projects",
     meta: {
@@ -72,7 +64,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: "list",
-        component: ProjectListPage,
+        component: view("Project.List"),
         name: "list",
         meta: {
           title: "list",
@@ -82,7 +74,7 @@ export const asyncRouterMap = [
       },
       {
         path: "create",
-        component: ProjectCreatePage,
+        component: view("Project.Create"),
         name: "create",
         meta: {
           title: "create",
@@ -100,3 +92,13 @@ export default new VueRouter({
   }),
   routes: constantRouterMap
 });
+
+function view(name) {
+  if (typeof name === "string" && name.includes(".")) {
+    name = name.replace(".", "/");
+  }
+
+  return function(resolve) {
+    require(["@/views/" + name + ".vue"], resolve);
+  };
+}

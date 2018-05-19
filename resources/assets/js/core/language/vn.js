@@ -24,6 +24,7 @@ export default {
     chooseDate: "Chọn ngày",
     chooseTime: "Chọn thời gian",
     error: {
+      invalidName: "Tên không hợp lệ",
       invalidUsername: "Tên truy cập không hợp lệ",
       invalidEmail: "Email không hợp lệ",
       invalidPassword: "Mật khẩu không hợp lệ",
@@ -63,5 +64,8 @@ export default {
   backToList: "Quay lại",
   unit: {
     hours: "giờ"
+  },
+  apiResponse: {
+    Unauthorized: "Thông tin đăng nhập không hợp lệ."
   }
 };

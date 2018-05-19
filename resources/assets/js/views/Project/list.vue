@@ -51,12 +51,10 @@ export default {
       this.$router.push("/projects/create");
     }
   },
-  created() {
-    ProjectService.all()
-      .then(data => {
-        this.data = data;
-      })
-      .catch(() => {});
+  beforeRouteEnter(to, from, next) {
+    ProjectService.all().then(data => {
+      next(vm => (vm.data = data));
+    });
   }
 };
 </script>

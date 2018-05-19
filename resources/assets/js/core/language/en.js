@@ -25,6 +25,7 @@ export default {
     chooseDate: "Pick a date",
     chooseTime: "Pick a time",
     error: {
+      invalidName: "Invalid name",
       invalidUsername: "Invalid username",
       invalidEmail: "Invalid email",
       invalidPassword: "Invalid password",
@@ -32,7 +33,7 @@ export default {
     },
     rule: {
       password:
-        "Password must contain at least 8 characters with uppercase, lowercase and a digit number"
+        "Password must contain at least 8 characters with uppercase, lowercase and number"
     }
   },
   notification: {
@@ -64,5 +65,8 @@ export default {
   backToList: "Back to list",
   unit: {
     hours: "hours"
+  },
+  apiResponse: {
+    Unauthorized: "Invalid credentials."
   }
 };

@@ -25,22 +25,26 @@ axios.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    NProgress.start();
+    if (!NProgress.isStarted()) NProgress.start();
 
     return config;
   },
   error => {
+    if (NProgress.isStarted()) NProgress.done();
+
     return Promise.reject(error);
   }
 );
 
 axios.interceptors.response.use(
   response => {
-    NProgress.done();
+    if (NProgress.isStarted()) NProgress.done();
 
     return response;
   },
   error => {
+    if (NProgress.isStarted()) NProgress.done();
+
     return Promise.reject(error);
   }
 );

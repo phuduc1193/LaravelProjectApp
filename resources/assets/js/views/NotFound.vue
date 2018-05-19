@@ -14,6 +14,8 @@
 
 <script>
 import ReportProblemComponent from "@/components/ReportProblem";
+import store from "@/core/store";
+import router from "@/core/router";
 
 export default {
   name: "pagenotfound",

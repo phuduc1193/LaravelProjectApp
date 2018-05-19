@@ -71,17 +71,23 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.$store
-            .dispatch("LoginByUsername", this.loginForm)
-            .then(() => {
-              this.$router.push({ path: "/" });
-            })
-            .catch(() => {});
-        } else {
+        if (!valid) {
           console.log("error submit!!");
           return false;
         }
+
+        this.$store
+          .dispatch("LoginByUsername", this.loginForm)
+          .then(() => {
+            this.$router.push({ path: "/" });
+          })
+          .catch(error => {
+            const errData = error.response.data;
+            this.$message({
+              type: "error",
+              message: this.$t("apiResponse." + errData.error)
+            });
+          });
       });
     },
     register() {

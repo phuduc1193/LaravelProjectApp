@@ -5,10 +5,11 @@ import "nprogress/nprogress.css";
 import AuthService from "./auth.service";
 
 NProgress.configure({
-  showSpinner: false
+  showSpinner: false,
+  trickleSpeed: 50
 });
 
-const whiteList = ["/login", "/register", "/404"];
+const whiteList = ["/login", "/register"];
 
 function hasPermission(scopes, permissionScopes) {
   if (scopes.indexOf("admin") >= 0) return true;
@@ -17,11 +18,11 @@ function hasPermission(scopes, permissionScopes) {
 }
 
 router.beforeEach((to, from, next) => {
-  NProgress.start();
+  if (!NProgress.isStarted()) NProgress.start();
   if (AuthService.isAuthenticated()) {
-    if (to.path === "/login") {
+    if (whiteList.indexOf(to.path) !== -1) {
       next("/");
-      NProgress.done();
+      if (NProgress.isStarted()) NProgress.done();
     } else {
       if (store.getters.scopes.length === 0) {
         store
@@ -67,11 +68,11 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next("/login");
-      NProgress.done();
+      if (NProgress.isStarted()) NProgress.done();
     }
   }
 });
 
 router.afterEach(() => {
-  NProgress.done();
+  if (NProgress.isStarted()) NProgress.done();
 });

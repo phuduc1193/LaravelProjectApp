@@ -1,6 +1,11 @@
 import Vue from "vue";
 
 class Validation {
+  static name(value) {
+    const regex = /^[a-z ,.'-]+$/i;
+    return regex.test(value);
+  }
+
   static username(value) {
     const regex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
     return regex.test(value);

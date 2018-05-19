@@ -33,7 +33,7 @@
       </el-form-item>
       <el-row class="pt-3">
         <el-col :span="12" class="pr-2">
-          <el-button type="primary" :loading="loading" @click.native.prevent="handleRegister">{{$t('form.register')}}</el-button>
+          <el-button type="primary" :loading="loading" @click.native.prevent="onSubmit">{{$t('form.register')}}</el-button>
         </el-col>
         <el-col :span="12" class="pl-2">
           <el-button type="primary" @click.native.prevent="login">{{$t('form.login')}}</el-button>
@@ -51,6 +51,13 @@ export default {
   components: { LangSelect },
   name: "register",
   data() {
+    const validateName = (rule, value, callback) => {
+      if (!Validate.name(value)) {
+        callback(new Error(this.$t("form.error.invalidName")));
+      } else {
+        callback();
+      }
+    };
     const validateUsername = (rule, value, callback) => {
       if (!Validate.username(value)) {
         callback(new Error(this.$t("form.error.invalidUsername")));
@@ -90,6 +97,7 @@ export default {
         passwordConfirmation: ""
       },
       registerRules: {
+        name: [{ required: true, trigger: "blur", validator: validateName }],
         username: [
           { required: true, trigger: "blur", validator: validateUsername }
         ],
@@ -111,7 +119,7 @@ export default {
     };
   },
   methods: {
-    handleRegister() {
+    onSubmit() {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true;
