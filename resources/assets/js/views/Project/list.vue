@@ -4,7 +4,9 @@
       <el-button circle>
         <i class="fa fa-filter" aria-hidden="true"></i>
       </el-button>
-      <el-button type="primary" icon="el-icon-plus" circle @click="toCreate"></el-button>
+      <router-link to="/projects/create">
+        <el-button type="primary" icon="el-icon-plus" circle></el-button>
+      </router-link>
     </el-row>
     <tree-table :data="data" :columns="columns"></tree-table>
   </div>
@@ -21,7 +23,8 @@ export default {
       columns: [
         {
           text: "project",
-          value: "name"
+          value: "name",
+          routerLink: "/projects/view/:id"
         },
         {
           text: "meta",
@@ -45,11 +48,6 @@ export default {
       ],
       data: []
     };
-  },
-  methods: {
-    toCreate() {
-      this.$router.push("/projects/create");
-    }
   },
   beforeRouteEnter(to, from, next) {
     ProjectService.all().then(data => {

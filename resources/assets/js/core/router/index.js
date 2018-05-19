@@ -50,41 +50,8 @@ export const constantRouterMap = [
   }
 ];
 
-export const asyncRouterMap = [
-  {
-    path: "/projects",
-    component: view("Layout.Layout"),
-    redirect: "noredirect",
-    name: "projects",
-    meta: {
-      title: "projects",
-      icon: "fa fa-briefcase",
-      scopes: ["admin"]
-    },
-    children: [
-      {
-        path: "list",
-        component: view("Project.List"),
-        name: "list",
-        meta: {
-          title: "list",
-          icon: "fa fa-list-ul",
-          scopes: ["admin"]
-        }
-      },
-      {
-        path: "create",
-        component: view("Project.Create"),
-        name: "create",
-        meta: {
-          title: "create",
-          icon: "fa fa-pencil",
-          scopes: ["admin"]
-        }
-      }
-    ]
-  }
-];
+import projectModule from "./modules/project";
+export const asyncRouterMap = [projectModule(view)];
 
 export default new VueRouter({
   scrollBehavior: () => ({

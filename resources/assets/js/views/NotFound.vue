@@ -3,11 +3,12 @@
     <el-col :span="10" :offset="7">
       <h1>404</h1>
       <h2>{{$t('errorMessage.pageNotExists')}}</h2>
-      <p class="pt-3 pb-2">{{$t('errorMessage.returnHomeOrReport')}}</p>
+      <p class="pt-3">{{$t('errorMessage.returnHomeOrReport')}}</p>
       <router-link to="/">
         <el-button round class="mr-2">{{$t('form.returnHome')}}</el-button>
       </router-link>
-      <report-problem-component class="ml-2" @file-report="toHomepage"></report-problem-component>
+      <report-problem-component class="ml-0 ml-md-2 mt-2" @file-report="toHomepage">
+      </report-problem-component>
     </el-col>
   </el-row>
 </template>
@@ -21,7 +22,7 @@ export default {
   name: "pagenotfound",
   components: { ReportProblemComponent },
   methods: {
-    toHomepage(response) {
+    toHomepage() {
       setTimeout(() => {
         this.$router.push("/");
       }, 2000);

@@ -19,11 +19,13 @@ export default {
     logout: "Logout",
     projectName: "Project name",
     estimatedDuration: "Estimated duration",
+    schedule: "Schedule",
     startDate: "Start date",
     endDate: "End date",
     description: "Description",
     chooseDate: "Pick a date",
     chooseTime: "Pick a time",
+    progress: "Progress",
     error: {
       invalidName: "Invalid name",
       invalidUsername: "Invalid username",
@@ -52,6 +54,7 @@ export default {
     dashboard: "Dashboard",
     projects: "Projects",
     list: "View all",
+    view: "View",
     create: "Add new"
   },
   tableHeader: {

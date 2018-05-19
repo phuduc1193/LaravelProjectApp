@@ -29,8 +29,18 @@ class ProjectService {
     });
   }
 
-  static show(projectID) {
-    return Cookies.get(env.TokenKey);
+  static show(id) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get("/projects/" + id)
+        .then(response => {
+          const data = response.data;
+          resolve(data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 }
 

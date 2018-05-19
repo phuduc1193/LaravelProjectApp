@@ -18,11 +18,13 @@ export default {
     logout: "Đăng xuất",
     projectName: "Tên dự án",
     estimatedDuration: "Kế hoạch làm trong",
+    schedule: "Thời gian thi hành",
     startDate: "Ngày bắt đầu",
     endDate: "Ngày kết thúc",
     description: "Nội dung",
     chooseDate: "Chọn ngày",
     chooseTime: "Chọn thời gian",
+    progress: "Tiến triển công việc",
     error: {
       invalidName: "Tên không hợp lệ",
       invalidUsername: "Tên truy cập không hợp lệ",
@@ -51,6 +53,7 @@ export default {
     dashboard: "Trang chủ",
     projects: "Dự án",
     list: "Xem tất cả",
+    view: "Xem",
     create: "Thêm mới"
   },
   tableHeader: {

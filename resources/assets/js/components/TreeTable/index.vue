@@ -13,16 +13,16 @@
     <el-table-column v-else v-for="(column, index) in columns" :key="column.value" :label="$t('tableHeader.'+column.text)" :width="column.width">
       <template slot-scope="scope">
         <span v-if="index === 0" v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
-        <span class="tree-ctrl" v-if="iconShow(index,scope.row)" @click="toggleExpanded(scope.$index)">
+        <span class="tree-ctrl" v-if="iconShow(index, scope.row)" @click="toggleExpanded(scope.$index)">
           <i v-if="!scope.row._expanded" class="el-icon-arrow-right"></i>
           <i v-else class="el-icon-arrow-down"></i>
         </span>
-        <span v-if="column.value.includes('.')">
-          {{scope.row[column.value.split(".")[0]][column.value.split(".")[1]]}}
+        <span v-if="!column.routerLink">
+          {{ getValue(column.value, scope.row) }}
         </span>
-        <span v-else>
-          {{scope.row[column.value]}}
-        </span>
+        <router-link class="link" :to="getLink(column.routerLink, scope.row)" v-else>
+          {{ getValue(column.value, scope.row) }}
+        </router-link>
       </template>
     </el-table-column>
     <slot></slot>
@@ -80,6 +80,27 @@ export default {
     },
     iconShow(index, record) {
       return index === 0 && record.children && record.children.length > 0;
+    },
+    getValue(targetString, record) {
+      if (targetString.includes(".")) {
+        const newTargetString = targetString.substring(
+          targetString.indexOf(".") + 1
+        );
+        return this.getValue(
+          newTargetString,
+          record[targetString.split(".")[0]]
+        );
+      }
+      return record[targetString];
+    },
+    getLink(routerLinkString, record) {
+      if (routerLinkString.includes(":")) {
+        const routerLinkTarget = routerLinkString.substring(
+          routerLinkString.indexOf(":") + 1
+        );
+        return routerLinkString.split(":")[0] + record[routerLinkTarget];
+      }
+      return routerLinkString;
     }
   }
 };
@@ -106,6 +127,16 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
 $color-blue: #2196f3;
 $space-width: 18px;
+
+.link {
+  $link-color: #409eff;
+  color: $link-color;
+
+  &:hover {
+    color: lighten($link-color, 10%);
+  }
+}
+
 .ms-tree-space {
   position: relative;
   top: 1px;
