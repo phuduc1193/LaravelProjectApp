@@ -13,20 +13,20 @@
           ({{$t('unit.hours')}}) 
         </el-col>
         <el-col :span="14" :xs="24" class="d-sm-block d-none pt-3 pt-md-0">
-          <el-date-picker v-model="durationDate" type="datetimerange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')">
+          <el-date-picker v-model="durationDate" type="datetimerange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')" @change="changeScheduleRange">
           </el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item prop="started_at" :label="$t('form.startDate')" class="d-sm-none">
-        <el-date-picker v-model="form.started_at" type="datetime" :placeholder="$t('form.startDate')">
+        <el-date-picker v-model="form.started_at" type="datetime" :placeholder="$t('form.startDate')" @change="changeSchedule(0)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="ended_at" :label="$t('form.endDate')" class="d-sm-none">
-        <el-date-picker v-model="form.ended_at" type="datetime" :placeholder="$t('form.endDate')">
+        <el-date-picker v-model="form.ended_at" type="datetime" :placeholder="$t('form.endDate')" @change="changeSchedule(1)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="description" :label="$t('form.description')">
-        <el-input type="textarea" v-model="form.description" rows="4"></el-input>
+        <el-input type="textarea" v-model="form.description" rows="8"></el-input>
       </el-form-item>
       <el-form-item class="pt-2">
         <el-button type="primary" @click="onSubmit">Create</el-button>
@@ -92,11 +92,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (this.durationDate && this.durationDate.length === 2) {
-        this.form.started_at = this.durationDate[0];
-        this.form.ended_at = this.durationDate[1];
-      }
-
       this.$refs.form.validate(valid => {
         if (!valid) {
           if (!this.form.started_at || !this.form.ended_at) {
@@ -115,6 +110,23 @@ export default {
           })
           .catch(() => {});
       });
+    },
+    changeScheduleRange() {
+      if (this.durationDate && this.durationDate.length === 2) {
+        this.form.started_at = this.durationDate[0];
+        this.form.ended_at = this.durationDate[1];
+      } else {
+        this.form.started_at = "";
+        this.form.ended_at = "";
+      }
+    },
+    changeSchedule(choice) {
+      choice = parseInt(choice);
+      if (choice === 0) {
+        this.durationDate[choice] = this.form.started_at;
+      } else {
+        this.durationDate[choice] = this.form.ended_at;
+      }
     }
   }
 };

@@ -2828,11 +2828,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit() {
       var _this2 = this;
 
-      if (this.durationDate && this.durationDate.length === 2) {
-        this.form.started_at = this.durationDate[0];
-        this.form.ended_at = this.durationDate[1];
-      }
-
       this.$refs.form.validate(function (valid) {
         if (!valid) {
           if (!_this2.form.started_at || !_this2.form.ended_at) {
@@ -2849,6 +2844,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this2.$router.push({ path: "/projects/view/" + project.id });
         }).catch(function () {});
       });
+    },
+    changeScheduleRange: function changeScheduleRange() {
+      if (this.durationDate && this.durationDate.length === 2) {
+        this.form.started_at = this.durationDate[0];
+        this.form.ended_at = this.durationDate[1];
+      } else {
+        this.form.started_at = "";
+        this.form.ended_at = "";
+      }
+    },
+    changeSchedule: function changeSchedule(choice) {
+      choice = parseInt(choice);
+      if (choice === 0) {
+        this.durationDate[choice] = this.form.started_at;
+      } else {
+        this.durationDate[choice] = this.form.ended_at;
+      }
     }
   }
 });
@@ -2940,6 +2952,7 @@ var render = function() {
                       "start-placeholder": _vm.$t("form.startDate"),
                       "end-placeholder": _vm.$t("form.endDate")
                     },
+                    on: { change: _vm.changeScheduleRange },
                     model: {
                       value: _vm.durationDate,
                       callback: function($$v) {
@@ -2967,6 +2980,11 @@ var render = function() {
                   type: "datetime",
                   placeholder: _vm.$t("form.startDate")
                 },
+                on: {
+                  change: function($event) {
+                    _vm.changeSchedule(0)
+                  }
+                },
                 model: {
                   value: _vm.form.started_at,
                   callback: function($$v) {
@@ -2991,6 +3009,11 @@ var render = function() {
                   type: "datetime",
                   placeholder: _vm.$t("form.endDate")
                 },
+                on: {
+                  change: function($event) {
+                    _vm.changeSchedule(1)
+                  }
+                },
                 model: {
                   value: _vm.form.ended_at,
                   callback: function($$v) {
@@ -3010,7 +3033,7 @@ var render = function() {
             },
             [
               _c("el-input", {
-                attrs: { type: "textarea", rows: "4" },
+                attrs: { type: "textarea", rows: "8" },
                 model: {
                   value: _vm.form.description,
                   callback: function($$v) {
@@ -4334,7 +4357,7 @@ var render = function() {
                     ) {
                       return null
                     }
-                    return _vm.handleRegister($event)
+                    return _vm.onSubmit($event)
                   }
                 },
                 model: {
@@ -4388,7 +4411,7 @@ var render = function() {
                     ) {
                       return null
                     }
-                    return _vm.handleRegister($event)
+                    return _vm.onSubmit($event)
                   }
                 },
                 model: {

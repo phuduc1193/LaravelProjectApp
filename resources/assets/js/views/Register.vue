@@ -19,14 +19,14 @@
       </el-form-item>
       <el-form-item prop="password">
         <i class="svg-container fa fa-unlock-alt"></i>
-        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="handleRegister" v-model="registerForm.password" autoComplete="on" :placeholder="$t('form.password')" />
+        <el-input name="password" :type="showPwd ? 'text' : 'password'" @keyup.enter.native="onSubmit" v-model="registerForm.password" autoComplete="on" :placeholder="$t('form.password')" />
         <span class="show-pwd" @click="showPwd = !showPwd">
            <i class="fa" :class="[showPwd ? 'fa-eye-slash' : 'fa-eye']"></i>
         </span>
       </el-form-item>
       <el-form-item prop="passwordConfirmation">
         <i class="svg-container fa fa-unlock-alt"></i>
-        <el-input name="password" :type="showPwdConfirm ? 'text' : 'password'" @keyup.enter.native="handleRegister" v-model="registerForm.passwordConfirmation" autoComplete="on" :placeholder="$t('form.passwordConfirmation')" />
+        <el-input name="password" :type="showPwdConfirm ? 'text' : 'password'" @keyup.enter.native="onSubmit" v-model="registerForm.passwordConfirmation" autoComplete="on" :placeholder="$t('form.passwordConfirmation')" />
         <span class="show-pwd" @click="showPwdConfirm = !showPwdConfirm">
            <i class="fa" :class="[showPwdConfirm ? 'fa-eye-slash' : 'fa-eye']"></i>
         </span>
