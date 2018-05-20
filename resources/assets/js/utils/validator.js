@@ -1,4 +1,5 @@
 import Vue from "vue";
+import moment from "moment";
 
 class Validation {
   static text(value) {
@@ -8,8 +9,9 @@ class Validation {
 
   static date(value) {
     return (
-      Object.prototype.toString.call(value) === "[object Date]" &&
-      !isNaN(value.getTime())
+      (Object.prototype.toString.call(value) === "[object Date]" &&
+        !isNaN(value.getTime())) ||
+      moment(value).isValid()
     );
   }
 

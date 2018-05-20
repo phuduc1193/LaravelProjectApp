@@ -13,10 +13,12 @@ export default {
     returnHome: "Quay về trang chủ",
     reportProblem: "Báo cáo sự cố",
     reportDescription: "Xin vui lòng tóm tắt lại sự cố bạn đã gặp.",
+    select: "Chọn",
     ok: "Đồng ý",
     create: "Tạo mới",
     cancel: "Hủy bỏ",
     clear: "Xóa",
+    edit: "Chỉnh sửa",
     logout: "Đăng xuất",
     projectName: "Tên dự án",
     estimatedDuration: "Kế hoạch làm trong",
@@ -78,5 +80,11 @@ export default {
   },
   apiResponse: {
     Unauthorized: "Thông tin đăng nhập không hợp lệ."
+  },
+  status: {
+    new: "Mới",
+    scheduled: "Đã lên lịch",
+    inProgress: "Đang tiến hành",
+    done: "Hoàn thành"
   }
 };

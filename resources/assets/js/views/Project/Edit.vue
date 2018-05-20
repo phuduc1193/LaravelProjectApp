@@ -4,6 +4,15 @@
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
+      <el-form-item prop="status_id" :label="$t('form.progress')">
+        <el-col :span="10">
+          <project-status-selection :status="form.status_id" v-model="form.status_id">
+          </project-status-selection>
+        </el-col>
+        <el-col :span="12" :offset="2">
+          <el-slider v-model="form.percentage" :format-tooltip="formatPercentage"></el-slider>
+        </el-col>
+      </el-form-item>
       <el-form-item :label="$t('form.estimatedDuration')">
         <el-col :span="5" :xs="12">
           <el-input-number controls-position="right" v-model="form.duration" :min="0" :max="Infinity">
@@ -13,23 +22,23 @@
           ({{$t('unit.hours')}}) 
         </el-col>
         <el-col :span="14" :xs="24" class="d-sm-block d-none pt-3 pt-md-0">
-          <el-date-picker v-model="durationDate" type="datetimerange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')" @change="changeScheduleRange">
+          <el-date-picker v-model="durationDate" type="daterange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')" @change="changeScheduleRange">
           </el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item prop="started_at" :label="$t('form.startDate')" class="d-sm-none">
-        <el-date-picker v-model="form.started_at" type="datetime" :placeholder="$t('form.startDate')" @change="changeSchedule(0)">
+        <el-date-picker v-model="form.started_at" type="date" :placeholder="$t('form.startDate')" @change="changeSchedule(0)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="ended_at" :label="$t('form.endDate')" class="d-sm-none">
-        <el-date-picker v-model="form.ended_at" type="datetime" :placeholder="$t('form.endDate')" @change="changeSchedule(1)">
+        <el-date-picker v-model="form.ended_at" type="date" :placeholder="$t('form.endDate')" @change="changeSchedule(1)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="description" :label="$t('form.description')">
         <el-input type="textarea" v-model="form.description" rows="8"></el-input>
       </el-form-item>
       <el-form-item class="pt-2">
-        <el-button type="primary" @click="onSubmit"> {{ $t('form.create') }}</el-button>
+        <el-button type="primary" @click="onSubmit"> {{ $t('form.edit') }}</el-button>
         <el-button @click="clearForm">{{ $t('form.clear') }}</el-button>
       </el-form-item>
     </el-form>
@@ -42,10 +51,24 @@
 </template>
 
 <script>
+import ProjectStatusSelection from "@/components/ProjectStatusSelection";
 import Validate from "@/utils/validator";
 import ProjectService from "./project.service";
+import cloneDeep from "lodash.clonedeep";
+import moment from "moment";
+
+const initForm = {
+  name: "",
+  duration: 1,
+  started_at: "",
+  ended_at: "",
+  description: "",
+  status_id: 0,
+  percentage: 0
+};
 
 export default {
+  components: { ProjectStatusSelection },
   data() {
     const validateName = (rule, value, callback) => {
       if (!Validate.text(value)) {
@@ -73,13 +96,7 @@ export default {
       isLoading: true,
       durationDate: "",
       id: 0,
-      form: {
-        name: "",
-        duration: 1,
-        started_at: "",
-        ended_at: "",
-        description: ""
-      },
+      form: cloneDeep(initForm),
       validateRules: {
         name: [
           {
@@ -125,7 +142,10 @@ export default {
           return false;
         }
 
-        ProjectService.create(this.form)
+        this.form.started_at = moment(this.form.started_at, "MM.DD.YYYY");
+        this.form.ended_at = moment(this.form.ended_at, "MM.DD.YYYY");
+
+        ProjectService.edit(this.id, this.form)
           .then(response => {
             const project = response.data;
             this.$router.push({ path: "/projects/view/" + project.id });
@@ -152,19 +172,25 @@ export default {
     },
     clearForm() {
       this.durationDate = "";
-      this.form = {
-        name: "",
-        duration: 1,
-        started_at: "",
-        ended_at: "",
-        description: ""
-      };
+      this.form = cloneDeep(initForm);
+    },
+    formatPercentage(val) {
+      return val + "%";
     }
   },
   beforeCreate() {
     ProjectService.show(this.$route.params.id).then(data => {
       this.id = data.id;
-      this.form = data;
+      this.form = {
+        name: data.name,
+        duration: data.duration,
+        started_at: data.started_at,
+        ended_at: data.ended_at,
+        description: data.description,
+        status_id: data.status_id,
+        percentage: data.percentage
+      };
+      this.durationDate = [this.form.started_at, this.form.ended_at];
       this.isLoading = false;
     });
   }
@@ -179,7 +205,7 @@ export default {
 }
 
 .el-input-number {
-  width: 97%;
+  width: 95%;
 }
 
 .el-date-editor {

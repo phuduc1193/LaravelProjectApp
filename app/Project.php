@@ -5,14 +5,22 @@ namespace App;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Venturecraft\Revisionable\RevisionableTrait;
 
 class Project extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, RevisionableTrait;
+
+    protected $revisionCreationsEnabled = true;
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['name', 'description', 'duration', 'started_at', 'ended_at', 'percentage'];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
 
     public function status()
     {

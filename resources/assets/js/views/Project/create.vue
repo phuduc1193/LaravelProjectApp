@@ -13,16 +13,16 @@
           ({{$t('unit.hours')}}) 
         </el-col>
         <el-col :span="14" :xs="24" class="d-sm-block d-none pt-3 pt-md-0">
-          <el-date-picker v-model="durationDate" type="datetimerange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')" @change="changeScheduleRange">
+          <el-date-picker v-model="durationDate" type="daterange" :start-placeholder="$t('form.startDate')" :end-placeholder="$t('form.endDate')" @change="changeScheduleRange">
           </el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item prop="started_at" :label="$t('form.startDate')" class="d-sm-none">
-        <el-date-picker v-model="form.started_at" type="datetime" :placeholder="$t('form.startDate')" @change="changeSchedule(0)">
+        <el-date-picker v-model="form.started_at" type="date" :placeholder="$t('form.startDate')" @change="changeSchedule(0)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="ended_at" :label="$t('form.endDate')" class="d-sm-none">
-        <el-date-picker v-model="form.ended_at" type="datetime" :placeholder="$t('form.endDate')" @change="changeSchedule(1)">
+        <el-date-picker v-model="form.ended_at" type="date" :placeholder="$t('form.endDate')" @change="changeSchedule(1)">
         </el-date-picker>
       </el-form-item>
       <el-form-item prop="description" :label="$t('form.description')">
@@ -44,6 +44,15 @@
 <script>
 import Validate from "@/utils/validator";
 import ProjectService from "./project.service";
+import cloneDeep from "lodash.clonedeep";
+
+const initForm = {
+  name: "",
+  duration: 1,
+  started_at: "",
+  ended_at: "",
+  description: ""
+};
 
 export default {
   data() {
@@ -71,13 +80,7 @@ export default {
 
     return {
       durationDate: "",
-      form: {
-        name: "",
-        duration: 1,
-        started_at: "",
-        ended_at: "",
-        description: ""
-      },
+      form: cloneDeep(initForm),
       validateRules: {
         name: [
           {
@@ -150,13 +153,7 @@ export default {
     },
     clearForm() {
       this.durationDate = "";
-      this.form = {
-        name: "",
-        duration: 1,
-        started_at: "",
-        ended_at: "",
-        description: ""
-      };
+      this.form = cloneDeep(initForm);
     }
   }
 };
@@ -169,7 +166,7 @@ export default {
 }
 
 .el-input-number {
-  width: 97%;
+  width: 95%;
 }
 
 .el-date-editor {

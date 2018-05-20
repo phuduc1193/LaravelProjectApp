@@ -16,6 +16,9 @@ import store from "./core/store";
 import "./core/http.service";
 import validator from "./utils/validator";
 
+import VueMoment from "vue-moment";
+Vue.use(VueMoment);
+
 Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
 });

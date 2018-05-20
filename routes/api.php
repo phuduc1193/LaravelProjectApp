@@ -22,3 +22,10 @@ Route::group([
 });
 
 Route::apiResource('projects', 'ProjectController');
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'status',
+], function ($router) {
+    Route::get('project', 'StatusController@project');
+});

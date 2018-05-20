@@ -14,10 +14,12 @@ export default {
     reportProblem: "Report problem",
     reportDescription:
       "Please briefly describe what problem you've encountered.",
+    select: "Select",
     ok: "OK",
     create: "Create",
     cancel: "Cancel",
     clear: "Clear",
+    edit: "Edit",
     logout: "Logout",
     projectName: "Project name",
     estimatedDuration: "Estimated duration",
@@ -78,5 +80,11 @@ export default {
   },
   apiResponse: {
     Unauthorized: "Invalid credentials."
+  },
+  status: {
+    new: "New",
+    scheduled: "Scheduled",
+    inProgress: "In Progress",
+    done: "Done"
   }
 };

@@ -34,17 +34,15 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
-        if ($data) {
-            $project = Project::firstOrNew($data);
+        $project = Project::firstOrNew($data);
 
-            $status = ProjectStatus::where('name', 'New')->first();
-            $project->status()->associate($status);
-            $project->save();
+        $status = ProjectStatus::where('name', 'New')->first();
+        $project->status()->associate($status);
+        $project->save();
 
-            $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
+        $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
 
-            return $this->response(201, 'Resource created successfully', $project);
-        }
+        return $this->response(201, 'Resource created successfully', $project);
     }
 
     /**
@@ -67,7 +65,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate($this->rules());
+        $project = Project::find($id);
+        $project->name = $data['name'];
+        $project->description = $data['description'];
+        $project->percentage = $data['percentage'];
+        $project->started_at = $data['started_at'];
+        $project->ended_at = $data['ended_at'];
+
+        $status = ProjectStatus::find($request['status_id']);
+        $project->status()->associate($status);
+        $project->save();
+
+        return $this->response(200, 'Resource updated successfully', $project);
     }
 
     /**
@@ -87,8 +97,8 @@ class ProjectController extends Controller
     public function rules()
     {
         return [
-            'name' => 'required|string|max:100|unique:projects',
-            'description' => 'required|string|max:255',
+            'name' => 'required|string|max:100',
+            'description' => 'required|string',
             'duration' => 'numeric|min:0',
             'started_at' => 'date',
             'ended_at' => 'date',
