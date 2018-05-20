@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,14 +11,18 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix
+  .js("resources/assets/js/app.js", "public/js")
+  .sass("resources/assets/sass/app.scss", "public/css");
 
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const path = require("path");
 mix.webpackConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'resources/assets/js/')
+      "@": path.resolve(__dirname, "resources/assets/js/")
     }
   }
+  // plugins: [new BundleAnalyzerPlugin()]
 });

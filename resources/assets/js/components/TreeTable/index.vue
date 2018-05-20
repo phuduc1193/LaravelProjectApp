@@ -14,8 +14,8 @@
       <template slot-scope="scope">
         <span v-if="index === 0" v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
         <span class="tree-ctrl" v-if="iconShow(index, scope.row)" @click="toggleExpanded(scope.$index)">
-          <i v-if="!scope.row._expanded" class="el-icon-arrow-right"></i>
-          <i v-else class="el-icon-arrow-down"></i>
+          <i v-if="!scope.row._expanded" class="fa fa-angle-right"></i>
+          <i v-else class="fa fa-angle-down"></i>
         </span>
         <span v-if="!column.routerLink">
           <span v-if="!column.isStatus">{{ getValue(column.value, scope.row) }}</span>

@@ -29,6 +29,8 @@ export default {
     chooseDate: "Chọn ngày",
     chooseTime: "Chọn thời gian",
     progress: "Tiến triển công việc",
+    changed: "thay đổi",
+    date: "Ngày",
     error: {
       invalidName: "Tên không hợp lệ",
       invalidUsername: "Tên truy cập không hợp lệ",
@@ -86,5 +88,13 @@ export default {
     scheduled: "Đã lên lịch",
     inProgress: "Đang tiến hành",
     done: "Hoàn thành"
+  },
+  databaseColumn: {
+    created_at: "ngày khởi tạo",
+    started_at: "ngày bắt đầu",
+    ended_at: "ngày kết thúc",
+    percentage: "phần trăm tiến triển",
+    status_id: "trạng thái",
+    description: "nội dung"
   }
 };

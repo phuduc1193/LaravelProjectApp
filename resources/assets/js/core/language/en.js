@@ -30,6 +30,8 @@ export default {
     chooseDate: "Pick a date",
     chooseTime: "Pick a time",
     progress: "Progress",
+    changed: "changed",
+    date: "Date",
     error: {
       invalidName: "Invalid name",
       invalidUsername: "Invalid username",
@@ -86,5 +88,13 @@ export default {
     scheduled: "Scheduled",
     inProgress: "In Progress",
     done: "Done"
+  },
+  databaseColumn: {
+    created_at: "create date",
+    started_at: "start date",
+    ended_at: "end date",
+    percentage: "percentage",
+    status_id: "status",
+    description: "description"
   }
 };
