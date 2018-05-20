@@ -15,7 +15,9 @@ export default {
     reportDescription:
       "Please briefly describe what problem you've encountered.",
     ok: "OK",
+    create: "Create",
     cancel: "Cancel",
+    clear: "Clear",
     logout: "Logout",
     projectName: "Project name",
     estimatedDuration: "Estimated duration",
@@ -58,7 +60,8 @@ export default {
     projects: "Projects",
     list: "View all",
     view: "View",
-    create: "Add new"
+    create: "Add new",
+    edit: "Edit"
   },
   tableHeader: {
     project: "Project",
@@ -69,6 +72,7 @@ export default {
   },
   noRecord: "No record found",
   backToList: "Back to list",
+  backToView: "Back to view",
   unit: {
     hours: "hours"
   },

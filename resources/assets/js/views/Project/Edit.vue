@@ -1,6 +1,6 @@
 <template>
-  <div class="app-container">
-    <el-form :model="form" :rules="validateRules" ref="form" label-width="150px" class="pt-3">
+  <div v-if="!isLoading">
+    <el-form class="app-container" :model="form" :rules="validateRules" ref="form" label-width="150px">
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
@@ -34,8 +34,8 @@
       </el-form-item>
     </el-form>
     <el-row class="bottom-page">
-      <router-link to="/projects/list">
-        <el-button round>{{ $t('backToList') }}</el-button>
+      <router-link :to="'/projects/view/' + id">
+        <el-button round>{{ $t('backToView') }}</el-button>
       </router-link>
     </el-row>
   </div>
@@ -70,7 +70,9 @@ export default {
     };
 
     return {
+      isLoading: true,
       durationDate: "",
+      id: 0,
       form: {
         name: "",
         duration: 1,
@@ -158,6 +160,13 @@ export default {
         description: ""
       };
     }
+  },
+  beforeCreate() {
+    ProjectService.show(this.$route.params.id).then(data => {
+      this.id = data.id;
+      this.form = data;
+      this.isLoading = false;
+    });
   }
 };
 </script>
@@ -166,6 +175,7 @@ export default {
 .bottom-page {
   position: absolute;
   bottom: 20px;
+  padding: 0 20px;
 }
 
 .el-input-number {

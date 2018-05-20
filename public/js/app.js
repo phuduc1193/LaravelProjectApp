@@ -50527,6 +50527,15 @@ function project(view) {
         title: "view",
         scopes: ["admin"]
       }
+    }, {
+      path: "edit/:id",
+      component: view("Project.Edit"),
+      name: "edit",
+      hidden: true,
+      meta: {
+        title: "edit",
+        scopes: ["admin"]
+      }
     }]
   };
 }
@@ -97323,7 +97332,9 @@ VueI18n.version = '7.6.0';
     reportProblem: "Report problem",
     reportDescription: "Please briefly describe what problem you've encountered.",
     ok: "OK",
+    create: "Create",
     cancel: "Cancel",
+    clear: "Clear",
     logout: "Logout",
     projectName: "Project name",
     estimatedDuration: "Estimated duration",
@@ -97364,7 +97375,8 @@ VueI18n.version = '7.6.0';
     projects: "Projects",
     list: "View all",
     view: "View",
-    create: "Add new"
+    create: "Add new",
+    edit: "Edit"
   },
   tableHeader: {
     project: "Project",
@@ -97375,6 +97387,7 @@ VueI18n.version = '7.6.0';
   },
   noRecord: "No record found",
   backToList: "Back to list",
+  backToView: "Back to view",
   unit: {
     hours: "hours"
   },
@@ -97404,7 +97417,9 @@ VueI18n.version = '7.6.0';
     reportProblem: "Báo cáo sự cố",
     reportDescription: "Xin vui lòng tóm tắt lại sự cố bạn đã gặp.",
     ok: "Đồng ý",
+    create: "Tạo mới",
     cancel: "Hủy bỏ",
+    clear: "Xóa",
     logout: "Đăng xuất",
     projectName: "Tên dự án",
     estimatedDuration: "Kế hoạch làm trong",
@@ -97445,7 +97460,8 @@ VueI18n.version = '7.6.0';
     projects: "Dự án",
     list: "Xem tất cả",
     view: "Xem",
-    create: "Thêm mới"
+    create: "Thêm mới",
+    edit: "Chỉnh sửa"
   },
   tableHeader: {
     project: "Dự án",
@@ -97456,6 +97472,7 @@ VueI18n.version = '7.6.0';
   },
   noRecord: "Không có dữ liệu",
   backToList: "Quay lại",
+  backToView: "Quay lại",
   unit: {
     hours: "giờ"
   },

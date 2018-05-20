@@ -14,7 +14,9 @@ export default {
     reportProblem: "Báo cáo sự cố",
     reportDescription: "Xin vui lòng tóm tắt lại sự cố bạn đã gặp.",
     ok: "Đồng ý",
+    create: "Tạo mới",
     cancel: "Hủy bỏ",
+    clear: "Xóa",
     logout: "Đăng xuất",
     projectName: "Tên dự án",
     estimatedDuration: "Kế hoạch làm trong",
@@ -58,7 +60,8 @@ export default {
     projects: "Dự án",
     list: "Xem tất cả",
     view: "Xem",
-    create: "Thêm mới"
+    create: "Thêm mới",
+    edit: "Chỉnh sửa"
   },
   tableHeader: {
     project: "Dự án",
@@ -69,6 +72,7 @@ export default {
   },
   noRecord: "Không có dữ liệu",
   backToList: "Quay lại",
+  backToView: "Quay lại",
   unit: {
     hours: "giờ"
   },

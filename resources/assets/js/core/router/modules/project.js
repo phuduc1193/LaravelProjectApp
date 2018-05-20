@@ -39,6 +39,16 @@ function project(view) {
           title: "view",
           scopes: ["admin"]
         }
+      },
+      {
+        path: "edit/:id",
+        component: view("Project.Edit"),
+        name: "edit",
+        hidden: true,
+        meta: {
+          title: "edit",
+          scopes: ["admin"]
+        }
       }
     ]
   };

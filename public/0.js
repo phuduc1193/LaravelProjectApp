@@ -11,6 +11,7 @@ var map = {
 	"./Login.vue": 320,
 	"./NotFound.vue": 327,
 	"./Project/Create.vue": 335,
+	"./Project/Edit.vue": 374,
 	"./Project/List.vue": 340,
 	"./Project/View.vue": 351,
 	"./Register.vue": 356,
@@ -2816,10 +2817,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         description: ""
       },
       validateRules: {
-        name: [{ required: true, trigger: "blur", validator: validateName }],
-        description: [{ required: true, trigger: "blur", validator: validateDescription }],
-        started_at: [{ required: true, trigger: "blur", validator: validateDate }],
-        ended_at: [{ required: true, trigger: "blur", validator: validateDate }]
+        name: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateName
+        }],
+        description: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDescription
+        }],
+        started_at: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDate
+        }],
+        ended_at: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDate
+        }]
       }
     };
   },
@@ -2861,6 +2878,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         this.durationDate[choice] = this.form.ended_at;
       }
+    },
+    clearForm: function clearForm() {
+      this.durationDate = "";
+      this.form = {
+        name: "",
+        duration: 1,
+        started_at: "",
+        ended_at: "",
+        description: ""
+      };
     }
   }
 });
@@ -3053,10 +3080,12 @@ var render = function() {
               _c(
                 "el-button",
                 { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                [_vm._v("Create")]
+                [_vm._v(" " + _vm._s(_vm.$t("form.create")))]
               ),
               _vm._v(" "),
-              _c("el-button", [_vm._v("Cancel")])
+              _c("el-button", { on: { click: _vm.clearForm } }, [
+                _vm._v(_vm._s(_vm.$t("form.clear")))
+              ])
             ],
             1
           )
@@ -3766,7 +3795,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n.description[data-v-676c4435] {\n  min-height: 45vh;\n}\n.bottom-page[data-v-676c4435] {\n  position: absolute;\n  bottom: 20px;\n  padding: 0 20px;\n}\n", ""]);
+exports.push([module.i, "\n.description[data-v-676c4435] {\n  min-height: 45vh;\n}\n.bottom-page[data-v-676c4435] {\n  position: absolute;\n  bottom: 20px;\n  padding: 0 20px;\n}\n.top-page[data-v-676c4435] {\n  position: absolute;\n  padding: 20px 0;\n  right: 20px;\n  z-index: 10;\n}\n", ""]);
 
 // exports
 
@@ -3778,6 +3807,11 @@ exports.push([module.i, "\n.description[data-v-676c4435] {\n  min-height: 45vh;\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__project_service__ = __webpack_require__(277);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3842,6 +3876,24 @@ var render = function() {
     ? _c(
         "div",
         [
+          _c(
+            "el-row",
+            { staticClass: "top-page" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: "/projects/edit/" + _vm.data.id } },
+                [
+                  _c("el-button", { attrs: { round: "" } }, [
+                    _c("i", { staticClass: "fa fa-pencil" })
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c("el-row", { staticClass: "app-container" }, [
             _c("h4", [
               _c("small", [
@@ -3864,7 +3916,7 @@ var render = function() {
               "p",
               { staticClass: "pt-3" },
               [
-                _c("el-col", { attrs: { md: 8, sm: 8, xs: 24 } }, [
+                _c("el-col", { attrs: { md: 7, sm: 8, xs: 24 } }, [
                   _c("i", [_vm._v(_vm._s(_vm.$t("form.progress")))]),
                   _vm._v(": " + _vm._s(_vm.data.percentage) + "%\n      ")
                 ]),
@@ -3873,7 +3925,7 @@ var render = function() {
                   "el-col",
                   {
                     staticClass: "pt-3 pt-md-0",
-                    attrs: { md: 8, sm: 16, xs: 24 }
+                    attrs: { md: 7, sm: 16, xs: 24 }
                   },
                   [
                     _c("i", [_vm._v(_vm._s(_vm.$t("form.estimatedDuration")))]),
@@ -3891,7 +3943,7 @@ var render = function() {
                   "el-col",
                   {
                     staticClass: "pt-3 pt-lg-0",
-                    attrs: { md: 8, sm: 24, xs: 24 }
+                    attrs: { md: 10, sm: 24, xs: 24 }
                   },
                   [
                     _c("i", [_vm._v(_vm._s(_vm.$t("form.schedule")))]),
@@ -4671,6 +4723,518 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-4cc18cfe", module.exports)
+  }
+}
+
+/***/ }),
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(375)
+}
+var normalizeComponent = __webpack_require__(53)
+/* script */
+var __vue_script__ = __webpack_require__(377)
+/* template */
+var __vue_template__ = __webpack_require__(378)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-7fa23d1a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\Project\\Edit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7fa23d1a", Component.options)
+  } else {
+    hotAPI.reload("data-v-7fa23d1a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(376);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(91)("452682b9", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7fa23d1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Edit.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7fa23d1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Edit.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 376 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(15)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.bottom-page[data-v-7fa23d1a] {\n  position: absolute;\n  bottom: 20px;\n  padding: 0 20px;\n}\n.el-input-number[data-v-7fa23d1a] {\n  width: 97%;\n}\n.el-date-editor.el-input[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-date-editor.el-input__inner[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-textarea__inner[data-v-7fa23d1a] {\n  height: 400px;\n}\n@media only screen and (max-width: 768px) {\n.el-input-number[data-v-7fa23d1a] {\n    width: 90%;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 377 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__project_service__ = __webpack_require__(277);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _this = this;
+
+    var validateName = function validateName(rule, value, callback) {
+      if (!__WEBPACK_IMPORTED_MODULE_0__utils_validator__["a" /* default */].text(value)) {
+        callback(new Error(_this.$t("form.error.invalidName")));
+      } else {
+        callback();
+      }
+    };
+    var validateDescription = function validateDescription(rule, value, callback) {
+      if (!value) {
+        callback(new Error(_this.$t("form.error.invalidDescription")));
+      } else {
+        callback();
+      }
+    };
+    var validateDate = function validateDate(rule, value, callback) {
+      if (!__WEBPACK_IMPORTED_MODULE_0__utils_validator__["a" /* default */].date(value)) {
+        callback(new Error(_this.$t("form.error.invalidDateFormat")));
+      } else {
+        callback();
+      }
+    };
+
+    return {
+      isLoading: true,
+      durationDate: "",
+      id: 0,
+      form: {
+        name: "",
+        duration: 1,
+        started_at: "",
+        ended_at: "",
+        description: ""
+      },
+      validateRules: {
+        name: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateName
+        }],
+        description: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDescription
+        }],
+        started_at: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDate
+        }],
+        ended_at: [{
+          required: true,
+          trigger: ["blur", "change"],
+          validator: validateDate
+        }]
+      }
+    };
+  },
+
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      this.$refs.form.validate(function (valid) {
+        if (!valid) {
+          if (!_this2.form.started_at || !_this2.form.ended_at) {
+            _this2.$message({
+              type: "error",
+              message: _this2.$t("notification.missingSchedule")
+            });
+          }
+          return false;
+        }
+
+        __WEBPACK_IMPORTED_MODULE_1__project_service__["a" /* default */].create(_this2.form).then(function (response) {
+          var project = response.data;
+          _this2.$router.push({ path: "/projects/view/" + project.id });
+        }).catch(function () {});
+      });
+    },
+    changeScheduleRange: function changeScheduleRange() {
+      if (this.durationDate && this.durationDate.length === 2) {
+        this.form.started_at = this.durationDate[0];
+        this.form.ended_at = this.durationDate[1];
+      } else {
+        this.form.started_at = "";
+        this.form.ended_at = "";
+      }
+    },
+    changeSchedule: function changeSchedule(choice) {
+      choice = parseInt(choice);
+      if (choice === 0) {
+        this.durationDate[choice] = this.form.started_at;
+      } else {
+        this.durationDate[choice] = this.form.ended_at;
+      }
+    },
+    clearForm: function clearForm() {
+      this.durationDate = "";
+      this.form = {
+        name: "",
+        duration: 1,
+        started_at: "",
+        ended_at: "",
+        description: ""
+      };
+    }
+  },
+  beforeCreate: function beforeCreate() {
+    var _this3 = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__project_service__["a" /* default */].show(this.$route.params.id).then(function (data) {
+      _this3.id = data.id;
+      _this3.form = data;
+      _this3.isLoading = false;
+    });
+  }
+});
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return !_vm.isLoading
+    ? _c(
+        "div",
+        [
+          _c(
+            "el-form",
+            {
+              ref: "form",
+              staticClass: "app-container",
+              attrs: {
+                model: _vm.form,
+                rules: _vm.validateRules,
+                "label-width": "150px"
+              }
+            },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { prop: "name", label: _vm.$t("form.projectName") } },
+                [
+                  _c("el-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.form.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "name", $$v)
+                      },
+                      expression: "form.name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: _vm.$t("form.estimatedDuration") } },
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 5, xs: 12 } },
+                    [
+                      _c("el-input-number", {
+                        attrs: {
+                          "controls-position": "right",
+                          min: 0,
+                          max: Infinity
+                        },
+                        model: {
+                          value: _vm.form.duration,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "duration", $$v)
+                          },
+                          expression: "form.duration"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 5, xs: 12 } }, [
+                    _vm._v(
+                      "\n        (" +
+                        _vm._s(_vm.$t("unit.hours")) +
+                        ") \n      "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    {
+                      staticClass: "d-sm-block d-none pt-3 pt-md-0",
+                      attrs: { span: 14, xs: 24 }
+                    },
+                    [
+                      _c("el-date-picker", {
+                        attrs: {
+                          type: "datetimerange",
+                          "start-placeholder": _vm.$t("form.startDate"),
+                          "end-placeholder": _vm.$t("form.endDate")
+                        },
+                        on: { change: _vm.changeScheduleRange },
+                        model: {
+                          value: _vm.durationDate,
+                          callback: function($$v) {
+                            _vm.durationDate = $$v
+                          },
+                          expression: "durationDate"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                {
+                  staticClass: "d-sm-none",
+                  attrs: { prop: "started_at", label: _vm.$t("form.startDate") }
+                },
+                [
+                  _c("el-date-picker", {
+                    attrs: {
+                      type: "datetime",
+                      placeholder: _vm.$t("form.startDate")
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.changeSchedule(0)
+                      }
+                    },
+                    model: {
+                      value: _vm.form.started_at,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "started_at", $$v)
+                      },
+                      expression: "form.started_at"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                {
+                  staticClass: "d-sm-none",
+                  attrs: { prop: "ended_at", label: _vm.$t("form.endDate") }
+                },
+                [
+                  _c("el-date-picker", {
+                    attrs: {
+                      type: "datetime",
+                      placeholder: _vm.$t("form.endDate")
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.changeSchedule(1)
+                      }
+                    },
+                    model: {
+                      value: _vm.form.ended_at,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "ended_at", $$v)
+                      },
+                      expression: "form.ended_at"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                {
+                  attrs: {
+                    prop: "description",
+                    label: _vm.$t("form.description")
+                  }
+                },
+                [
+                  _c("el-input", {
+                    attrs: { type: "textarea", rows: "8" },
+                    model: {
+                      value: _vm.form.description,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "description", $$v)
+                      },
+                      expression: "form.description"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { staticClass: "pt-2" },
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
+                    [_vm._v(" " + _vm._s(_vm.$t("form.create")))]
+                  ),
+                  _vm._v(" "),
+                  _c("el-button", { on: { click: _vm.clearForm } }, [
+                    _vm._v(_vm._s(_vm.$t("form.clear")))
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticClass: "bottom-page" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: "/projects/view/" + _vm.id } },
+                [
+                  _c("el-button", { attrs: { round: "" } }, [
+                    _vm._v(_vm._s(_vm.$t("backToView")))
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fa23d1a", module.exports)
   }
 }
 
