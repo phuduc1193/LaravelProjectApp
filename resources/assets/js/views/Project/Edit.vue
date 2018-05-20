@@ -5,13 +5,15 @@
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item prop="status_id" :label="$t('form.progress')">
-        <el-col :span="10">
-          <project-status-selection :status="form.status_id" v-model="form.status_id">
-          </project-status-selection>
-        </el-col>
-        <el-col :span="12" :offset="2">
-          <el-slider v-model="form.percentage" :format-tooltip="formatPercentage"></el-slider>
-        </el-col>
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <project-status-selection :status="form.status_id" v-model="form.status_id">
+            </project-status-selection>
+          </div>
+          <div class="col-12 col-sm-6 pt-3 pt-sm-0">
+            <el-slider v-model="form.percentage" :format-tooltip="formatPercentage"></el-slider>
+          </div>
+        </div>
       </el-form-item>
       <el-form-item :label="$t('form.estimatedDuration')">
         <el-col :span="5" :xs="12">
@@ -220,6 +222,10 @@ export default {
 
 .el-textarea__inner {
   height: 400px;
+}
+
+.el-slider {
+  width: 98%;
 }
 
 @media only screen and (max-width: 768px) {

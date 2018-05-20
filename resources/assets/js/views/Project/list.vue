@@ -38,6 +38,7 @@ export default {
         {
           text: "status",
           value: "status.name",
+          isStatus: true,
           width: 150
         },
         {

@@ -16,6 +16,7 @@
       <p class="pt-3">
         <el-col :md="7" :sm="8" :xs="24">
           <i>{{ $t('form.progress') }}</i>: {{ data.percentage }}%
+          <status :value="data.status.name"></status>
         </el-col>
         <el-col :md="7" :sm="16" :xs="24" class="pt-3 pt-md-0">
           <i>{{ $t('form.estimatedDuration') }}</i>: {{ data.duration + ' (' + $t('unit.hours') + ')' }}
@@ -35,8 +36,10 @@
 
 <script>
 import ProjectService from "./project.service";
+import Status from "@/components/Status";
 
 export default {
+  components: { Status },
   data() {
     return {
       isLoading: true,

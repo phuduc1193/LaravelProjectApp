@@ -18,7 +18,10 @@
           <i v-else class="el-icon-arrow-down"></i>
         </span>
         <span v-if="!column.routerLink">
-          {{ getValue(column.value, scope.row) }}
+          <span v-if="!column.isStatus">{{ getValue(column.value, scope.row) }}</span>
+          <span v-else>
+            <status :value="getValue(column.value, scope.row)"></status>
+          </span>
         </span>
         <router-link class="link" :to="getLink(column.routerLink, scope.row)" v-else>
           {{ getValue(column.value, scope.row) }}
@@ -31,8 +34,10 @@
 
 <script>
 import treeToArray from "./eval";
+import Status from "@/components/Status";
 export default {
   name: "TreeTable",
+  components: { Status },
   props: {
     data: {
       type: [Array, Object],

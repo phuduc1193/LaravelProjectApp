@@ -7,11 +7,6 @@ import axios from "axios";
 
 export default {
   name: "report-problem",
-  data: function() {
-    return {
-      componentClass: this.propClass
-    };
-  },
   methods: {
     openMessage() {
       this.$prompt(
