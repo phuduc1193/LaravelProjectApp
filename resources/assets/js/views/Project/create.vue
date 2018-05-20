@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="150px" class="pt-3">
-      <el-form-item :label="$t('form.projectName')">
-        <el-input v-model="form.name"></el-input>
+    <el-form :model="form" :rules="validateRules" ref="form" label-width="150px" class="pt-3">
+      <el-form-item prop="name" :label="$t('form.projectName')">
+        <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item :label="$t('form.estimatedDuration')">
         <el-col :span="5" :xs="12">
@@ -17,18 +17,18 @@
           </el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item :label="$t('form.startDate')" class="d-sm-none">
+      <el-form-item prop="started_at" :label="$t('form.startDate')" class="d-sm-none">
         <el-date-picker v-model="form.started_at" type="datetime" :placeholder="$t('form.startDate')">
         </el-date-picker>
       </el-form-item>
-      <el-form-item :label="$t('form.endDate')" class="d-sm-none">
+      <el-form-item prop="ended_at" :label="$t('form.endDate')" class="d-sm-none">
         <el-date-picker v-model="form.ended_at" type="datetime" :placeholder="$t('form.endDate')">
         </el-date-picker>
       </el-form-item>
-      <el-form-item :label="$t('form.description')">
+      <el-form-item prop="description" :label="$t('form.description')">
         <el-input type="textarea" v-model="form.description" rows="4"></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item class="pt-2">
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button>Cancel</el-button>
       </el-form-item>
@@ -42,10 +42,33 @@
 </template>
 
 <script>
+import Validate from "@/utils/validator";
 import ProjectService from "./project.service";
 
 export default {
   data() {
+    const validateName = (rule, value, callback) => {
+      if (!Validate.text(value)) {
+        callback(new Error(this.$t("form.error.invalidName")));
+      } else {
+        callback();
+      }
+    };
+    const validateDescription = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error(this.$t("form.error.invalidDescription")));
+      } else {
+        callback();
+      }
+    };
+    const validateDate = (rule, value, callback) => {
+      if (!Validate.date(value)) {
+        callback(new Error(this.$t("form.error.invalidDateFormat")));
+      } else {
+        callback();
+      }
+    };
+
     return {
       durationDate: "",
       form: {
@@ -55,9 +78,15 @@ export default {
         ended_at: "",
         description: ""
       },
-      rules: {
-        name: [{ required: true, trigger: "blur" }],
-        description: [{ required: true, trigger: "blur" }]
+      validateRules: {
+        name: [{ required: true, trigger: "blur", validator: validateName }],
+        description: [
+          { required: true, trigger: "blur", validator: validateDescription }
+        ],
+        started_at: [
+          { required: true, trigger: "blur", validator: validateDate }
+        ],
+        ended_at: [{ required: true, trigger: "blur", validator: validateDate }]
       }
     };
   },
@@ -69,17 +98,22 @@ export default {
       }
 
       this.$refs.form.validate(valid => {
-        if (valid) {
-          ProjectService.create(this.form)
-            .then(response => {
-              const project = response.data;
-              this.$router.push({ path: "/projects/view/" + project.id });
-            })
-            .catch(() => {});
-        } else {
-          console.log("error submit!!");
+        if (!valid) {
+          if (!this.form.started_at || !this.form.ended_at) {
+            this.$message({
+              type: "error",
+              message: this.$t("notification.missingSchedule")
+            });
+          }
           return false;
         }
+
+        ProjectService.create(this.form)
+          .then(response => {
+            const project = response.data;
+            this.$router.push({ path: "/projects/view/" + project.id });
+          })
+          .catch(() => {});
       });
     }
   }

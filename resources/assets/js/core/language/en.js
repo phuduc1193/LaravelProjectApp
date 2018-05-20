@@ -31,7 +31,9 @@ export default {
       invalidUsername: "Invalid username",
       invalidEmail: "Invalid email",
       invalidPassword: "Invalid password",
-      invalidPasswordConfirmation: "Password confirmation is not matched"
+      invalidPasswordConfirmation: "Password confirmation is not matched",
+      invalidDescription: "Invalid description",
+      invalidDateFormat: "Invalid date format"
     },
     rule: {
       password:
@@ -41,7 +43,8 @@ export default {
   notification: {
     switchLanguageSuccess: "Switch language success!",
     reportSuccess: "Thank you for your cooperation!",
-    error: "Cannot process your request. Please try again."
+    requestFailed: "Cannot process your request. Please try again.",
+    missingSchedule: "Please insert a schedule date."
   },
   errorMessage: {
     pageNotExists: "Oops, the page you're looking for does not exist.",

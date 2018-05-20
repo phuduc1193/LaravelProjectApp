@@ -50,8 +50,8 @@ export const constantRouterMap = [
   }
 ];
 
-import projectModule from "./modules/project";
-export const asyncRouterMap = [projectModule(view)];
+import routerModules from "./modules";
+export const asyncRouterMap = routerModules(view);
 
 export default new VueRouter({
   scrollBehavior: () => ({

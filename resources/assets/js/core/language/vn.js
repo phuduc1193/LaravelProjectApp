@@ -30,7 +30,9 @@ export default {
       invalidUsername: "Tên truy cập không hợp lệ",
       invalidEmail: "Email không hợp lệ",
       invalidPassword: "Mật khẩu không hợp lệ",
-      invalidPasswordConfirmation: "Xác nhận mật khẩu không trùng khớp"
+      invalidPasswordConfirmation: "Xác nhận mật khẩu không trùng khớp",
+      invalidDescription: "Nội dung không hợp lệ",
+      invalidDateFormat: "Định dạng ngày tháng không hợp lệ"
     },
     rule: {
       password:
@@ -40,7 +42,9 @@ export default {
   notification: {
     switchLanguageSuccess: "Đổi ngôn ngữ thành công!",
     reportSuccess: "Cảm ơn về sự hợp tác của bạn!",
-    error: "Hệ thống không thể xử lý yêu cầu của bạn. Xin vui lòng thử lại sau."
+    requestFailed:
+      "Hệ thống không thể xử lý yêu cầu của bạn. Xin vui lòng thử lại sau.",
+    missingSchedule: "Xin vui lòng chọn thời gian thi hành."
   },
   errorMessage: {
     pageNotExists: "Chúng tôi không thấy chuyên mục bạn đang tìm.",

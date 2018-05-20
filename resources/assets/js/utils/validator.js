@@ -1,6 +1,18 @@
 import Vue from "vue";
 
 class Validation {
+  static text(value) {
+    const regex = /^[a-z0-9 ,.'\-!#$%&*+/=?^_`{}()]+$/i;
+    return regex.test(value);
+  }
+
+  static date(value) {
+    return (
+      Object.prototype.toString.call(value) === "[object Date]" &&
+      !isNaN(value.getTime())
+    );
+  }
+
   static name(value) {
     const regex = /^[a-z ,.'-]+$/i;
     return regex.test(value);

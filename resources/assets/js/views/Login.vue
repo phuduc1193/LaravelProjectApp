@@ -72,7 +72,6 @@ export default {
     onSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (!valid) {
-          console.log("error submit!!");
           return false;
         }
 

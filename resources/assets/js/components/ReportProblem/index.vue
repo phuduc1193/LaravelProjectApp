@@ -40,7 +40,7 @@ export default {
             .catch(() => {
               this.$message({
                 type: "error",
-                message: this.$t("notification.error")
+                message: this.$t("notification.requestFailed")
               });
               this.$emit("file-report", "error");
             });

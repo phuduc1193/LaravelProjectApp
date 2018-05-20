@@ -121,21 +121,20 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.registerForm.validate(valid => {
-        if (valid) {
-          this.loading = true;
-          this.$store
-            .dispatch("RegisterUser", this.registerForm)
-            .then(() => {
-              this.loading = false;
-              this.$router.push({ path: "/" });
-            })
-            .catch(() => {
-              this.loading = false;
-            });
-        } else {
-          console.log("error submit!!");
+        if (!valid) {
           return false;
         }
+
+        this.loading = true;
+        this.$store
+          .dispatch("RegisterUser", this.registerForm)
+          .then(() => {
+            this.loading = false;
+            this.$router.push({ path: "/" });
+          })
+          .catch(() => {
+            this.loading = false;
+          });
       });
     },
     login() {
