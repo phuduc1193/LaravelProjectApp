@@ -32,6 +32,17 @@ const project = {
             reject(error);
           });
       });
+    },
+    EditProjectById({ commit }, form) {
+      const id = form.id;
+      return new Promise((resolve, reject) => {
+        ProjectService.edit(id, form)
+          .then(project => {
+            commit("SET_PROJECT", project);
+            resolve(project);
+          })
+          .catch(() => {});
+      });
     }
   }
 };

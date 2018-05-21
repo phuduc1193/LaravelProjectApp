@@ -42,7 +42,7 @@ class ProjectController extends Controller
 
         $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
 
-        return $this->response(201, 'Resource created successfully', $project);
+        return $project;
     }
 
     /**
@@ -77,7 +77,7 @@ class ProjectController extends Controller
         $project->status()->associate($status);
         $project->save();
 
-        return $this->response(200, 'Resource updated successfully', $project);
+        return $this->show($project->id);
     }
 
     /**
@@ -104,17 +104,5 @@ class ProjectController extends Controller
             'ended_at' => 'date',
             'percentage' => 'numeric|min:0|max:100',
         ];
-    }
-
-    /**
-     * Response
-     */
-    private function response($code, $message, $data)
-    {
-        return response()->json([
-            'code' => $code,
-            'message' => $message,
-            'data' => $data,
-        ], $code);
     }
 }

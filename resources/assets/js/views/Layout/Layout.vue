@@ -34,6 +34,9 @@ export default {
         mobile: this.device === "mobile"
       };
     }
+  },
+  created() {
+    this.$store.dispatch("SetProjectStatus");
   }
 };
 </script>

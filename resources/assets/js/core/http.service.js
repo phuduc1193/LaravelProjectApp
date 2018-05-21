@@ -22,6 +22,12 @@ NProgress.configure({
   trickleSpeed: 100
 });
 
+const doneNProgress = function() {
+  setTimeout(() => {
+    NProgress.done();
+  }, 500);
+};
+
 axios.interceptors.request.use(
   config => {
     const token = Cookies.get(env.TokenKey);
@@ -35,7 +41,7 @@ axios.interceptors.request.use(
     return config;
   },
   error => {
-    if (NProgress.isStarted()) NProgress.done();
+    if (NProgress.isStarted()) doneNProgress();
 
     return Promise.reject(error);
   }
@@ -43,12 +49,12 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   response => {
-    if (NProgress.isStarted()) NProgress.done();
+    if (NProgress.isStarted()) doneNProgress();
 
     return response;
   },
   error => {
-    if (NProgress.isStarted()) NProgress.done();
+    if (NProgress.isStarted()) doneNProgress();
 
     return Promise.reject(error);
   }

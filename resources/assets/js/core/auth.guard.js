@@ -17,12 +17,18 @@ function hasPermission(scopes, permissionScopes) {
   return scopes.some(scope => permissionScopes.indexOf(scope) >= 0);
 }
 
+const doneNProgress = function() {
+  setTimeout(() => {
+    NProgress.done();
+  }, 500);
+};
+
 router.beforeEach((to, from, next) => {
   if (!NProgress.isStarted()) NProgress.start();
   if (AuthService.isAuthenticated()) {
     if (whiteList.indexOf(to.path) !== -1) {
       next("/");
-      if (NProgress.isStarted()) NProgress.done();
+      if (NProgress.isStarted()) doneNProgress();
     } else {
       if (store.getters.scopes.length === 0) {
         store
@@ -68,11 +74,11 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next("/login");
-      if (NProgress.isStarted()) NProgress.done();
+      if (NProgress.isStarted()) doneNProgress();
     }
   }
 });
 
 router.afterEach(() => {
-  if (NProgress.isStarted()) NProgress.done();
+  if (NProgress.isStarted()) doneNProgress();
 });

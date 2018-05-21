@@ -45,7 +45,7 @@
       </el-form-item>
     </el-form>
     <el-row class="bottom-page">
-      <router-link :to="'/projects/view/' + id">
+      <router-link :to="'/projects/view/' + form.id">
         <el-button round>{{ $t('backToView') }}</el-button>
       </router-link>
     </el-row>
@@ -61,6 +61,7 @@ import cloneDeep from "lodash.clonedeep";
 import moment from "moment";
 
 const initForm = {
+  id: 0,
   name: "",
   duration: 1,
   started_at: "",
@@ -98,7 +99,6 @@ export default {
     return {
       isLoading: true,
       durationDate: "",
-      id: 0,
       form: cloneDeep(initForm),
       validateRules: {
         name: [
@@ -148,9 +148,9 @@ export default {
         this.form.started_at = moment(this.form.started_at, "MM.DD.YYYY");
         this.form.ended_at = moment(this.form.ended_at, "MM.DD.YYYY");
 
-        ProjectService.edit(this.id, this.form)
-          .then(response => {
-            const project = response.data;
+        this.$store
+          .dispatch("EditProjectById", this.form)
+          .then(project => {
             this.$router.push({ path: "/projects/view/" + project.id });
           })
           .catch(() => {});
@@ -185,8 +185,8 @@ export default {
     const project = store.getters.project;
     if (!project || project.id != this.$route.params.id) {
       store.dispatch("GetProjectById", this.$route.params.id).then(data => {
-        this.id = data.id;
         this.form = {
+          id: data.id,
           name: data.name,
           duration: data.duration,
           started_at: data.started_at,
@@ -203,8 +203,8 @@ export default {
   beforeMount() {
     const project = store.getters.project;
     if (project && project.id == this.$route.params.id) {
-      this.id = project.id;
       this.form = {
+        id: project.id,
         name: project.name,
         duration: project.duration,
         started_at: project.started_at,
