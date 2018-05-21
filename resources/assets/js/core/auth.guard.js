@@ -2,11 +2,11 @@ import router from "./router";
 import store from "./store";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import AuthService from "./auth.service";
+import AuthService from "@/core/service/auth";
 
 NProgress.configure({
   showSpinner: false,
-  trickleSpeed: 50
+  trickleSpeed: 100
 });
 
 const whiteList = ["/login", "/register"];

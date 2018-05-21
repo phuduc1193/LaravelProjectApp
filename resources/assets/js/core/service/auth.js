@@ -1,4 +1,4 @@
-import env from "./environment";
+import env from "@/core/environment";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import axios from "axios";

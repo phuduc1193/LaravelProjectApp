@@ -15,6 +15,12 @@ function routers(view) {
     routersMap.push(moduleConfig.default(view) || moduleConfig(view));
   });
 
+  routersMap.push({
+    path: "*",
+    redirect: "/404",
+    hidden: true
+  });
+
   return routersMap;
 }
 

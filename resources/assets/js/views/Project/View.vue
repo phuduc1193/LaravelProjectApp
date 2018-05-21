@@ -6,7 +6,7 @@
 
         <div class="description pt-4">
           <p><i>{{ $t('form.description') }}</i>:</p>
-          <p> {{ data.description }} </p>
+          <div><pre> {{ data.description }} </pre></div>
         </div>
       
         <p class="pt-3">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import ProjectService from "./project.service";
+import store from "@/core/store";
 import ProjectRevision from "./components/Revision";
 import Status from "@/components/Status";
 
@@ -51,12 +51,21 @@ export default {
       data: {}
     };
   },
-  methods: {},
   beforeCreate() {
-    ProjectService.show(this.$route.params.id).then(data => {
-      this.data = data;
+    const project = store.getters.project;
+    if (!project || project.id != this.$route.params.id) {
+      store.dispatch("GetProjectById", this.$route.params.id).then(data => {
+        this.data = data;
+        this.isLoading = false;
+      });
+    }
+  },
+  beforeMount() {
+    const project = store.getters.project;
+    if (project && project.id == this.$route.params.id) {
+      this.data = project;
       this.isLoading = false;
-    });
+    }
   }
 };
 </script>

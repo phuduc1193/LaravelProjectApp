@@ -14,7 +14,7 @@
 
 <script>
 import TreeTable from "@/components/TreeTable";
-import ProjectService from "./project.service";
+import ProjectService from "@/core/service/project";
 
 export default {
   components: { TreeTable },

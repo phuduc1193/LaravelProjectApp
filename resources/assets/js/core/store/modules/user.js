@@ -1,4 +1,4 @@
-import AuthService from "@/core/auth.service";
+import AuthService from "@/core/service/auth";
 
 const user = {
   state: {

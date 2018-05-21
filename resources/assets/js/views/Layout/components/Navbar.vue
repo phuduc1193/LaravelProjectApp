@@ -1,6 +1,6 @@
 <template>
   <el-menu class="navbar-container" mode="horizontal">
-    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
+    <hamburger class="hamburger-container" @toggle="toggleSideBar()" :isActive="sidebar.opened"></hamburger>
 
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 

@@ -10531,8 +10531,8 @@ a.text-dark:focus {
 }
 
 #app .sidebar-container .horizontal-collapse-transition {
-  -webkit-transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
-  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  -webkit-transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
 #app .sidebar-container a {
@@ -10626,6 +10626,11 @@ a.text-dark:focus {
 #app .withoutAnimation .sidebar-container {
   -webkit-transition: none;
   transition: none;
+}
+
+.el-menu-item i {
+  color: inherit !important;
+  margin-right: 11px;
 }
 
 .blue-btn {

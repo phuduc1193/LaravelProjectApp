@@ -17,6 +17,11 @@ if (csrfToken) {
   );
 }
 
+NProgress.configure({
+  showSpinner: false,
+  trickleSpeed: 100
+});
+
 axios.interceptors.request.use(
   config => {
     const token = Cookies.get(env.TokenKey);

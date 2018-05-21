@@ -3,8 +3,8 @@ import "normalize.css/normalize.css";
 import "element-ui/lib/theme-chalk/index.css";
 import "font-awesome/css/font-awesome.min.css";
 
-import "./core/auth.guard";
-import "./core/http.service";
+import "@/core/auth.guard";
+import "@/core/http.service";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

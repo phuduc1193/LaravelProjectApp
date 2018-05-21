@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import store from "@/core/store";
 import ProjectStatusSelection from "@/components/ProjectStatusSelection";
 import Validate from "@/utils/validator";
 import ProjectService from "./project.service";
@@ -181,20 +182,40 @@ export default {
     }
   },
   beforeCreate() {
-    ProjectService.show(this.$route.params.id).then(data => {
-      this.id = data.id;
+    const project = store.getters.project;
+    if (!project || project.id != this.$route.params.id) {
+      store.dispatch("GetProjectById", this.$route.params.id).then(data => {
+        this.id = data.id;
+        this.form = {
+          name: data.name,
+          duration: data.duration,
+          started_at: data.started_at,
+          ended_at: data.ended_at,
+          description: data.description,
+          status_id: data.status_id,
+          percentage: data.percentage
+        };
+        this.durationDate = [this.form.started_at, this.form.ended_at];
+        this.isLoading = false;
+      });
+    }
+  },
+  beforeMount() {
+    const project = store.getters.project;
+    if (project && project.id == this.$route.params.id) {
+      this.id = project.id;
       this.form = {
-        name: data.name,
-        duration: data.duration,
-        started_at: data.started_at,
-        ended_at: data.ended_at,
-        description: data.description,
-        status_id: data.status_id,
-        percentage: data.percentage
+        name: project.name,
+        duration: project.duration,
+        started_at: project.started_at,
+        ended_at: project.ended_at,
+        description: project.description,
+        status_id: project.status_id,
+        percentage: project.percentage
       };
       this.durationDate = [this.form.started_at, this.form.ended_at];
       this.isLoading = false;
-    });
+    }
   }
 };
 </script>

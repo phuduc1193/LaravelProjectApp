@@ -6,7 +6,7 @@ const getters = {
   permissionRoutes: state => state.permission.routers,
   addRouters: state => state.permission.addRouters,
   scopes: state => state.user.scopes,
-  // previousRoute: state => state.route.history.slice(-2)[0],
+  project: state => state.project.current,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews
 };
