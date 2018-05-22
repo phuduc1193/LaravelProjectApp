@@ -8,12 +8,12 @@ Vue.use(VueRouter);
 export const constantRouterMap = [
   {
     path: "/login",
-    component: view("Login"),
+    component: view("Auth.Login"),
     hidden: true
   },
   {
     path: "/register",
-    component: view("Register"),
+    component: view("Auth.Register"),
     hidden: true
   },
   {

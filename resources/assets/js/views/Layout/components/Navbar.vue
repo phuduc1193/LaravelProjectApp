@@ -9,13 +9,20 @@
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <avatar class="user-avatar" :username="username" :size="35"></avatar>
+          <avatar class="user-avatar" :username="username" :size="35" backgroundColor="#afc4e1" color="#fff"></avatar>
           <i class="el-icon-caret-bottom"></i>
         </div>
-        <el-dropdown-menu slot="dropdown" @click.native="dashboard">
-          <el-dropdown-item>
-            {{$t('page.dashboard')}}
-          </el-dropdown-item>
+        <el-dropdown-menu slot="dropdown">
+          <router-link to="/dashboard">
+            <el-dropdown-item>
+              {{$t('page.dashboard')}}
+            </el-dropdown-item>
+          </router-link>
+          <router-link to="/profile">
+            <el-dropdown-item>
+              {{$t('page.profile')}}
+            </el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided @click.native="logout">
             <span>{{$t('form.logout')}}</span>
           </el-dropdown-item>
@@ -50,9 +57,6 @@ export default {
       this.$store.dispatch("LogOut").then(() => {
         this.$router.push({ path: "/login" });
       });
-    },
-    dashboard() {
-      this.$router.push({ path: "/dashboard" });
     }
   }
 };

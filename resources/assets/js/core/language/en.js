@@ -16,6 +16,7 @@ export default {
       "Please briefly describe what problem you've encountered.",
     select: "Select",
     ok: "OK",
+    save: "Save",
     create: "Create",
     cancel: "Cancel",
     clear: "Clear",
@@ -32,6 +33,7 @@ export default {
     progress: "Progress",
     changed: "changed",
     date: "Date",
+    changePassword: "Change password",
     error: {
       invalidName: "Invalid name",
       invalidUsername: "Invalid username",
@@ -50,7 +52,8 @@ export default {
     switchLanguageSuccess: "Switch language success!",
     reportSuccess: "Thank you for your cooperation!",
     requestFailed: "Cannot process your request. Please try again.",
-    missingSchedule: "Please insert a schedule date."
+    missingSchedule: "Please insert a schedule date.",
+    updateSuccessful: "Data is successfully updated!"
   },
   errorMessage: {
     pageNotExists: "Oops, the page you're looking for does not exist.",
@@ -65,7 +68,8 @@ export default {
     list: "View all",
     view: "View",
     create: "Add new",
-    edit: "Edit"
+    edit: "Edit",
+    profile: "Profile"
   },
   tableHeader: {
     project: "Project",

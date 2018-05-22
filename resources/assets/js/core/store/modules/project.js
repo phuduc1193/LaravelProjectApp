@@ -43,6 +43,16 @@ const project = {
           })
           .catch(() => {});
       });
+    },
+    CreateProject({ commit }, form) {
+      return new Promise((resolve, reject) => {
+        ProjectService.create(form)
+          .then(project => {
+            commit("SET_PROJECT", project);
+            resolve(project);
+          })
+          .catch(() => {});
+      });
     }
   }
 };

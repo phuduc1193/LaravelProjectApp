@@ -5,7 +5,8 @@ const user = {
     token: AuthService.getToken(),
     scopes: [],
     username: "",
-    name: ""
+    name: "",
+    email: ""
   },
 
   mutations: {
@@ -17,6 +18,9 @@ const user = {
     },
     SET_NAME: (state, name) => {
       state.name = name;
+    },
+    SET_EMAIL: (state, email) => {
+      state.email = email;
     },
     SET_SCOPES: (state, scopes) => {
       state.scopes = scopes;
@@ -76,13 +80,16 @@ const user = {
             commit("SET_SCOPES", data.scopes);
             commit("SET_USERNAME", data.username);
             commit("SET_NAME", data.name);
+            commit("SET_EMAIL", data.email);
             resolve(data);
           })
           .catch(error => {
             reject(error);
           });
       });
-    }
+    },
+
+    UpdateUserByUsername({ commit }, userInfo) {}
   }
 };
 

@@ -26,7 +26,7 @@
       </el-form-item>
       <el-form-item prop="passwordConfirmation">
         <i class="svg-container fa fa-unlock-alt"></i>
-        <el-input name="password" :type="showPwdConfirm ? 'text' : 'password'" @keyup.enter.native="onSubmit" v-model="registerForm.passwordConfirmation" autoComplete="on" :placeholder="$t('form.passwordConfirmation')" />
+        <el-input name="passwordConfirmation" :type="showPwdConfirm ? 'text' : 'password'" @keyup.enter.native="onSubmit" v-model="registerForm.passwordConfirmation" autoComplete="on" :placeholder="$t('form.passwordConfirmation')" />
         <span class="show-pwd" @click="showPwdConfirm = !showPwdConfirm">
            <i class="fa" :class="[showPwdConfirm ? 'fa-eye-slash' : 'fa-eye']"></i>
         </span>

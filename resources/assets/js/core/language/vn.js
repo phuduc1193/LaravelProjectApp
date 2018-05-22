@@ -15,6 +15,7 @@ export default {
     reportDescription: "Xin vui lòng tóm tắt lại sự cố bạn đã gặp.",
     select: "Chọn",
     ok: "Đồng ý",
+    save: "Lưu",
     create: "Tạo mới",
     cancel: "Hủy bỏ",
     clear: "Xóa",
@@ -31,6 +32,7 @@ export default {
     progress: "Tiến triển công việc",
     changed: "thay đổi",
     date: "Ngày",
+    changePassword: "Thay đổi mật khẩu",
     error: {
       invalidName: "Tên không hợp lệ",
       invalidUsername: "Tên truy cập không hợp lệ",
@@ -50,7 +52,8 @@ export default {
     reportSuccess: "Cảm ơn về sự hợp tác của bạn!",
     requestFailed:
       "Hệ thống không thể xử lý yêu cầu của bạn. Xin vui lòng thử lại sau.",
-    missingSchedule: "Xin vui lòng chọn thời gian thi hành."
+    missingSchedule: "Xin vui lòng chọn thời gian thi hành.",
+    updateSuccessful: "Dữ liệu được thay đổi thành công!"
   },
   errorMessage: {
     pageNotExists: "Chúng tôi không thấy chuyên mục bạn đang tìm.",
@@ -65,7 +68,8 @@ export default {
     list: "Xem tất cả",
     view: "Xem",
     create: "Thêm mới",
-    edit: "Chỉnh sửa"
+    edit: "Chỉnh sửa",
+    profile: "Profile"
   },
   tableHeader: {
     project: "Dự án",

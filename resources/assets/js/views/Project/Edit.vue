@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isLoading">
-    <el-form class="app-container" :model="form" :rules="validateRules" ref="form" label-width="150px">
+    <el-form class="app-container" :model="form" :rules="validateRules" ref="form" label-width="150px" status-icon>
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
@@ -40,7 +40,7 @@
         <el-input type="textarea" v-model="form.description" rows="8"></el-input>
       </el-form-item>
       <el-form-item class="pt-2">
-        <el-button type="primary" @click="onSubmit"> {{ $t('form.edit') }}</el-button>
+        <el-button type="primary" @click="onSubmit" :loading="loading"> {{ $t('form.save') }}</el-button>
         <el-button @click="clearForm">{{ $t('form.clear') }}</el-button>
       </el-form-item>
     </el-form>
@@ -56,9 +56,7 @@
 import store from "@/core/store";
 import ProjectStatusSelection from "@/components/ProjectStatusSelection";
 import Validate from "@/utils/validator";
-import ProjectService from "./project.service";
 import cloneDeep from "lodash.clonedeep";
-import moment from "moment";
 
 const initForm = {
   id: 0,
@@ -129,7 +127,8 @@ export default {
             validator: validateDate
           }
         ]
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -145,15 +144,19 @@ export default {
           return false;
         }
 
-        this.form.started_at = moment(this.form.started_at, "MM.DD.YYYY");
-        this.form.ended_at = moment(this.form.ended_at, "MM.DD.YYYY");
+        this.form.started_at = this.$moment(this.form.started_at, "MM.DD.YYYY");
+        this.form.ended_at = this.$moment(this.form.ended_at, "MM.DD.YYYY");
 
+        this.loading = true;
         this.$store
           .dispatch("EditProjectById", this.form)
           .then(project => {
+            this.loading = false;
             this.$router.push({ path: "/projects/view/" + project.id });
           })
-          .catch(() => {});
+          .catch(() => {
+            this.loading = false;
+          });
       });
     },
     changeScheduleRange() {

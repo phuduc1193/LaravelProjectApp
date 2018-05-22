@@ -2,7 +2,7 @@ function project(view) {
   return {
     path: "/projects",
     component: view("Layout.Layout"),
-    redirect: "noredirect",
+    redirect: "list",
     name: "projects",
     meta: {
       title: "projects",

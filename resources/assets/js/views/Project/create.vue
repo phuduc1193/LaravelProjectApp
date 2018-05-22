@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="form" :rules="validateRules" ref="form" label-width="150px" class="pt-3">
+    <el-form :model="form" :rules="validateRules" ref="form" label-width="150px" class="pt-3" status-icon>
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
@@ -29,7 +29,7 @@
         <el-input type="textarea" v-model="form.description" rows="8"></el-input>
       </el-form-item>
       <el-form-item class="pt-2">
-        <el-button type="primary" @click="onSubmit"> {{ $t('form.create') }}</el-button>
+        <el-button type="primary" @click="onSubmit" :loading="loading"> {{ $t('form.create') }}</el-button>
         <el-button @click="clearForm">{{ $t('form.clear') }}</el-button>
       </el-form-item>
     </el-form>
@@ -43,7 +43,6 @@
 
 <script>
 import Validate from "@/utils/validator";
-import ProjectService from "./project.service";
 import cloneDeep from "lodash.clonedeep";
 
 const initForm = {
@@ -110,7 +109,8 @@ export default {
             validator: validateDate
           }
         ]
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -126,12 +126,16 @@ export default {
           return false;
         }
 
-        ProjectService.create(this.form)
-          .then(response => {
-            const project = response.data;
+        this.loading = true;
+        this.$store
+          .dispatch("CreateProject", this.form)
+          .then(project => {
+            this.loading = false;
             this.$router.push({ path: "/projects/view/" + project.id });
           })
-          .catch(() => {});
+          .catch(() => {
+            this.loading = false;
+          });
       });
     },
     changeScheduleRange() {
