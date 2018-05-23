@@ -35,19 +35,12 @@ import Validate from "@/utils/validator";
 
 export default {
   computed: {
-    ...mapGetters(["name", "username", "email"])
+    ...mapGetters(["name", "email"])
   },
   data() {
     const validateName = (rule, value, callback) => {
       if (!Validate.name(value)) {
         callback(new Error(this.$t("form.error.invalidName")));
-      } else {
-        callback();
-      }
-    };
-    const validateUsername = (rule, value, callback) => {
-      if (!Validate.username(value)) {
-        callback(new Error(this.$t("form.error.invalidUsername")));
       } else {
         callback();
       }
@@ -78,7 +71,6 @@ export default {
     return {
       editPassword: false,
       form: {
-        username: "",
         name: "",
         email: "",
         password: "",
@@ -126,20 +118,24 @@ export default {
         if (!this.editPassword) {
           submitForm = {
             name: this.form.name,
-            username: this.form.username,
             email: this.form.email
           };
         }
 
         this.loading = true;
         this.$store
-          .dispatch("UpdateUserByUsername", submitForm)
-          .then(project => {
+          .dispatch("UpdateUserProfile", submitForm)
+          .then(() => {
             this.loading = false;
             this.$message({
               message: this.$t("notification.updateSuccessful"),
               type: "success"
             });
+            this.editPassword = false;
+            setTimeout(() => {
+              this.$router.push({ path: "/" });
+            }, 500);
+            this.$store.dispatch("GetUserInfo");
           })
           .catch(() => {
             this.$message({
@@ -154,7 +150,6 @@ export default {
   created() {
     this.form.email = this.email;
     this.form.name = this.name;
-    this.form.username = this.username;
   }
 };
 </script>

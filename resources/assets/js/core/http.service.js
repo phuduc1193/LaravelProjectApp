@@ -1,7 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import NProgress from "nprogress";
-import env from "./environment";
+import env from "@/core/environment";
+import store from "@/core/store";
+import AuthService from "@/core/service/auth";
 
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
@@ -55,6 +57,15 @@ axios.interceptors.response.use(
   },
   error => {
     if (NProgress.isStarted()) doneNProgress();
+
+    if (error.response.status === 401 && AuthService.isAuthenticated()) {
+      store.dispatch("LogOut").then(() => {
+        Message.error("Verification failed, please login again");
+        next({
+          path: "/login"
+        });
+      });
+    }
 
     return Promise.reject(error);
   }

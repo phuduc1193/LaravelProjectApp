@@ -1,5 +1,5 @@
-import router from "./router";
-import store from "./store";
+import router from "@/core/router";
+import store from "@/core/store";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import AuthService from "@/core/service/auth";

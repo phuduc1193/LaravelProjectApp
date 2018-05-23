@@ -91,6 +91,26 @@ class AuthService {
         });
     });
   }
+
+  static update(name, email, password, confirmation) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post("/auth/update", {
+          name: name,
+          email: email,
+          password: password,
+          password_confirmation: confirmation
+        })
+        .then(response => {
+          const data = response.data;
+          AuthService.setAuthCookies(data);
+          resolve(data.access_token);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
 }
 
 export default AuthService;

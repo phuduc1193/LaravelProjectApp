@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UpdateUser;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -112,12 +113,42 @@ class AuthController extends Controller
     }
 
     /**
-     * The user has been registered => response with token
+     * The user has been registered => respond with token
      */
     protected function registered(Request $request, $user)
     {
-        $credentials = request(['username', 'password']);
-        $token = auth()->attempt($credentials);
-        return $this->respondWithToken($token);
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Update profile
+     */
+    public function update(Request $request)
+    {
+        $user = auth()->user();
+        $data = $this->profileValidator($request->all(), $user->id)->validate();
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        if (array_get($data, 'password')) {
+            $user->password = bcrypt($data['password']);
+        }
+
+        if ($user->save()) {
+            event(new UpdateUser($user));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    protected function profileValidator(array $data, $id)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,username',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
     }
 }

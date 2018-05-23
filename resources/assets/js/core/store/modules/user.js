@@ -46,6 +46,7 @@ const user = {
         AuthService.logout()
           .then(() => {
             commit("SET_TOKEN", "");
+            commit("SET_SCOPES", "");
             resolve();
           })
           .catch(error => {
@@ -89,7 +90,23 @@ const user = {
       });
     },
 
-    UpdateUserByUsername({ commit }, userInfo) {}
+    UpdateUserProfile({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        AuthService.update(
+          userInfo.name,
+          userInfo.email,
+          userInfo.password,
+          userInfo.passwordConfirmation
+        )
+          .then(token => {
+            commit("SET_TOKEN", token);
+            resolve();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    }
   }
 };
 

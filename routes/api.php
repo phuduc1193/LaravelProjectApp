@@ -19,6 +19,7 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
+    Route::post('update', 'AuthController@update');
 });
 
 Route::apiResource('projects', 'ProjectController');
