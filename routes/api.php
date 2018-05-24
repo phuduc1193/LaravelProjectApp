@@ -23,6 +23,13 @@ Route::group([
 });
 
 Route::apiResource('projects', 'ProjectController');
+Route::apiResource('tags', 'TagController');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'tags',
+], function ($router) {
+    Route::post('search', 'TagController@search');
+});
 
 Route::group([
     'middleware' => 'api',

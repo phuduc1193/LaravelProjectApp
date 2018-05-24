@@ -12,7 +12,7 @@ const project = {
   },
 
   actions: {
-    GetProjects({ commit, state }) {
+    GetProjects({ commit }) {
       return new Promise((resolve, reject) => {
         ProjectService.all().then(projects => {
           resolve(projects);

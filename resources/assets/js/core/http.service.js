@@ -38,7 +38,7 @@ axios.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    if (!NProgress.isStarted()) NProgress.start();
+    // if (!NProgress.isStarted()) NProgress.start();
 
     return config;
   },
@@ -61,9 +61,7 @@ axios.interceptors.response.use(
     if (error.response.status === 401 && AuthService.isAuthenticated()) {
       store.dispatch("LogOut").then(() => {
         Message.error("Verification failed, please login again");
-        next({
-          path: "/login"
-        });
+        this.$router.push({ path: "/login" });
       });
     }
 

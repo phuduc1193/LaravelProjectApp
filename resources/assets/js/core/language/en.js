@@ -34,6 +34,8 @@ export default {
     changed: "changed",
     date: "Date",
     changePassword: "Change password",
+    enterKeyword: "Please enter a keyword",
+    metaTags: "Meta tags",
     error: {
       invalidName: "Invalid name",
       invalidUsername: "Invalid username",

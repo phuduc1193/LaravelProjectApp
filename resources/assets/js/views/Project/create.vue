@@ -4,6 +4,11 @@
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
+      <el-form-item prop="tags" :label="$t('form.metaTags')">
+        <el-col :span="8">
+          <multi-tags v-model="form.tags"></multi-tags>
+        </el-col>
+      </el-form-item>
       <el-form-item :label="$t('form.estimatedDuration')">
         <el-col :span="5" :xs="12">
           <el-input-number controls-position="right" v-model="form.duration" :min="0" :max="Infinity">
@@ -44,16 +49,19 @@
 <script>
 import Validate from "@/utils/validator";
 import cloneDeep from "lodash.clonedeep";
+import MultiTags from "@/components/MultiTags";
 
 const initForm = {
   name: "",
   duration: 1,
   started_at: "",
   ended_at: "",
-  description: ""
+  description: "",
+  tags: []
 };
 
 export default {
+  components: { MultiTags },
   data() {
     const validateName = (rule, value, callback) => {
       if (!Validate.text(value)) {

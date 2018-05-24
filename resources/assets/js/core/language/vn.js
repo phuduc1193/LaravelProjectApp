@@ -33,6 +33,8 @@ export default {
     changed: "thay đổi",
     date: "Ngày",
     changePassword: "Thay đổi mật khẩu",
+    enterKeyword: "Xin nhập từ khóa",
+    metaTags: "Meta tags",
     error: {
       invalidName: "Tên không hợp lệ",
       invalidUsername: "Tên truy cập không hợp lệ",
