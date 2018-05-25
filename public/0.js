@@ -6972,6 +6972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: "multi-tags",
   data: function data() {
     return {
+      popular: [],
       options: [],
       data: [],
       loading: false,
@@ -6984,7 +6985,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.loading = true;
     this.$store.dispatch("GetPopularTags").then(function (response) {
       _this.loading = false;
-      _this.options = response;
+      _this.popular = response;
+      _this.options = _this.popular;
     }).catch(function () {
       _this.loading = false;
     });
@@ -6994,9 +6996,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     remoteMethod: function remoteMethod(keyword) {
       var _this2 = this;
 
+      clearTimeout(this.timeout);
       if (keyword !== "") {
         this.loading = true;
-        clearTimeout(this.timeout);
         this.timeout = setTimeout(function () {
           _this2.$store.dispatch("SearchTagsByKeyword", keyword).then(function (response) {
             _this2.loading = false;
@@ -7006,9 +7008,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }).catch(function () {
             _this2.loading = false;
           });
-        }, 500);
+        }, 250);
       } else {
-        this.options = [];
+        this.options = this.popular;
       }
     },
     addTag: function addTag(data) {

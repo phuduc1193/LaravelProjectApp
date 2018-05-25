@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -14,7 +15,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        return Tag::withCount('projects')->orderBy('projects_count', 'desc')->paginate(10);
+        $results = Cache::remember('popular-tags', 120, function () {
+            return Tag::withCount('projects')->orderBy('projects_count', 'desc')->paginate(10);
+        });
+
+        return $results;
     }
 
     /**
@@ -71,20 +76,10 @@ class TagController extends Controller
     public function search(Request $request)
     {
         $data = $request->validate([
-            'size' => 'nullable|numeric',
-            'name' => 'nullable|string',
+            'size' => 'numeric',
+            'name' => 'string',
         ]);
 
-        if (isset($data['name'])) {
-            $tags = Tag::where('name', 'like', '%' . $data['name'] . '%');
-        } else {
-            $tags = Tag::withCount('projects')->orderBy('projects_count', 'desc');
-        }
-
-        if (isset($data['size'])) {
-            return $tags->take($data['size'])->get();
-        }
-
-        return $tags;
+        return Tag::where('name', 'like', '%' . $data['name'] . '%')->take($data['size'])->get();
     }
 }

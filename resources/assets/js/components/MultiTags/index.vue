@@ -24,6 +24,7 @@ export default {
   name: "multi-tags",
   data() {
     return {
+      popular: [],
       options: [],
       data: [],
       loading: false,
@@ -36,7 +37,8 @@ export default {
       .dispatch("GetPopularTags")
       .then(response => {
         this.loading = false;
-        this.options = response;
+        this.popular = response;
+        this.options = this.popular;
       })
       .catch(() => {
         this.loading = false;
@@ -44,9 +46,9 @@ export default {
   },
   methods: {
     remoteMethod(keyword) {
+      clearTimeout(this.timeout);
       if (keyword !== "") {
         this.loading = true;
-        clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$store
             .dispatch("SearchTagsByKeyword", keyword)
@@ -60,9 +62,9 @@ export default {
             .catch(() => {
               this.loading = false;
             });
-        }, 500);
+        }, 250);
       } else {
-        this.options = [];
+        this.options = this.popular;
       }
     },
     addTag(data) {
