@@ -76,7 +76,7 @@ export default {
 }
 
 .bottom-page {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   padding: 0 20px;
 }

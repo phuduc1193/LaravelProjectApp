@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -68,21 +68,23 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function search(Request  $request)
+    public function search(Request $request)
     {
         $data = $request->validate([
             'size' => 'nullable|numeric',
             'name' => 'nullable|string',
         ]);
 
-        if (isset($data['name']))
-            $tags = Tag::where('name', 'like', '%'.$data['name'].'%');
-        else
+        if (isset($data['name'])) {
+            $tags = Tag::where('name', 'like', '%' . $data['name'] . '%');
+        } else {
             $tags = Tag::withCount('projects')->orderBy('projects_count', 'desc');
+        }
 
-        if (isset($data['size']))
+        if (isset($data['size'])) {
             return $tags->take($data['size'])->get();
-            
+        }
+
         return $tags;
     }
 }

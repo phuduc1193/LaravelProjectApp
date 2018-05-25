@@ -172,8 +172,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .bottom-page {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
 }
 

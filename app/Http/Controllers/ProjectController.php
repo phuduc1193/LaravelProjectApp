@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\ProjectStatus;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,11 +35,18 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
+
         $project = Project::firstOrNew($data);
 
         $status = ProjectStatus::where('name', 'New')->first();
         $project->status()->associate($status);
+
         $project->save();
+
+        if ($request->has('tags')) {
+            $tags = $this->getTagsOrNew($request['tags']);
+            $project->tags()->createMany($tags);
+        }
 
         $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
 
@@ -104,5 +112,21 @@ class ProjectController extends Controller
             'ended_at' => 'date',
             'percentage' => 'numeric|min:0|max:100',
         ];
+    }
+
+    public function getTagsOrNew(array $data)
+    {
+        $existedTags = Tag::whereIn('name', $data)->get();
+        $collection = collect($data);
+        $shouldAddKeywords = $collection->diff($existedTags->pluck('name'));
+
+        $tags = collect([]);
+        foreach ($shouldAddKeywords as $keyword) {
+            $newTag = new Tag(['name' => $keyword]);
+            $tags->push($newTag);
+        }
+
+        $tags->concat($existedTags);
+        return $tags->toArray();
     }
 }

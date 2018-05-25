@@ -1,6 +1,6 @@
 <template>
   <el-select
-    v-model="returnValues"
+    v-model="data"
     multiple
     filterable
     allow-create
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       options: [],
-      returnValues: [],
+      data: [],
       loading: false,
       timeout: null
     };
@@ -60,12 +60,14 @@ export default {
             .catch(() => {
               this.loading = false;
             });
-        }, 200);
+        }, 500);
       } else {
         this.options = [];
       }
     },
-    addTag(event) {}
+    addTag(data) {
+      this.$emit("input", data);
+    }
   }
 };
 </script>
