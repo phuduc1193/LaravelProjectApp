@@ -15,11 +15,14 @@ class TagController extends Controller
      */
     public function index()
     {
-        $results = Cache::remember('popular-tags', 120, function () {
+        $cache = Cache::get('popular-tags');
+        if ($cache != null && $cache->count() == 0) {
+            Cache::forget('popular-tags');
+        }
+
+        return Cache::remember('popular-tags', 15, function () {
             return Tag::withCount('projects')->orderBy('projects_count', 'desc')->paginate(10);
         });
-
-        return $results;
     }
 
     /**
@@ -80,6 +83,16 @@ class TagController extends Controller
             'name' => 'string',
         ]);
 
-        return Tag::where('name', 'like', '%' . $data['name'] . '%')->take($data['size'])->get();
+        $cacheKey = 'searched-tags-' . $data['name'];
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+        $results = Tag::where('name', 'like', '%' . $data['name'] . '%')->paginate($data['size']);
+        if ($results->count() > 0) {
+            Cache::put($cacheKey, $results, 15);
+        }
+
+        return $results;
     }
 }

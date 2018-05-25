@@ -144,9 +144,6 @@ export default {
           return false;
         }
 
-        this.form.started_at = this.$moment(this.form.started_at, "MM.DD.YYYY");
-        this.form.ended_at = this.$moment(this.form.ended_at, "MM.DD.YYYY");
-
         this.loading = true;
         this.$store
           .dispatch("EditProjectById", this.form)
@@ -192,8 +189,8 @@ export default {
           id: data.id,
           name: data.name,
           duration: data.duration,
-          started_at: data.started_at,
-          ended_at: data.ended_at,
+          started_at: this.$moment(data.started_at),
+          ended_at: this.$moment(data.ended_at),
           description: data.description,
           status_id: data.status_id,
           percentage: data.percentage
@@ -210,8 +207,8 @@ export default {
         id: project.id,
         name: project.name,
         duration: project.duration,
-        started_at: project.started_at,
-        ended_at: project.ended_at,
+        started_at: this.$moment(project.started_at),
+        ended_at: this.$moment(project.ended_at),
         description: project.description,
         status_id: project.status_id,
         percentage: project.percentage

@@ -34184,75 +34184,7 @@ module.exports = isObjectLike;
 
 
 /***/ }),
-/* 219 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
-
-
-var Validation = function () {
-  function Validation() {
-    _classCallCheck(this, Validation);
-  }
-
-  _createClass(Validation, null, [{
-    key: "text",
-    value: function text(value) {
-      var regex = /^[a-z0-9 ,.'\-!#$%&*+/=?^_`{}()]+$/i;
-      return regex.test(value);
-    }
-  }, {
-    key: "date",
-    value: function date(value) {
-      return Object.prototype.toString.call(value) === "[object Date]" && !isNaN(value.getTime()) || __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).isValid();
-    }
-  }, {
-    key: "name",
-    value: function name(value) {
-      var regex = /^[a-z ,.'-]+$/i;
-      return regex.test(value);
-    }
-  }, {
-    key: "username",
-    value: function username(value) {
-      var regex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
-      return regex.test(value);
-    }
-  }, {
-    key: "email",
-    value: function email(value) {
-      var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
-      return regex.test(value);
-    }
-  }, {
-    key: "password",
-    value: function password(value) {
-      var regex = /^(?=.*[A-Za-z])[A-Za-z\d!_\-?@$*^]{6,}/;
-      return regex.test(value);
-    }
-  }, {
-    key: "registerPassword",
-    value: function registerPassword(value) {
-      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!_\-?@$*^]{8,}/;
-      return regex.test(value);
-    }
-  }]);
-
-  return Validation;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Validation);
-
-/***/ }),
+/* 219 */,
 /* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35371,11 +35303,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_language__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_store__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_validator__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_moment__ = __webpack_require__(405);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vue_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_moment__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vue_moment__);
 
 
 
@@ -35388,8 +35319,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_9_vue_moment___default.a, { moment: __WEBPACK_IMPORTED_MODULE_8_moment___default.a });
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8_vue_moment___default.a, { moment: __WEBPACK_IMPORTED_MODULE_7_moment___default.a });
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_element_ui___default.a, {
   i18n: function i18n(key, value) {
@@ -35402,7 +35332,6 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   i18n: __WEBPACK_IMPORTED_MODULE_5__core_language__["a" /* default */],
   store: __WEBPACK_IMPORTED_MODULE_6__core_store__["a" /* default */],
   router: __WEBPACK_IMPORTED_MODULE_3__core_router__["c" /* default */],
-  validator: __WEBPACK_IMPORTED_MODULE_7__utils_validator__["a" /* default */],
   template: "<App/>",
   components: {
     App: __WEBPACK_IMPORTED_MODULE_2__App_vue___default.a
@@ -57401,8 +57330,8 @@ var project = {
       var commit = _ref.commit;
 
       return new Promise(function (resolve, reject) {
-        __WEBPACK_IMPORTED_MODULE_0__core_service_project__["a" /* default */].all().then(function (projects) {
-          resolve(projects);
+        __WEBPACK_IMPORTED_MODULE_0__core_service_project__["a" /* default */].all().then(function (response) {
+          resolve(response.data);
         });
       }).catch(function (error) {
         reject(error);
@@ -58416,8 +58345,8 @@ var tag = {
       var commit = _ref.commit;
 
       return new Promise(function (resolve, reject) {
-        __WEBPACK_IMPORTED_MODULE_0__core_service_tag__["a" /* default */].search(keyword).then(function (tags) {
-          resolve(tags);
+        __WEBPACK_IMPORTED_MODULE_0__core_service_tag__["a" /* default */].search(keyword).then(function (response) {
+          resolve(response.data);
         }).catch(function (error) {
           reject(error);
         });

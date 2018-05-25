@@ -18,9 +18,14 @@
           <i v-else class="fa fa-angle-down"></i>
         </span>
         <span v-if="!column.routerLink">
-          <span v-if="!column.isStatus">{{ getValue(column.value, scope.row) }}</span>
-          <span v-else>
+          <span v-if="column.isStatus">
             <status :value="getValue(column.value, scope.row)"></status>
+          </span>
+          <span v-else-if="column.format && column.format == 'date'">
+            {{ getValue(column.value, scope.row) | moment('MM.DD.YYYY') }}
+          </span>
+          <span v-else>
+            {{ getValue(column.value, scope.row) }}
           </span>
         </span>
         <router-link class="link" :to="getLink(column.routerLink, scope.row)" v-else>

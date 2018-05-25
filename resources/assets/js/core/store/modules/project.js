@@ -14,8 +14,8 @@ const project = {
   actions: {
     GetProjects({ commit }) {
       return new Promise((resolve, reject) => {
-        ProjectService.all().then(projects => {
-          resolve(projects);
+        ProjectService.all().then(response => {
+          resolve(response.data);
         });
       }).catch(error => {
         reject(error);

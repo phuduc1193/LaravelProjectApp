@@ -5,8 +5,8 @@ const tag = {
     SearchTagsByKeyword({ commit }, keyword) {
       return new Promise((resolve, reject) => {
         TagService.search(keyword)
-          .then(tags => {
-            resolve(tags);
+          .then(response => {
+            resolve(response.data);
           })
           .catch(error => {
             reject(error);

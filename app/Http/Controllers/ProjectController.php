@@ -7,6 +7,7 @@ use App\ProjectStatus;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -22,8 +23,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return $user->projects()->with(['status', 'tags'])->get();
+        $cacheKey = 'list-projects-by-user-id-' . Auth::user()->id;
+        return Cache::remember($cacheKey, 15, function () {
+            return Auth::user()->projects()->with(['status', 'tags'])->paginate(10);
+        });
     }
 
     /**
@@ -36,11 +39,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate($this->rules());
 
-        $project = Project::firstOrNew($data);
-
-        $status = ProjectStatus::where('name', 'New')->first();
-        $project->status()->associate($status);
-
+        $project = $this->initProject($data);
         $project->save();
 
         if ($request->has('tags')) {
@@ -50,7 +49,10 @@ class ProjectController extends Controller
 
         $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
 
-        return $project;
+        $cacheKey = 'list-projects-by-user-id-' . $user->id;
+        Cache::forget($cacheKey);
+
+        return $this->show($project->id);
     }
 
     /**
@@ -114,7 +116,7 @@ class ProjectController extends Controller
         ];
     }
 
-    public function getTagsOrNew(array $data)
+    private function getTagsOrNew(array $data)
     {
         $existedTags = Tag::whereIn('name', $data)->get();
         $collection = collect($data);
@@ -128,5 +130,13 @@ class ProjectController extends Controller
 
         $tags->concat($existedTags);
         return $tags->toArray();
+    }
+
+    private function initProject(array $data)
+    {
+        $project = Project::firstOrNew($data);
+        $status = ProjectStatus::where('name', 'New')->first();
+        $project->status()->associate($status);
+        return $project;
     }
 }

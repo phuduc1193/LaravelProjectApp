@@ -1,4 +1,260 @@
-webpackJsonp([0],Array(407).concat([
+webpackJsonp([0],Array(219).concat([
+/* 219 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+var Validation = function () {
+  function Validation() {
+    _classCallCheck(this, Validation);
+  }
+
+  _createClass(Validation, null, [{
+    key: "text",
+    value: function text(value) {
+      var regex = /^[a-z0-9 ,.'\-!#$%&*+/=?^_`{}()]+$/i;
+      return regex.test(value);
+    }
+  }, {
+    key: "date",
+    value: function date(value) {
+      return Object.prototype.toString.call(value) === "[object Date]" && !isNaN(value.getTime()) || __WEBPACK_IMPORTED_MODULE_1_moment___default()(value).isValid();
+    }
+  }, {
+    key: "name",
+    value: function name(value) {
+      var regex = /^[a-z ,.'-]+$/i;
+      return regex.test(value);
+    }
+  }, {
+    key: "username",
+    value: function username(value) {
+      var regex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
+      return regex.test(value);
+    }
+  }, {
+    key: "email",
+    value: function email(value) {
+      var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+      return regex.test(value);
+    }
+  }, {
+    key: "password",
+    value: function password(value) {
+      var regex = /^(?=.*[A-Za-z])[A-Za-z\d!_\-?@$*^]{6,}/;
+      return regex.test(value);
+    }
+  }, {
+    key: "registerPassword",
+    value: function registerPassword(value) {
+      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!_\-?@$*^]{8,}/;
+      return regex.test(value);
+    }
+  }]);
+
+  return Validation;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Validation);
+
+/***/ }),
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
 /* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7571,9 +7827,6 @@ var initForm = {
           return false;
         }
 
-        _this2.form.started_at = _this2.$moment(_this2.form.started_at, "MM.DD.YYYY");
-        _this2.form.ended_at = _this2.$moment(_this2.form.ended_at, "MM.DD.YYYY");
-
         _this2.loading = true;
         _this2.$store.dispatch("EditProjectById", _this2.form).then(function (project) {
           _this2.loading = false;
@@ -7618,8 +7871,8 @@ var initForm = {
           id: data.id,
           name: data.name,
           duration: data.duration,
-          started_at: data.started_at,
-          ended_at: data.ended_at,
+          started_at: _this3.$moment(data.started_at),
+          ended_at: _this3.$moment(data.ended_at),
           description: data.description,
           status_id: data.status_id,
           percentage: data.percentage
@@ -7636,8 +7889,8 @@ var initForm = {
         id: project.id,
         name: project.name,
         duration: project.duration,
-        started_at: project.started_at,
-        ended_at: project.ended_at,
+        started_at: this.$moment(project.started_at),
+        ended_at: this.$moment(project.ended_at),
         description: project.description,
         status_id: project.status_id,
         percentage: project.percentage
@@ -8119,7 +8372,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TreeTable__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TreeTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_TreeTable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_service_project__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_store__ = __webpack_require__(30);
 //
 //
 //
@@ -8161,13 +8414,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }, {
         text: "deadline",
         value: "ended_at",
+        format: "date",
         width: 200
       }],
       data: []
     };
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
-    __WEBPACK_IMPORTED_MODULE_1__core_service_project__["a" /* default */].all().then(function (data) {
+    __WEBPACK_IMPORTED_MODULE_1__core_store__["a" /* default */].dispatch("GetProjects").then(function (data) {
       next(function (vm) {
         return vm.data = data;
       });
@@ -8316,6 +8570,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eval__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Status__ = __webpack_require__(430);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Status___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Status__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8654,15 +8913,8 @@ var render = function() {
                       _vm._v(" "),
                       !column.routerLink
                         ? _c("span", [
-                            !column.isStatus
-                              ? _c("span", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.getValue(column.value, scope.row)
-                                    )
-                                  )
-                                ])
-                              : _c(
+                            column.isStatus
+                              ? _c(
                                   "span",
                                   [
                                     _c("status", {
@@ -8676,6 +8928,31 @@ var render = function() {
                                   ],
                                   1
                                 )
+                              : column.format && column.format == "date"
+                                ? _c("span", [
+                                    _vm._v(
+                                      "\n          " +
+                                        _vm._s(
+                                          _vm._f("moment")(
+                                            _vm.getValue(
+                                              column.value,
+                                              scope.row
+                                            ),
+                                            "MM.DD.YYYY"
+                                          )
+                                        ) +
+                                        "\n        "
+                                    )
+                                  ])
+                                : _c("span", [
+                                    _vm._v(
+                                      "\n          " +
+                                        _vm._s(
+                                          _vm.getValue(column.value, scope.row)
+                                        ) +
+                                        "\n        "
+                                    )
+                                  ])
                           ])
                         : _c(
                             "router-link",
@@ -11228,9 +11505,16 @@ var render = function() {
                         _c("i", [_vm._v(_vm._s(_vm.$t("form.schedule")))]),
                         _vm._v(
                           ": " +
-                            _vm._s(_vm.data.started_at) +
+                            _vm._s(
+                              _vm._f("moment")(
+                                _vm.data.started_at,
+                                "MM.DD.YYYY"
+                              )
+                            ) +
                             " - " +
-                            _vm._s(_vm.data.ended_at) +
+                            _vm._s(
+                              _vm._f("moment")(_vm.data.ended_at, "MM.DD.YYYY")
+                            ) +
                             "\n        "
                         )
                       ]

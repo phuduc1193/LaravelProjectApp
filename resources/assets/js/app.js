@@ -1,13 +1,12 @@
-import "./bootstrap";
+import "@/bootstrap";
 
 import Vue from "vue";
-import App from "./App.vue";
-import router from "./core/router";
+import App from "@/App.vue";
+import router from "@/core/router";
 
 import Element from "element-ui";
-import i18n from "./core/language";
-import store from "./core/store";
-import validator from "./utils/validator";
+import i18n from "@/core/language";
+import store from "@/core/store";
 
 import moment from "moment";
 import VueMoment from "vue-moment";
@@ -22,7 +21,6 @@ const app = new Vue({
   i18n,
   store,
   router,
-  validator,
   template: "<App/>",
   components: {
     App

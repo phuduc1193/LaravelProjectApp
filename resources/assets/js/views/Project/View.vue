@@ -18,7 +18,7 @@
             <i>{{ $t('form.estimatedDuration') }}</i>: {{ data.duration + ' (' + $t('unit.hours') + ')' }}
           </el-col>
           <el-col :md="10" :sm="24" :xs="24" class="pt-3 pt-lg-0">
-            <i>{{ $t('form.schedule') }}</i>: {{ data.started_at }} - {{ data.ended_at }}
+            <i>{{ $t('form.schedule') }}</i>: {{ data.started_at | moment("MM.DD.YYYY") }} - {{ data.ended_at | moment("MM.DD.YYYY") }}
           </el-col>
         </p>
       </el-col>

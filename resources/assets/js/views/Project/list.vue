@@ -14,7 +14,7 @@
 
 <script>
 import TreeTable from "@/components/TreeTable";
-import ProjectService from "@/core/service/project";
+import store from "@/core/store";
 
 export default {
   components: { TreeTable },
@@ -44,6 +44,7 @@ export default {
         {
           text: "deadline",
           value: "ended_at",
+          format: "date",
           width: 200
         }
       ],
@@ -51,7 +52,7 @@ export default {
     };
   },
   beforeRouteEnter(to, from, next) {
-    ProjectService.all().then(data => {
+    store.dispatch("GetProjects").then(data => {
       next(vm => (vm.data = data));
     });
   }

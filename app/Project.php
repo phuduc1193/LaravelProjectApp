@@ -2,7 +2,7 @@
 
 namespace App;
 
-use DateTime;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
@@ -39,21 +39,21 @@ class Project extends Model
 
     public function setStartedAtAttribute($data)
     {
-        $this->attributes['started_at'] = (new DateTime($data))->format("Y-m-d H:i:s");
+        $this->attributes['started_at'] = (new Carbon($data))->format("Y-m-d H:i:s");
     }
 
     public function getStartedAtAttribute()
     {
-        return (new DateTime($this->attributes['started_at']))->format("m.d.Y");
+        return (new Carbon($this->attributes['started_at']))->toIso8601String();
     }
 
     public function setEndedAtAttribute($data)
     {
-        $this->attributes['ended_at'] = (new DateTime($data))->format("Y-m-d H:i:s");
+        $this->attributes['ended_at'] = (new Carbon($data))->format("Y-m-d H:i:s");
     }
 
     public function getEndedAtAttribute()
     {
-        return (new DateTime($this->attributes['ended_at']))->format("m.d.Y");
+        return (new Carbon($this->attributes['ended_at']))->toIso8601String();
     }
 }
