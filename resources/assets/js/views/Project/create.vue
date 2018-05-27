@@ -174,7 +174,7 @@ export default {
 <style lang="scss" scoped>
 .app-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

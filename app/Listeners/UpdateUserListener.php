@@ -3,14 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\UpdateUser;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateUserListener implements ShouldQueue
+class UpdateUserListener
 {
-
-    use InteractsWithQueue;
-
     /**
      * Create the event listener.
      *

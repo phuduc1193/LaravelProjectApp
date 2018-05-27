@@ -4,6 +4,11 @@
       <el-form-item prop="name" :label="$t('form.projectName')">
         <el-input type="text" v-model="form.name"></el-input>
       </el-form-item>
+      <el-form-item prop="tags" :label="$t('form.metaTags')">
+        <el-col :span="8">
+          <multi-tags v-model="form.tags"></multi-tags>
+        </el-col>
+      </el-form-item>
       <el-form-item prop="status_id" :label="$t('form.progress')">
         <div class="row">
           <div class="col-12 col-sm-6">
@@ -57,6 +62,7 @@ import store from "@/core/store";
 import ProjectStatusSelection from "@/components/ProjectStatusSelection";
 import Validate from "@/utils/validator";
 import cloneDeep from "lodash.clonedeep";
+import MultiTags from "@/components/MultiTags";
 
 const initForm = {
   id: 0,
@@ -66,11 +72,12 @@ const initForm = {
   ended_at: "",
   description: "",
   status_id: 0,
-  percentage: 0
+  percentage: 0,
+  tags: []
 };
 
 export default {
-  components: { ProjectStatusSelection },
+  components: { ProjectStatusSelection, MultiTags },
   data() {
     const validateName = (rule, value, callback) => {
       if (!Validate.text(value)) {
@@ -193,7 +200,8 @@ export default {
           ended_at: this.$moment(data.ended_at),
           description: data.description,
           status_id: data.status_id,
-          percentage: data.percentage
+          percentage: data.percentage,
+          tags: _.map(data.tags, "name")
         };
         this.durationDate = [this.form.started_at, this.form.ended_at];
         this.isLoading = false;
@@ -211,7 +219,8 @@ export default {
         ended_at: this.$moment(project.ended_at),
         description: project.description,
         status_id: project.status_id,
-        percentage: project.percentage
+        percentage: project.percentage,
+        tags: _.map(project.tags, "name")
       };
       this.durationDate = [this.form.started_at, this.form.ended_at];
       this.isLoading = false;
@@ -221,6 +230,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .bottom-page {
   position: absolute;
   bottom: 20px;

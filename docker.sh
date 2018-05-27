@@ -27,6 +27,10 @@ if [[ "$1" == *"s"* ]]; then
   COMMAND+=" --seed"
 fi
 
+if [[ "$1" == *"c"* ]]; then
+  COMMAND+=" && docker-compose exec workspace php artisan cache:clear"
+fi
+
 echo $COMMAND
 
 eval $COMMAND

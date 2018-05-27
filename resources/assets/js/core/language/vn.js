@@ -96,6 +96,7 @@ export default {
     done: "Hoàn thành"
   },
   databaseColumn: {
+    name: "tên",
     created_at: "ngày khởi tạo",
     started_at: "ngày bắt đầu",
     ended_at: "ngày kết thúc",

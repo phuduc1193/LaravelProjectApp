@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectCreated;
+use App\Events\ProjectCreatedWithTags;
+use App\Events\ProjectUpdatedWithTags;
 use App\Project;
 use App\ProjectStatus;
-use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -38,19 +40,11 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
-
-        $project = $this->initProject($data);
-        $project->save();
-
+        $project = Project::firstOrNew($data);
+        event(new ProjectCreated($project, Auth::user()));
         if ($request->has('tags')) {
-            $tags = $this->getTagsOrNew($request['tags']);
-            $project->tags()->createMany($tags);
+            event(new ProjectCreatedWithTags($project, $request['tags']));
         }
-
-        $project->users()->sync([Auth::user()->id => ['relation' => 'Creator']]);
-
-        $cacheKey = 'list-projects-by-user-id-' . $user->id;
-        Cache::forget($cacheKey);
 
         return $this->show($project->id);
     }
@@ -87,6 +81,10 @@ class ProjectController extends Controller
         $project->status()->associate($status);
         $project->save();
 
+        if ($request->has('tags')) {
+            event(new ProjectUpdatedWithTags($project, $request['tags']));
+        }
+
         return $this->show($project->id);
     }
 
@@ -114,29 +112,5 @@ class ProjectController extends Controller
             'ended_at' => 'date',
             'percentage' => 'numeric|min:0|max:100',
         ];
-    }
-
-    private function getTagsOrNew(array $data)
-    {
-        $existedTags = Tag::whereIn('name', $data)->get();
-        $collection = collect($data);
-        $shouldAddKeywords = $collection->diff($existedTags->pluck('name'));
-
-        $tags = collect([]);
-        foreach ($shouldAddKeywords as $keyword) {
-            $newTag = new Tag(['name' => $keyword]);
-            $tags->push($newTag);
-        }
-
-        $tags->concat($existedTags);
-        return $tags->toArray();
-    }
-
-    private function initProject(array $data)
-    {
-        $project = Project::firstOrNew($data);
-        $status = ProjectStatus::where('name', 'New')->first();
-        $project->status()->associate($status);
-        return $project;
     }
 }

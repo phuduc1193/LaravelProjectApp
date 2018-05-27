@@ -22,11 +22,12 @@
 <script>
 export default {
   name: "multi-tags",
+  props: ["value"],
   data() {
     return {
       popular: [],
       options: [],
-      data: [],
+      data: this.value || [],
       loading: false,
       timeout: null
     };

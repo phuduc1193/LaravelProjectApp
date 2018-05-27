@@ -96,6 +96,7 @@ export default {
     done: "Done"
   },
   databaseColumn: {
+    name: "name",
     created_at: "create date",
     started_at: "start date",
     ended_at: "end date",

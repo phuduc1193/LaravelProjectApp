@@ -1,5 +1,65 @@
-webpackJsonp([0],Array(219).concat([
-/* 219 */
+webpackJsonp([0],Array(406).concat([
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./Auth/Login.vue": 448,
+	"./Auth/Register.vue": 459,
+	"./Layout/Layout.vue": 466,
+	"./Layout/components/AppMain.vue": 428,
+	"./Layout/components/Navbar.vue": 424,
+	"./Layout/components/Sidebar/SidebarItem.vue": 427,
+	"./Layout/components/Sidebar/index.vue": 426,
+	"./NotFound.vue": 499,
+	"./Profile/Index.vue": 507,
+	"./Project/Create.vue": 514,
+	"./Project/Edit.vue": 524,
+	"./Project/List.vue": 532,
+	"./Project/View.vue": 547,
+	"./Project/components/Revision.vue": 431,
+	"./Unauthorized.vue": 623
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 406;
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsNative = __webpack_require__(565),
+    getValue = __webpack_require__(568);
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+
+/***/ }),
+/* 408 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66,253 +126,6 @@ var Validation = function () {
 }();
 
 /* harmony default export */ __webpack_exports__["a"] = (Validation);
-
-/***/ }),
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./Auth/Login.vue": 448,
-	"./Auth/Register.vue": 459,
-	"./Layout/Layout.vue": 466,
-	"./Layout/components/AppMain.vue": 428,
-	"./Layout/components/Navbar.vue": 424,
-	"./Layout/components/Sidebar/SidebarItem.vue": 427,
-	"./Layout/components/Sidebar/index.vue": 426,
-	"./NotFound.vue": 499,
-	"./Profile/Index.vue": 507,
-	"./Project/Create.vue": 514,
-	"./Project/Edit.vue": 524,
-	"./Project/List.vue": 532,
-	"./Project/View.vue": 547,
-	"./Project/components/Revision.vue": 431,
-	"./Unauthorized.vue": 623
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 407;
-
-/***/ }),
-/* 408 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseIsNative = __webpack_require__(565),
-    getValue = __webpack_require__(568);
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = getValue(object, key);
-  return baseIsNative(value) ? value : undefined;
-}
-
-module.exports = getNative;
-
 
 /***/ }),
 /* 409 */
@@ -420,7 +233,7 @@ module.exports = assocIndexOf;
 /* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408);
+var getNative = __webpack_require__(407);
 
 /* Built-in method references that are verified to be native. */
 var nativeCreate = getNative(Object, 'create');
@@ -553,7 +366,7 @@ module.exports = Component.exports
 /* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408),
+var getNative = __webpack_require__(407),
     root = __webpack_require__(217);
 
 /* Built-in method references that are verified to be native. */
@@ -629,7 +442,7 @@ module.exports = baseUnary;
 /* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(223);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(222);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -731,7 +544,7 @@ var DataView = __webpack_require__(604),
     Promise = __webpack_require__(605),
     Set = __webpack_require__(606),
     WeakMap = __webpack_require__(607),
-    baseGetTag = __webpack_require__(220),
+    baseGetTag = __webpack_require__(219),
     toSource = __webpack_require__(434);
 
 /** `Object#toString` result references. */
@@ -2916,7 +2729,7 @@ module.exports = eq;
 /* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(220),
+var baseGetTag = __webpack_require__(219),
     isObject = __webpack_require__(409);
 
 /** `Object#toString` result references. */
@@ -3058,7 +2871,7 @@ module.exports = baseAssignValue;
 
 var baseTimes = __webpack_require__(585),
     isArguments = __webpack_require__(586),
-    isArray = __webpack_require__(222),
+    isArray = __webpack_require__(221),
     isBuffer = __webpack_require__(438),
     isIndex = __webpack_require__(589),
     isTypedArray = __webpack_require__(590);
@@ -3394,7 +3207,7 @@ module.exports = getPrototype;
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayPush = __webpack_require__(445),
-    isArray = __webpack_require__(222);
+    isArray = __webpack_require__(221);
 
 /**
  * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -3553,7 +3366,7 @@ exports.push([module.i, "\n.login-container[data-v-026db962] {\n  position: fixe
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LangSelect__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LangSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_LangSelect__);
 //
@@ -4096,7 +3909,7 @@ exports.push([module.i, "\n.register-container[data-v-5d094c3a] {\n  position: f
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LangSelect__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LangSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_LangSelect__);
 //
@@ -4733,7 +4546,7 @@ exports.push([module.i, "\n.navbar-container[data-v-9fb6b6de] {\n  height: 50px;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Breadcrumb__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Breadcrumb___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Breadcrumb__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Hamburger__ = __webpack_require__(479);
@@ -5340,7 +5153,7 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SidebarItem__ = __webpack_require__(427);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SidebarItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SidebarItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ScrollBar__ = __webpack_require__(489);
@@ -6443,8 +6256,8 @@ exports.push([module.i, "\n.password-input input {\n  padding-right: 3rem !impor
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_validator__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_validator__ = __webpack_require__(408);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -6923,7 +6736,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.app-container[data-v-3cfb290c] {\n  width: 100%;\n  max-width: 900px;\n  margin: 0 auto;\n}\n.bottom-page[data-v-3cfb290c] {\n  position: fixed;\n  bottom: 20px;\n}\n.el-input-number[data-v-3cfb290c] {\n  width: 95%;\n}\n.el-date-editor.el-input[data-v-3cfb290c] {\n  width: 100%;\n}\n.el-date-editor.el-input__inner[data-v-3cfb290c] {\n  width: 100%;\n}\n.el-textarea__inner[data-v-3cfb290c] {\n  height: 400px;\n}\n@media only screen and (max-width: 768px) {\n.el-input-number[data-v-3cfb290c] {\n    width: 90%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.app-container[data-v-3cfb290c] {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.bottom-page[data-v-3cfb290c] {\n  position: fixed;\n  bottom: 20px;\n}\n.el-input-number[data-v-3cfb290c] {\n  width: 95%;\n}\n.el-date-editor.el-input[data-v-3cfb290c] {\n  width: 100%;\n}\n.el-date-editor.el-input__inner[data-v-3cfb290c] {\n  width: 100%;\n}\n.el-textarea__inner[data-v-3cfb290c] {\n  height: 400px;\n}\n@media only screen and (max-width: 768px) {\n.el-input-number[data-v-3cfb290c] {\n    width: 90%;\n}\n}\n", ""]);
 
 // exports
 
@@ -6934,7 +6747,7 @@ exports.push([module.i, "\n.app-container[data-v-3cfb290c] {\n  width: 100%;\n  
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_validator__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_clonedeep__ = __webpack_require__(429);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_clonedeep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_clonedeep__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MultiTags__ = __webpack_require__(518);
@@ -7226,11 +7039,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "multi-tags",
+  props: ["value"],
   data: function data() {
     return {
       popular: [],
       options: [],
-      data: [],
+      data: this.value || [],
       loading: false,
       timeout: null
     };
@@ -7667,7 +7481,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n.bottom-page[data-v-7fa23d1a] {\n  position: absolute;\n  bottom: 20px;\n  padding: 0 20px;\n}\n.el-input-number[data-v-7fa23d1a] {\n  width: 95%;\n}\n.el-date-editor.el-input[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-date-editor.el-input__inner[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-textarea__inner[data-v-7fa23d1a] {\n  height: 400px;\n}\n.el-slider[data-v-7fa23d1a] {\n  width: 98%;\n}\n@media only screen and (max-width: 768px) {\n.el-input-number[data-v-7fa23d1a] {\n    width: 90%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.app-container[data-v-7fa23d1a] {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.bottom-page[data-v-7fa23d1a] {\n  position: absolute;\n  bottom: 20px;\n  padding: 0 20px;\n}\n.el-input-number[data-v-7fa23d1a] {\n  width: 95%;\n}\n.el-date-editor.el-input[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-date-editor.el-input__inner[data-v-7fa23d1a] {\n  width: 100%;\n}\n.el-textarea__inner[data-v-7fa23d1a] {\n  height: 400px;\n}\n.el-slider[data-v-7fa23d1a] {\n  width: 98%;\n}\n@media only screen and (max-width: 768px) {\n.el-input-number[data-v-7fa23d1a] {\n    width: 90%;\n}\n}\n", ""]);
 
 // exports
 
@@ -7681,9 +7495,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_store__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ProjectStatusSelection__ = __webpack_require__(528);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ProjectStatusSelection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ProjectStatusSelection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_validator__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_validator__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash_clonedeep__ = __webpack_require__(429);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash_clonedeep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash_clonedeep__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MultiTags__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MultiTags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_MultiTags__);
 //
 //
 //
@@ -7738,6 +7554,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -7752,11 +7574,12 @@ var initForm = {
   ended_at: "",
   description: "",
   status_id: 0,
-  percentage: 0
+  percentage: 0,
+  tags: []
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { ProjectStatusSelection: __WEBPACK_IMPORTED_MODULE_1__components_ProjectStatusSelection___default.a },
+  components: { ProjectStatusSelection: __WEBPACK_IMPORTED_MODULE_1__components_ProjectStatusSelection___default.a, MultiTags: __WEBPACK_IMPORTED_MODULE_4__components_MultiTags___default.a },
   data: function data() {
     var _this = this;
 
@@ -7875,7 +7698,8 @@ var initForm = {
           ended_at: _this3.$moment(data.ended_at),
           description: data.description,
           status_id: data.status_id,
-          percentage: data.percentage
+          percentage: data.percentage,
+          tags: _.map(data.tags, "name")
         };
         _this3.durationDate = [_this3.form.started_at, _this3.form.ended_at];
         _this3.isLoading = false;
@@ -7893,7 +7717,8 @@ var initForm = {
         ended_at: this.$moment(project.ended_at),
         description: project.description,
         status_id: project.status_id,
-        percentage: project.percentage
+        percentage: project.percentage,
+        tags: _.map(project.tags, "name")
       };
       this.durationDate = [this.form.started_at, this.form.ended_at];
       this.isLoading = false;
@@ -7954,7 +7779,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_camelCase__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_camelCase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_camelCase__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -8068,6 +7893,30 @@ var render = function() {
                       expression: "form.name"
                     }
                   })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { prop: "tags", label: _vm.$t("form.metaTags") } },
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c("multi-tags", {
+                        model: {
+                          value: _vm.form.tags,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tags", $$v)
+                          },
+                          expression: "form.tags"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
@@ -9351,7 +9200,7 @@ var Stack = __webpack_require__(554),
     initCloneArray = __webpack_require__(608),
     initCloneByTag = __webpack_require__(609),
     initCloneObject = __webpack_require__(615),
-    isArray = __webpack_require__(222),
+    isArray = __webpack_require__(221),
     isBuffer = __webpack_require__(438),
     isMap = __webpack_require__(617),
     isObject = __webpack_require__(409),
@@ -10306,7 +10155,7 @@ module.exports = arrayEach;
 /* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408);
+var getNative = __webpack_require__(407);
 
 var defineProperty = (function() {
   try {
@@ -10414,7 +10263,7 @@ module.exports = isArguments;
 /* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(220),
+var baseGetTag = __webpack_require__(219),
     isObjectLike = __webpack_require__(218);
 
 /** `Object#toString` result references. */
@@ -10526,7 +10375,7 @@ module.exports = isTypedArray;
 /* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(220),
+var baseGetTag = __webpack_require__(219),
     isLength = __webpack_require__(439),
     isObjectLike = __webpack_require__(218);
 
@@ -10916,7 +10765,7 @@ module.exports = getAllKeysIn;
 /* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408),
+var getNative = __webpack_require__(407),
     root = __webpack_require__(217);
 
 /* Built-in method references that are verified to be native. */
@@ -10929,7 +10778,7 @@ module.exports = DataView;
 /* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408),
+var getNative = __webpack_require__(407),
     root = __webpack_require__(217);
 
 /* Built-in method references that are verified to be native. */
@@ -10942,7 +10791,7 @@ module.exports = Promise;
 /* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408),
+var getNative = __webpack_require__(407),
     root = __webpack_require__(217);
 
 /* Built-in method references that are verified to be native. */
@@ -10955,7 +10804,7 @@ module.exports = Set;
 /* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(408),
+var getNative = __webpack_require__(407),
     root = __webpack_require__(217);
 
 /* Built-in method references that are verified to be native. */

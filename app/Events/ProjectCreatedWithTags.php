@@ -2,27 +2,29 @@
 
 namespace App\Events;
 
-use App\User;
+use App\Project;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UpdateUser
+class ProjectCreatedWithTags
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $project;
+    public $tags;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Project $project, array $tags)
     {
-        $this->user = $user;
+        $this->project = $project;
+        $this->tags = $tags;
     }
 
     /**
@@ -32,6 +34,6 @@ class UpdateUser
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('user-update');
+        return new PrivateChannel('project-created');
     }
 }
