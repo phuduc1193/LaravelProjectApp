@@ -57,12 +57,13 @@ export default {
     missingSchedule: "Please insert a schedule date.",
     updateSuccessful: "Data is successfully updated!"
   },
-  errorMessage: {
+  message: {
     pageNotExists: "Oops, the page you're looking for does not exist.",
     returnHomeOrReport:
       "You may want to head back to the homepage. If you think something is broken, report a problem.",
     unauthorized: "Sorry, you don't have the permission to access this page.",
-    returnHome: "You may want to head back to the homepage."
+    returnHome: "You may want to head back to the homepage.",
+    initProject: "initialized the project"
   },
   page: {
     dashboard: "Dashboard",

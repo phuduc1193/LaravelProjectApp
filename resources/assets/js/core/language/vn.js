@@ -57,12 +57,13 @@ export default {
     missingSchedule: "Xin vui lòng chọn thời gian thi hành.",
     updateSuccessful: "Dữ liệu được thay đổi thành công!"
   },
-  errorMessage: {
+  message: {
     pageNotExists: "Chúng tôi không thấy chuyên mục bạn đang tìm.",
     returnHomeOrReport:
       "Xin vui lòng quay lại trang chủ hoặc báo lỗi để chúng tôi phục vụ bạn tốt hơn.",
     unauthorized: "Bạn không có quyền truy cập trang này.",
-    returnHome: "Xin vui lòng quay lại trang chủ."
+    returnHome: "Xin vui lòng quay lại trang chủ.",
+    initProject: "khởi tạo dự án"
   },
   page: {
     dashboard: "Trang chủ",

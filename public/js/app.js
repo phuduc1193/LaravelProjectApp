@@ -104041,11 +104041,12 @@ VueI18n.version = '7.6.0';
     missingSchedule: "Please insert a schedule date.",
     updateSuccessful: "Data is successfully updated!"
   },
-  errorMessage: {
+  message: {
     pageNotExists: "Oops, the page you're looking for does not exist.",
     returnHomeOrReport: "You may want to head back to the homepage. If you think something is broken, report a problem.",
     unauthorized: "Sorry, you don't have the permission to access this page.",
-    returnHome: "You may want to head back to the homepage."
+    returnHome: "You may want to head back to the homepage.",
+    initProject: "initialized the project"
   },
   page: {
     dashboard: "Dashboard",
@@ -104079,6 +104080,7 @@ VueI18n.version = '7.6.0';
     done: "Done"
   },
   databaseColumn: {
+    name: "name",
     created_at: "create date",
     started_at: "start date",
     ended_at: "end date",
@@ -104150,11 +104152,12 @@ VueI18n.version = '7.6.0';
     missingSchedule: "Xin vui lòng chọn thời gian thi hành.",
     updateSuccessful: "Dữ liệu được thay đổi thành công!"
   },
-  errorMessage: {
+  message: {
     pageNotExists: "Chúng tôi không thấy chuyên mục bạn đang tìm.",
     returnHomeOrReport: "Xin vui lòng quay lại trang chủ hoặc báo lỗi để chúng tôi phục vụ bạn tốt hơn.",
     unauthorized: "Bạn không có quyền truy cập trang này.",
-    returnHome: "Xin vui lòng quay lại trang chủ."
+    returnHome: "Xin vui lòng quay lại trang chủ.",
+    initProject: "khởi tạo dự án"
   },
   page: {
     dashboard: "Trang chủ",
@@ -104188,6 +104191,7 @@ VueI18n.version = '7.6.0';
     done: "Hoàn thành"
   },
   databaseColumn: {
+    name: "tên",
     created_at: "ngày khởi tạo",
     started_at: "ngày bắt đầu",
     ended_at: "ngày kết thúc",

@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div v-for="date in Object.keys(dataByDate)" :key="date">
+    <div v-for="date in Object.keys(listData)" :key="date">
       {{ $t('form.date') }} {{ date | moment("MM.DD.YYYY") }}
-      <div v-for="(array, index) in Object.values(dataByDate)" :key="index">
+      <div v-for="(array, index) in Object.values(listData)" :key="index">
         <ul>
           <li v-for="(item, innerIndex) in array" :key="innerIndex">
-            {{ item.user.name + ' ' + $t('form.changed') + ' \'' + $t('databaseColumn.' + item.key) + '\'' }}
+            <span v-if="item.key != 'created_at'">
+              {{ item.user.name + ' ' + $t('form.changed') + ' \'' + $t('databaseColumn.' + item.key) + '\'' }}.
+            </span>
+            <span v-else>
+              {{ item.user.name + ' ' + $t('message.initProject') }}.
+            </span>
           </li>
         </ul>
       </div>
@@ -18,11 +23,10 @@ import cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "project-revision",
-  props: ["data", "users"],
+  props: ["data"],
   data() {
     return {
-      userProfiles: this.users,
-      dataByDate: {}
+      listData: {}
     };
   },
   created() {
@@ -35,33 +39,54 @@ export default {
     });
 
     const listDataByKey = [];
-    const dataByDate = _.groupBy(listData, "created_at");
-    Object.keys(dataByDate).forEach(date => {
-      const elementByDate = { created_at: date };
-      const dataByDateAndUser = _.groupBy(dataByDate[date], "user_id");
-      Object.keys(dataByDateAndUser).forEach(userId => {
-        const elementByUser = cloneDeep(elementByDate);
-        elementByUser["user_id"] = userId;
-        elementByUser["user"] = _.find(this.userProfiles, user => {
-          return user.id == userId;
+    const listDistinctDate = _.chain(listData)
+      .map("created_at")
+      .uniqBy("created_at")
+      .value();
+    listDistinctDate.forEach(date => {
+      const listDataByDate = _.filter(listData, { created_at: date });
+      const listDistinctUserByDate = _.chain(listDataByDate)
+        .map("user_id")
+        .uniq()
+        .value();
+      listDistinctUserByDate.forEach(userId => {
+        const listDataByDateByUser = _.filter(listData, {
+          created_at: date,
+          user_id: userId
         });
-        const dataByKey = _.groupBy(dataByDateAndUser[userId], "key");
-        Object.keys(dataByKey).forEach(key => {
-          const arrayValue = dataByKey[key];
-          const firstValue = arrayValue[0];
-          const lastValue = arrayValue[arrayValue.length - 1];
-          const element = cloneDeep(elementByUser);
-          element["key"] = key;
-          element["old_value"] = firstValue["old_value"];
-          element["new_value"] = lastValue["new_value"];
-          if (element["old_value"] !== element["new_value"]) {
-            listDataByKey.push(element);
+        const listDistinctKeyByDateByUser = _.chain(listDataByDateByUser)
+          .map("key")
+          .uniq()
+          .value();
+        listDistinctKeyByDateByUser.forEach(key => {
+          const listDataByDateByUserByKey = _.chain(listData)
+            .filter({
+              created_at: date,
+              user_id: userId,
+              key: key
+            })
+            .orderBy(["updated_at"])
+            .value();
+          const head = _.head(listDataByDateByUserByKey);
+          const last = _.last(listDataByDateByUserByKey);
+          const oldValue = head["old_value"];
+          const newValue = last["new_value"];
+          if (oldValue !== newValue) {
+            const dataForResult = {
+              user_id: userId,
+              user: head["user"],
+              created_at: date,
+              old_value: oldValue,
+              new_value: newValue,
+              key: key
+            };
+            listDataByKey.push(dataForResult);
           }
         });
       });
     });
 
-    this.dataByDate = _.groupBy(listDataByKey, "created_at");
+    this.listData = _.groupBy(listDataByKey, "created_at");
   }
 };
 </script>

@@ -37,6 +37,11 @@ class Project extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
+    public function revisionHistoryWithUser()
+    {
+        return $this->morphMany('App\BaseRevision', 'revisionable')->with('user');
+    }
+
     public function setStartedAtAttribute($data)
     {
         $this->attributes['started_at'] = (new Carbon($data))->format("Y-m-d H:i:s");

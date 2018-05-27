@@ -2,8 +2,8 @@
   <el-row>
     <el-col :span="10" :offset="7">
       <h1>404</h1>
-      <h2>{{$t('errorMessage.pageNotExists')}}</h2>
-      <p class="pt-3">{{$t('errorMessage.returnHomeOrReport')}}</p>
+      <h2>{{$t('message.pageNotExists')}}</h2>
+      <p class="pt-3">{{$t('message.returnHomeOrReport')}}</p>
       <router-link to="/">
         <el-button round class="mr-2">{{$t('form.returnHome')}}</el-button>
       </router-link>

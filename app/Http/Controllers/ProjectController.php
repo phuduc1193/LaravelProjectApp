@@ -57,7 +57,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Project::with(['status', 'tags', 'users', 'revisionHistory'])->find($id);
+        return Project::with(['status', 'tags', 'users', 'revisionHistoryWithUser'])->find($id);
     }
 
     /**

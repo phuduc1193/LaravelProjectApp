@@ -26,7 +26,7 @@
         <router-link :to="'/projects/edit/' + data.id" class="top-page">
           <el-button round><i class="fa fa-pencil"></i></el-button>
         </router-link>
-        <project-revision :data="data.revision_history" :users="data.users" class="pt-0 pt-sm-5">
+        <project-revision :data="data.revision_history_with_user" class="pt-0 pt-sm-5">
         </project-revision>
       </el-col>
     </el-row>
