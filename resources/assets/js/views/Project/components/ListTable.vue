@@ -12,6 +12,9 @@
       prop="tagsName"
       :label="$t('tableHeader.meta')"
       width="170">
+      <template slot-scope="scope">
+        <tags :value="scope.row.tags"></tags>
+      </template>
     </el-table-column>
     <el-table-column
       prop="state"
@@ -48,10 +51,11 @@
 
 <script>
 import Status from "@/components/Status";
+import Tags from "@/components/Tags";
 
 export default {
   name: "project-list-table",
-  components: { Status },
+  components: { Status, Tags },
   props: ["data"],
   methods: {
     dateFormat(row, column) {
