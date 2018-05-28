@@ -70,6 +70,7 @@ export default {
     projects: "Projects",
     list: "View all",
     view: "View",
+    detail: "Detail",
     create: "Add new",
     edit: "Edit",
     profile: "Profile"
@@ -79,7 +80,8 @@ export default {
     meta: "Meta",
     assignedTo: "Assigned To",
     status: "Status",
-    deadline: "Deadline"
+    deadline: "Deadline",
+    operations: "Operations"
   },
   noRecord: "No record found",
   backToList: "Back to list",

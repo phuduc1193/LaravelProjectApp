@@ -70,6 +70,7 @@ export default {
     projects: "Dự án",
     list: "Xem tất cả",
     view: "Xem",
+    detail: "Chi tiết",
     create: "Thêm mới",
     edit: "Chỉnh sửa",
     profile: "Profile"
@@ -79,7 +80,8 @@ export default {
     meta: "Meta",
     assignedTo: "Người đảm nhiệm",
     status: "Tình trạng",
-    deadline: "Hạn chót"
+    deadline: "Hạn chót",
+    operations: "Thao tác"
   },
   noRecord: "Không có dữ liệu",
   backToList: "Quay lại",

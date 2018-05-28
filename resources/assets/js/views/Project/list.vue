@@ -8,16 +8,16 @@
         <el-button type="primary" icon="el-icon-plus" circle></el-button>
       </router-link>
     </el-row>
-    <tree-table :data="data" :columns="columns"></tree-table>
+    <project-list-table :data="data"></project-list-table>
   </div>
 </template>
 
 <script>
-import TreeTable from "@/components/TreeTable";
+import ProjectListTable from "./components/ListTable";
 import store from "@/core/store";
 
 export default {
-  components: { TreeTable },
+  components: { ProjectListTable },
   data() {
     return {
       columns: [

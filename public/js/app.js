@@ -35277,8 +35277,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui_lib_theme_chalk_index_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_font_awesome_css_font_awesome_min_css__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_font_awesome_css_font_awesome_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_font_awesome_css_font_awesome_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_auth_guard__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_http_service__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_router_permission__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_axios_config__ = __webpack_require__(313);
 
 
 
@@ -104053,6 +104053,7 @@ VueI18n.version = '7.6.0';
     projects: "Projects",
     list: "View all",
     view: "View",
+    detail: "Detail",
     create: "Add new",
     edit: "Edit",
     profile: "Profile"
@@ -104062,7 +104063,8 @@ VueI18n.version = '7.6.0';
     meta: "Meta",
     assignedTo: "Assigned To",
     status: "Status",
-    deadline: "Deadline"
+    deadline: "Deadline",
+    operations: "Operations"
   },
   noRecord: "No record found",
   backToList: "Back to list",
@@ -104164,6 +104166,7 @@ VueI18n.version = '7.6.0';
     projects: "Dự án",
     list: "Xem tất cả",
     view: "Xem",
+    detail: "Chi tiết",
     create: "Thêm mới",
     edit: "Chỉnh sửa",
     profile: "Profile"
@@ -104173,7 +104176,8 @@ VueI18n.version = '7.6.0';
     meta: "Meta",
     assignedTo: "Người đảm nhiệm",
     status: "Tình trạng",
-    deadline: "Hạn chót"
+    deadline: "Hạn chót",
+    operations: "Thao tác"
   },
   noRecord: "Không có dữ liệu",
   backToList: "Quay lại",
