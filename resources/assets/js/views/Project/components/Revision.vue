@@ -3,7 +3,7 @@
     <div v-for="date in Object.keys(listData)" :key="date">
       {{ $t('form.date') }} {{ date | moment("MM.DD.YYYY") }}
       <div v-for="(array, index) in Object.values(listData)" :key="index">
-        <ul>
+        <ul v-if="array[0].created_at == date">
           <li v-for="(item, innerIndex) in array" :key="innerIndex">
             <span v-if="item.key != 'created_at'">
               {{ item.user.name + ' ' + $t('form.changed') + ' \'' + $t('databaseColumn.' + item.key) + '\'' }}.
@@ -34,14 +34,14 @@ export default {
     this.data.forEach(element => {
       const createdDate = new Date(element.created_at);
       const newElement = cloneDeep(element);
-      newElement["created_at"] = new Date(createdDate.toDateString());
+      newElement["created_at"] = createdDate.toDateString();
       listData.push(newElement);
     });
 
     const listDataByKey = [];
     const listDistinctDate = _.chain(listData)
-      .map("created_at")
       .uniqBy("created_at")
+      .map("created_at")
       .value();
     listDistinctDate.forEach(date => {
       const listDataByDate = _.filter(listData, { created_at: date });
