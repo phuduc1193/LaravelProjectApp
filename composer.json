@@ -13,6 +13,7 @@
     "laravel/tinker": "^1.0",
     "nanigans/single-table-inheritance": "0.8.*",
     "predis/predis": "^1.1",
+    "santigarcor/laratrust": "5.0.*",
     "tymon/jwt-auth": "^1.0@dev",
     "venturecraft/revisionable": "1.*"
   },
