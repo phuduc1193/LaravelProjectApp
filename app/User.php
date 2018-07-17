@@ -62,4 +62,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany('App\Project')->withPivot('relation');
     }
+
+    public function teams()
+    {
+        $teams = $this->morphToMany(
+            config('laratrust.models.team'),
+            'user',
+            config('laratrust.tables.role_user'),
+            config('laratrust.foreign_keys.user'),
+            config('laratrust.foreign_keys.team')
+        );
+
+        return $teams;
+    }
 }

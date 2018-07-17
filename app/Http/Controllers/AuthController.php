@@ -45,7 +45,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(auth()->user()->load('roles', 'permissions', 'teams'));
     }
 
     /**
@@ -55,8 +55,9 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        if (auth())
+        if (auth()) {
             auth()->logout();
+        }
 
         return response()->json(['message' => 'Successfully logged out']);
     }
